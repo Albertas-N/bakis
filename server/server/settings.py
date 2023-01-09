@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webv1',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'server.wsgi.application'
 }"""
 
 #cia prisijungimas prie postgresql, nepadarytas pilnai dar
-
+'''
 DATABASES={
 
   'default':{
@@ -101,7 +102,7 @@ DATABASES={
   }
 
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

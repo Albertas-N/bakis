@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -19,12 +18,11 @@ Including another URLconf
 """
 
 urlpatterns = [
-    path('', views.home_view, name='home.html'),
-    path('about/', views.about_view, name=''),
-    path('admin/', admin.site.urls),
+    path('', views.home_view, name='home'),
+    path('about/', views.about_view, name='about'),
     path('categories', views.categories, name='categories'),
     path('categories/restaurants', views.restaurants, name='restaurants'),
     path('categories/bars', views.bars, name='bars'),
     path('categories/clubs', views.clubs, name='clubs'),
-    path('categories/attractions', views.attractions, name='tourist attractions')
+    path('categories/attractions', views.attractions, name='attractions')
 ]
