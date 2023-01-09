@@ -1,0 +1,26 @@
+<!-- Restaurant List Template -->
+<template id="restaurant-list-template">
+    <h1>Entertainment Category: {{ category }}</h1>
+      <ul>
+        <!-- Restaurant List Items -->
+        <li class="restaurant-item">
+          <h2>Restaurant Name</h2>
+          <p>Cuisine: <span class="cuisine"></span></p>
+          <p>Rating: <span class="rating"></span></p>
+          <p>Price: <span class="price"></span></p>
+        </li>
+      </ul>
+    </template>
+  
+    
+    {% extends 'template.html' %}
+
+{% block content %}
+  <h1>Restaurants</h1>
+
+  <ul>
+    <li>Restaurant 1</li>
+    <li>Restaurant 2</li>
+    <li>Restaurant 3</li>
+  </ul>
+{% endblock %}
