@@ -1,73 +1,72 @@
 <!-- Navigation Bar -->
 <nav>
-    <ul>
-      <li><a href={% url 'home' %}>Home</a></li>
-      <li><a href={% url 'about' %}>About</a></li>
-      <li><a href={% url 'categories' %}>Categories</a></li>
-      <li><a href={% url 'restaurants' %}>Restaurants</a></li>
-      <li><a href={% url 'bars' %}>Bars</a></li>
-      <li><a href={% url 'clubs' %}>Clubs</a></li>
-      <li><a href={% url 'attractions' %}>Tourist Attractions</a></li>
-    </ul>
-  </nav>
-  
-  <!-- Main Content Area -->
-  <main>
-    <!-- Form to Select Entertainment Category -->
-    <form id="category-form">
-      <label for="category-select">Select an Entertainment Category:</label>
-      <select id="category-select">
-        <option value="Restaurants">Restaurants</option>
-        <option value="Clubs">Clubs</option>
-        <option value="Bars">Bars</option>
-        <option value="Tourist attractions">Tourist Attractions</option>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
-  
-    <!-- Div to Display More Information About Selected Entertainment -->
-<div id="entertainment-info"></div>
+  <ul>
+    <li><a href={% url 'home' %}>Home</a></li>
+    <li><a href={% url 'about' %}>About</a></li>
+    <li><a href={% url 'categories' %}>Categories</a></li>
+    <li><a href={% url 'restaurants' %}>Restaurants</a></li>
+    <li><a href={% url 'bars' %}>Bars</a></li>
+    <li><a href={% url 'clubs' %}>Clubs</a></li>
+    <li><a href={% url 'attractions' %}>Tourist Attractions</a></li>
+    <li><a href={% url 'component_view' %}> Component view</a></li>
+  </ul>
+</nav>
 
-<script>
-  // Get the select element and the entertainment-info div
-  var select = document.getElementById("category-select");
-  var infoDiv = document.getElementById("entertainment-info");
-
-  // Add an event listener to the select element to handle changes
-  select.addEventListener("change", function() {
-    // Get the selected value
-    var value = this.value;
-
-    // Clear the entertainment-info div
-    infoDiv.innerHTML = "";
-
-    // Display the appropriate information based on the selected value
-    if (value === "restaurants") {
-      // Add information about restaurants
-      infoDiv.innerHTML = "Here is some information about restaurants!";
-    } else if (value === "clubs") {
-      // Add information about clubs
-      infoDiv.innerHTML = "Here is some information about clubs!";
-    } else if (value === "bars") {
-      // Add information about bars
-      infoDiv.innerHTML = "Here is some information about bars!";
-    } else if (value === "tourist-attractions") {
-      // Add information about tourist attractions
-      infoDiv.innerHTML = "Here is some information about tourist attractions!";
-    }
-  });
-</script>
-
-
-      <!-- Button to Transfer to Another Page -->
-      <button id="transfer-button">View More Information</button>
+<!-- Main Content Area -->
+<main>
+  <div class="container">
+    <h1>Welcome to the Home Page</h1>
+    <p>Hello, {{ user.name }}!</p>
+    <div class="row">
+      <div class="col-6">
+        <form id="category-form" method="get" action="{% url 'component_view' %}">
+          <label for="category-select">Select an Entertainment Category:</label>
+          <select id="category-select" name="catid">
+            {% for category_type in category_types %}
+            <option value="{{ category_type.catid }}">{{ category_type.category_type }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="col-6">
+        <button id="transfer-button" class="btn btn-secondary">View More Information</button>
+      </div>
     </div>
-  </main>
-  
-  <!-- Footer -->
-  <footer>
-    <p>Copyright 2022</p>
-  </footer>
-  
-  <h1>Welcome to the Home Page</h1>
-  <p>Hello, {{ user.name }}!</p>
+    <hr>
+    <div class="row">
+      <div class="col-12">
+        {% if categories %}
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Components</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for category in categories %}
+            <tr>
+              <td>{{ category.category_name }}</td>
+              <td>
+                <ul>
+                  {% for component in category.component_set.all %}
+                  <li>{{ component.name }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No categories found.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <!-- Div to Display More Information About Selected Entertainment -->
+  <div id="entertainment-info" class="container"></div>
+</main>
+
+<!-- Footer -->

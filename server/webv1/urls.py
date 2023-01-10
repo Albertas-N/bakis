@@ -24,5 +24,6 @@ urlpatterns = [
     path('categories/restaurants', views.restaurants, name='restaurants'),
     path('categories/bars', views.bars, name='bars'),
     path('categories/clubs', views.clubs, name='clubs'),
-    path('categories/attractions', views.attractions, name='attractions')
+    path('categories/attractions', views.attractions, name='attractions'),
+    path('categories', views.component_view, name='component_view')
 ]

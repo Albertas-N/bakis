@@ -1,0 +1,36 @@
+<main>
+    <div class="container">
+        <h1>Categories</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Components</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <ul>
+                            {% for component in components %}
+                            {% if component.category.catid == category.catid %}
+                            <li>{{ component.name }}</li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        {% for category in categories %}
+        <h3>{{ category.category_type }}</h3>
+        <p>{{ category.description }}</p>
+        {% endfor %}
+    </div>
+</main>
