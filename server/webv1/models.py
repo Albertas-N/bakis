@@ -3,21 +3,23 @@ from django.db import models
 # Create your models here.
 
 class CategoryType(models.Model):
-    name = models.CharField(max_length=255)
-    
+    category_type = models.CharField(max_length=255)
+
     def __str__(self):
-        return self.name
-        
+        return self.category_type
+
 class Category(models.Model):
-    catid = models.ForeignKey(CategoryType, on_delete=models.CASCADE, related_name='category_type_set')
-    category_type = models.ForeignKey(CategoryType, on_delete=models.CASCADE, related_name='catid_set')
-    
+    category_type = models.ForeignKey(CategoryType, on_delete=models.CASCADE, related_name='categories')
+    category_name = models.CharField(max_length=255)
+    description = models.TextField()
+
     def __str__(self):
-        return self.name
+        return self.category_name
 
 class Component(models.Model):
-    catid = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='catid_set')
-    category_name = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category_name_set')
-    description = models.TextField(blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='components')
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
     def __str__(self):
         return self.name

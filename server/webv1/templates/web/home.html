@@ -4,13 +4,10 @@
     <li><a href={% url 'home' %}>Home</a></li>
     <li><a href={% url 'about' %}>About</a></li>
     <li><a href={% url 'categories' %}>Categories</a></li>
-    <li><a href={% url 'restaurants' %}>Restaurants</a></li>
-    <li><a href={% url 'bars' %}>Bars</a></li>
-    <li><a href={% url 'clubs' %}>Clubs</a></li>
-    <li><a href={% url 'attractions' %}>Tourist Attractions</a></li>
     <li><a href={% url 'component_view' %}> Component view</a></li>
   </ul>
 </nav>
+
 
 <!-- Main Content Area -->
 <main>
@@ -21,52 +18,21 @@
       <div class="col-6">
         <form id="category-form" method="get" action="{% url 'component_view' %}">
           <label for="category-select">Select an Entertainment Category:</label>
-          <select id="category-select" name="catid">
+          <select id="category-select" name="category_type">
             {% for category_type in category_types %}
-            <option value="{{ category_type.catid }}">{{ category_type.category_type }}</option>
+               <option value="{{ category_type.name }}">{{ category_type.name }}</option>
             {% endfor %}
-          </select>
+         </select>         
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
-      <div class="col-6">
-        <button id="transfer-button" class="btn btn-secondary">View More Information</button>
-      </div>
     </div>
-    <hr>
-    <div class="row">
-      <div class="col-12">
-        {% if categories %}
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Components</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for category in categories %}
-            <tr>
-              <td>{{ category.category_name }}</td>
-              <td>
-                <ul>
-                  {% for component in category.component_set.all %}
-                  <li>{{ component.name }}</li>
-                  {% endfor %}
-                </ul>
-              </td>
-            </tr>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <p>No categories found.</p>
-        {% endif %}
-      </div>
-    </div>
+        </ul>
+    {% endif %}
   </div>
-  <!-- Div to Display More Information About Selected Entertainment -->
-  <div id="entertainment-info" class="container"></div>
 </main>
-
-<!-- Footer -->
