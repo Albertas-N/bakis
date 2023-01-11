@@ -1,0 +1,110 @@
+/* Navigation Bar */
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed; /* stick the navigation to the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; /* make sure the navigation stays above other elements */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover { /* Add a hover effect on the links */
+  color: #f1f1f1;
+}
+
+/* Main Content Area */
+main {
+  margin: 80px auto; /* Add some margin to account for the fixed navigation */
+  padding: 20px;
+  max-width: 800px;
+}
+
+/* Categories form */
+#category-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#category-form label {
+  margin-bottom: 10px;
+}
+
+#category-form select {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  padding: 5px; /* Add some padding to make the form more visually appealing */
+  border-radius: 5px; /* Add some rounded corners to the select */
+  border: 1px solid #ccc; /* Add a border to the select */
+}
+
+#category-form button {
+  width: 100px;
+  height: 30px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px; /* Add some margin to the button */
+}
+
+/* Error messages */
+.messages {
+  margin-top: 20px;
+}
+
+.messages li {
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Table to display the categories and components */
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse; /* Remove the space between cells */
+}
+
+thead th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+tbody td {
+  padding: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
