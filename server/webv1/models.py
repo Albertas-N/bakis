@@ -1,25 +1,19 @@
 from django.db import models
 
-# Create your models here.
+class category_typetb(models.Model):
+    catid = models.AutoField(primary_key=True)
+    category_type = models.CharField(max_length=250)
 
-class CategoryType(models.Model):
-    category_type = models.CharField(max_length=255)
+    class Meta:
+        managed = False
+        db_table = 'category_typetb'
 
-    def __str__(self):
-        return self.category_type
+class categoriestb(models.Model):
+    catid = models.AutoField(primary_key=True)
+    category_name = models.CharField(max_length=250)
+    description = models.CharField(max_length=250)
+    catid_type = models.ForeignKey(category_typetb, on_delete=models.CASCADE)
 
-class Category(models.Model):
-    category_type = models.ForeignKey(CategoryType, on_delete=models.CASCADE, related_name='categories')
-    category_name = models.CharField(max_length=255)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.category_name
-
-class Component(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='components')
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
+    class Meta:
+        managed = False
+        db_table = 'categoriestb'
