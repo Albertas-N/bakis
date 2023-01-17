@@ -11,70 +11,16 @@
   <!-- Navigation Bar -->
   <nav>
     <ul>
-      <li><a href={% url 'home' %}>Home</a></li>
-      <li><a href={% url 'about' %}>About</a></li>
-      <li><a href={% url 'categories' %}>Categories</a></li>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'about' %}">About</a></li>
+      <li><a href="{% url 'categories' %}">Categories</a></li>
     </ul>
   </nav>
 
+
   <!-- Main Content Area -->
-  <main>
-    <div class="container">
-      <h1>Welcome to the Home Page</h1>
-      <p>Hello, {{ user.name }}!</p>
-      <div class="row">
-        <div class="col-6">
-          <form id="category-form" method="get" action="{% url 'component_view' %}">
-            <label for="category-select">Select an Entertainment Category:</label>
-            <select id="category-select" name="category_type">
-              {% for category_type in category_types %}
-              <option value="{{ category_type.name }}">{{ category_type.name }}</option>
-              {% endfor %}
-            </select>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
-      {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-          {% endfor %}
-      </ul>
-      {% endif %}
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Category Name</th>
-          <th>Components</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for category in category_types %}
-        <tr>
-          <td>{{ category.name }}</td>
-          <td>
-            {% for component in category.components.all %}
-            {{ component.name }}<br>
-            {% endfor %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <div class="category-panel">
-      {% for category in category_types %}
-      <div class="category-header" onclick="toggleCategory('{{ category.id }}')">
-        {{ category.name }}
-      </div>
-      <div class="category-content" id="category-{{ category.id }}" style="display:none;">
-        <!-- Add the rest of the category information here -->
-      </div>
-      {% endfor %}
-    </div>
-  </main>
-</body>
+
+
 <script>
   function toggleCategory(id) {
     let content = document.getElementById(`category-${type}`);
