@@ -5,9 +5,9 @@ from .models import CategoryType, Category, Component
 from django import forms
 
 
-'''def home_view(request):
-    return render(request, 'web/home.html')
-
+def home_view(request):
+    return render(request, 'webv1/home.html')
+'''
 
 def categories(request):
     category = request.GET.get('categories')
@@ -32,7 +32,7 @@ def attractions(request):
 
 def about_view(request):
     return render(request, 'web/about.html')
-
+    
 
 def my_view(request):
     # Connect to the database
