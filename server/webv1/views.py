@@ -3,13 +3,20 @@ import sqlite3
 from django.contrib import messages
 from django.db import models
 from django import forms
-
+from .models import Category
+from .serializers import CategorySerializer
+from rest_framework import serializers, viewsets
 
 def home_view(request):
     return render(request, 'web/home.html')
 
 
-def categories(request):
+class categoriesViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+"""def categories(request):
     category = request.GET.get('categories')
     return render(request, 'web/categories.html', {'category': category})
 
@@ -42,10 +49,12 @@ def my_view(request):
 # creating a view to retrieve all category types and categories from database
 def home(request):
     category_types = Category_typetb.objects.all()
-    form = CategoryTypeForm()
-    return render(request, 'web/home.html', {'category_types': category_types}, {'form': form})
+    #form = CategoryTypeForm()
+    context= {'category_types': category_types}
+    return render(request, 'web/home.html', context)"""
 
-def categories(request, catid):
+"""def categories(request, catid):
     category_type = Category_typetb.objects.get(catid=catid)
     categories = Categoriestb.objects.filter(category_id=category_type)
     return render(request, 'web/categories.html', {'categories': categories})
+"""
