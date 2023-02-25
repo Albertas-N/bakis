@@ -1,0 +1,18 @@
+::ng-deep .mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+  
+  ::ng-deep .logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 16px;
+  }
+  
+  ::ng-deep .spacer {
+    flex: 1 1 auto;
+  }
+  
