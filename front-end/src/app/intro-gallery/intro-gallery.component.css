@@ -1,34 +1,7 @@
-.gallery-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .gallery-wrapper .gallery-image {
-    width: 100%;
-    height: auto;
-  }
-  
-  .gallery-wrapper .gallery-thumbnails {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .gallery-wrapper .gallery-thumbnail {
-    flex: 0 0 24%;
-    height: auto;
-  }
-  
-  .gallery-wrapper .gallery-thumbnail img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1;
-    cursor: pointer;
-  }
-  
-  .gallery-wrapper .gallery-thumbnail img:hover {
-    opacity: 0.8;
-  }
+.image-container {
+  width: 60%; /* adjust this to your desired width */
+}
+
+.image-container img {
+  width: inherit;
+}

@@ -1,8 +1,27 @@
 <app-nav-bar></app-nav-bar>
-<router-outlet></router-outlet>
-
 
 <div class="container">
-    <app-intro-gallery></app-intro-gallery>
-    <app-filter></app-filter>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Populariausi</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-intro-gallery></app-intro-gallery>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Paieška</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-filter></app-filter>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="filter-table-container">
+    <app-filter-table></app-filter-table>
   </div>
+</div>
+
+<router-outlet></router-outlet>

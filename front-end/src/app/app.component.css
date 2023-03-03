@@ -1,0 +1,22 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  mat-card {
+    width: 100%;
+    margin: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  mat-card-header {
+    background-color: #1976d2;
+    color: #fff;
+  }
+  
+  mat-card-content {
+    padding: 1rem;
+  }

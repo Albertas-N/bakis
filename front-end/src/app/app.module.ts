@@ -20,6 +20,7 @@ import { AboutComponent } from './about/about.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LoginComponent } from './login/login.component';
 import { MatCardModule } from '@angular/material/card';
+import { FilterTableComponent } from './filter-table/filter-table.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MatCardModule } from '@angular/material/card';
     NavBarComponent,
     AboutComponent,
     CategoriesComponent,
-    LoginComponent
+    LoginComponent,
+    FilterTableComponent
   ],
   imports: [
     BrowserModule,
