@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User #add this
+from django.contrib.auth.models import User 
 
 class Category_typetb(models.Model):
     catid = models.AutoField(primary_key=True)
@@ -43,9 +43,15 @@ class Profile(models.Model):   #add this class and the following fields
         user_seen = models.IntegerField()
         user_setting = models.CharField(max_length=50)
 
-"""class Profile(models.Model):
-        user_id = models.AutoField(primary_key=True)
-        user_liked = models.ForeignKey(Entertainment, on_delete=models.CASCADE)
-        user_seen = models.IntegerField()
-        user_setting = models.CharField(max_length=50)"""
+class PamatykLietuvoje(models.Model): 
+        ID = models.AutoField(primary_key=True)
+        Name = models.CharField(max_length=100)
+        Address = models.CharField(max_length=100)
+        Phone = models.CharField(max_length=100)
+        Email = models.CharField(max_length=100)
+        WorkingHours = models.CharField(max_length=100)
+        Description = models.TextField()
 
+        class Meta:
+                managed = False
+                db_table = "pamatyk_Lietuvoje"

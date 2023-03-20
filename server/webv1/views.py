@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.db import models
 from django import forms
 from .models import Category
+from .models import PamatykLietuvoje
 from .serializers import CategorySerializer
+from .serializers import PamatykLietuvojeSerializer
 from rest_framework import serializers, viewsets
 
 def home_view(request):
@@ -15,6 +17,9 @@ class categoriesViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+class pamatykLietuvojeVewSet(viewsets.ModelViewSet):
+    queryset = PamatykLietuvoje.objects.all()
+    serializer_class = PamatykLietuvojeSerializer
 
 """def categories(request):
     category = request.GET.get('categories')

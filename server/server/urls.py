@@ -19,10 +19,12 @@ from django.conf.urls import include
 from rest_framework import routers
 
 from webv1.views import categoriesViewSet
+from webv1.views import pamatykLietuvojeVewSet
 
 router = routers.DefaultRouter()
 
 router.register('categories', categoriesViewSet, basename='category')
+router.register('pamatykLietuvoje', pamatykLietuvojeVewSet, basename='pamatykLietuvoje')
 
 
 urlpatterns = [
