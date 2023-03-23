@@ -9,7 +9,7 @@ import { DataService } from './filter/filter.component';
 export class AppComponent {
   title = 'front-end';
   filterTerm: string = '';
-  results: any[] = [];
+  searchResults: any[] = [];
   galleryExpanded = false;
 
   constructor(private dataService: DataService) { }
@@ -17,7 +17,7 @@ export class AppComponent {
   onSubmit(): void {
     this.dataService.search(this.filterTerm).subscribe(
       (results: any[] = []) => {
-        this.results = results;
+        this.searchResults = results;
       },
       (error: any[] = []) => {
         console.error(error);
@@ -25,8 +25,8 @@ export class AppComponent {
     );
   }
 
-  onSearchResults(results: any[] = []): void {
-    this.results = results;
+  onSearchResults(event: any) {
+    this.searchResults = event;
   }
 
   expandGallery(): void {

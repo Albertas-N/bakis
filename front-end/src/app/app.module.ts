@@ -14,6 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -52,6 +53,7 @@ import { RegisterComponent } from './auth/register/register.component';
     BrowserAnimationsModule,
     LayoutModule,
     MatFormFieldModule,
+    MatTableModule,
     MatInputModule,
     MatExpansionModule,
     MatDialogModule,

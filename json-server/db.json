@@ -1,16 +1,545 @@
 {
   "Categories": [
     {
-      "cat_id": 0,
-      "category_type": "Pramogos"
-    },
-    {
-      "cat_id": 1,
-      "category_type": "Restoranai"
-    },
-    {
-      "cat_id": 2,
-      "category_type": "Muziejai"
-    }
-  ]
+      "ID": 1,
+      "Name": "Anykščių siauruko muziejus",
+      "Address": "Vilties g. 2, Anykščiai",
+      "Phone": "+37061281067",
+      "Email": "info@baranauskas.lt",
+      "WorkingHours": "I – VII 09.00 – 17.00 (05-01 - 06-30)\n\nI – V 09.00 – 18.00, VI - VII 09.00 – 19.00 (07-01 - 10-31)\n\n11-01 - 04-30 lankytojai priimami iš anksto susitarus.",
+      "Description": "Siaurasis geležinkelis, dar švelniai vadinamas Siauruku, yra unikalus technikos paveldo objektas, nusidriekęs Rytų Aukštaitijoje nuo Panevėžio iki netoli Anykščių esančių Rubikių. Tai – vienas iš dabartinių Anykščių krašto simbolių, gausiai lankomas turistų tiek iš Lietuvos, tiek iš užsienio. Čia galite išbandyti reguliarius reisus, vykstančius gegužės–spalio mėnesiais, dalyvauti visus metus rengiamose šventinėse ir pažintinėse kelionėse, ar tiesiog užsisakyti individualią kelionę pagal jūsų pageidaujamą ar organizatorių siūlomą maršrutą.\n\nPati kelionė Siauruku jau yra nepamirštama atrakcija. Dėl išskirtinių šio geležinkelio savybių važiuodami galėsite grožėtis visai greta esančiais gamtos vaizdais ir akį džiuginančiu kraštovaizdžiu."
+  },
+  {
+      "ID": 2,
+      "Name": "Bitininkystės muziejus",
+      "Address": "Pabalių g. 3, Stripeikiai, Ignalinos r.",
+      "Phone": "+37068612105",
+      "Email": "danute.indrasiene@aparkai.lt",
+      "WorkingHours": "III - VII 10.00 - 18.00\n\nEkskursijos užsakomos iš anksto.",
+      "Description": "Muziejus duris atvėrė 1984 m. Nuo to laiko jis tapo žinomas ne tik visoje Lietuvoje. Smalsuoliai čia gali sužinoti apie Lietuvos bitininkavimo istoriją ir bitučių gyvenimo ypatumus, o smaližių čia laukia saldžios pramogos. Bitininkystės muziejuje galite užsisakyti unikalias su bitininkystę susijusias edukacines programas, stebėti bičių pasaulį pro stiklinį avilio langą."
+  },
+  {
+      "ID": 3,
+      "Name": "Europos parkas, Europos centro muziejus",
+      "Address": "Joneikiškės, Vilniaus r.",
+      "Phone": "+37052377077",
+      "Email": "hq@europosparkas.lt",
+      "WorkingHours": "I - VII 10.00 - iki saulėlydžio\n\nPaskutiniai lankytojai įleidžiami likus 2 val. iki saulėlydžio, vasarą – iki 19.00 val.",
+      "Description": "Gamta + menas = Energija + įkvėpimas = EUROPOS PARKAS \n\nEuropos parkas – romantiškas 55 hektarų meninis kraštovaizdis, pilnas paslapties ir atradimų džiaugsmo. Europos parko istorija prasidėjo nuo devyniolikmečio skulptorius Gintaro Karoso siekio ir užsispyrimo apleistame miške sukurti modernaus ir šiuolaikinio meno muziejų. Muziejaus tikslas – meno kalba įprasminti geografinį Europos žemyno centrą, 1989 metais nustatytą Prancūzijos Nacionalinio geografijos instituto. Muziejus kuriamas kaip vientisas gamtos ir meno kūrinių ansamblis."
+  },
+  {
+      "ID": 4,
+      "Name": "Klaipėdos pilies muziejus",
+      "Address": "Pilies g. 4, Klaipėda",
+      "Phone": "+37046410527",
+      "Email": "info@mlimuziejus.lt",
+      "WorkingHours": "II – VI 10.00 – 18.00",
+      "Description": "Princo Frydricho poternos ekpozicija:  Klaipėdos pilies ir miesto istorija XIII–XVII a.\n\n2002 m. rugpjūčio 1 d. princo Frydricho poternoje duris atvėrė Pilies muziejus."
+  },
+  {
+      "ID": 5,
+      "Name": "Muziejus \"Metalo Fantazija\"",
+      "Address": "Žirgėnai, Vilkaviškio r.",
+      "Phone": "+37061151121",
+      "Email": "info@pusele.lt",
+      "WorkingHours": "2 Eur",
+      "Description": "Apsilankę muziejuje \"Metalo Fantazija\" pamatysite unikalių gaminių iš metalo detalių, kurios buvo pasmerktos perdirbimui ar sunaikinimui. Muziejuje išvysite daugiau nei 800 eksponatų ir su kiekvienu sezonu, originalių ir naujų eksponatų skaičius tik auga. \"Metalo Fantazijos\" kolekcija labai įvairi, kurią sudaro eksponatai iš augmenijos ir gyvūnijos pasaulio ar netgi modernių laikų improvizacijos. Prie šių darbų kūrimo daug prisidėjo Darius Renaldas Dulinskas, o ypatingai reikėtų išskirti medžio drožėją Povilą Penkaitį, kuris papuošė muziejų daugiau nei 80 dirbinių iš ąžuolo."
+  },
+  {
+      "ID": 6,
+      "Name": "Plaktukų muziejus Degučiuose",
+      "Address": "Penkinių g. 11, Degučiai, Vilkaviškio r.",
+      "Phone": "+37068224128",
+      "Email": "Not found!",
+      "WorkingHours": "Muziejaus įkūrėjas lankytojus gali priimti tik vakarais po darbo arba savaitgaliais. Lankymas iš anksto susitarus +37068224128.",
+      "Description": "Plaktukų muziejus Degučių kaime atidarytas 2018 m. ir yra antrasis toks muziejus Lietuvoje, nors apskritai plaktukų muziejai yra retas reiškinys. Lietuvoje vienas muziejus yra Ignalinos rajone, antras – šis Sauliaus Matusevičiaus įkurtas Degučių kaime, Vilkaviškio rajone.\n\nPasaulyje priskaičiuojama per 25 tūkstančius skirtingų plaktukų rūšių. Muziejuje šiandien yra apie 600 eksponatų."
+  },
+  {
+      "ID": 7,
+      "Name": "Prof. Adomo Hrebnickio memorialinis muziejus",
+      "Address": "Rojus, Ignalinos r.",
+      "Phone": "+ 676) 26790",
+      "Email": "a.hrebnickiomuziejus@gmail.com",
+      "WorkingHours": "II - V 10.00 – 14.00, VI 10.00 – 14.00",
+      "Description": "Kąsdamas sultingą obuolį, šiandien retas susimąsto, kad šis obuolys buvo išvestas profesoriaus Adomo Hrebnickio, kurio muziejus yra nedideliame Rojaus kaimelyje, netoli Dūkšto, Ignalinos rajone, skendinčiame žaliuojančių šimtamečių medžių pavėsyje. Rojų įkūrė tuo metu žymiausias Lietuvos sodidinkystės pomologas, Peterburgo miškų instituto profesorius A.Hrebnickis. Visą savo gyvenimą jis buvo pašventęs obuolių, kriaušių, vyšnių, slyvų veislių tyrinėjimui. Jo sode buvo surinkta didžiulė vaismedžių kolekcija.\n\nMuziejus lankytojams atidarytas 1961 m."
+  },
+  {
+      "ID": 8,
+      "Name": "Raseinių krašto istorijos muziejus",
+      "Address": "Muziejaus g. 3, Raseiniai",
+      "Phone": "+37042851191",
+      "Email": "muziejus@raseiniai.lt",
+      "WorkingHours": "II - V 09.00 – 18.00, VI 11.00 – 16.00",
+      "Description": "Raseiniai, senas miestas pirmą kartą istoriniuose šaltiniuose paminėtas 1253 m. XIX a. - didžiausias miestas po Kauno, turėjęs 12 tūkstančių gyventojų. Raseiniai, neturėdami nei geležinkelio, nei svarbesnio per jį ėjusio plento, pradėjo smukti ir mažėti – prieš Pirmąjį pasaulinį karą teturėjo 6 tūkstančius gyventojų."
+  },
+  {
+      "ID": 9,
+      "Name": "Stiklo muziejus ir paveikslų galerija",
+      "Address": "Gedimino g. 10, Balninkai, Molėtų r.",
+      "Phone": "+37064174417",
+      "Email": "bartkeviciene.daiva@gmail.com",
+      "WorkingHours": "II – VI 10.00 – 17.00\nPaskutinis mėnesio antradienis – sanitarinė diena. Vasaros mėnesiais (birželis, liepa, rugpjūtis) muziejus dirba ir sekmadieniais 10.00 – 15.00. Pageidaujančius aplankyti muziejų kitu laiku prašome skambinti nurodytu telefonu.",
+      "Description": "Pirmajame specializuotame stiklo dirbinių muziejuje Lietuvoje eksponuojama XX-XXI a. sandūroje veikusių Lietuvoje stiklo fabrikų bei gamyklų pagaminti stiklo dirbiniai, XVII-XIX a. veikusių stiklo manufaktūrų stiklo dirbinių duženų ir ugniai atsparių medžiagų liekanos.\nPaveikslų galerijoje eksponuojami grafiko Stasio Aukštuolio, liaudies menininkės Onos Pusvaškytės, tapytojo Vlado Miškinio darbai. Lankytojams įrengta krašto istorijos, kultūros ir buities ekspozicija bei laikinų – kilnojamų parodų salė."
+  },
+  {
+      "ID": 10,
+      "Name": "Telefonijos muziejus",
+      "Address": "Dvaro g. 85, Šiauliai",
+      "Phone": "+37041201075",
+      "Email": "museum@didww.com",
+      "WorkingHours": "Suaugusiems – 1,50 Eur., Vaikams, moksleiviams, studentams, neįgaliesiems, senjorams – 1 Eur. \nMokytojams, lydintiems mokinių grupes, vaikams iki 4 metų, asmenims lydintiems neįgalius asmenis muziejaus lankymas nemokamas.",
+      "Description": "Telefonijos muziejus įsikūręs istoriniame pastate (buvusi miesto iždinė), pačiame Šiaulių miesto centre. Idėją įkurti tokio tipo muziejų UAB “Extra Services” brandino ne vienerius metus. Surinkusi ir sukaupusi nemažą eksponatų kolekciją bei įvairios istorinės medžiagos apie telefonijos istoriją Lietuvoje ir pasaulyje, 2019 m. birželio men."
+  },
+  {
+      "ID": 11,
+      "Name": "Utenos kraštotyros muziejus",
+      "Address": "Utenio a. 3, Utena",
+      "Phone": "+37038961637",
+      "Email": "utenoskm@gmail.com",
+      "WorkingHours": "II - V 10.00 – 18.00, VI 10.00 – 17.00",
+      "Description": "Muziejus Utenoje buvo įkurtas 1929 metais. Muziejui buvo paskirtas nemažas kambarys Utenos naujojoje pradžios mokykloje. Dabar tai Rapolo Šaltenio pagrindinė mokykla J.Basanavičiaus gatvėje. 2000 - 2001 metais vyko muziejaus kapitalinis remontas su rekonstrukcija."
+  },
+  {
+      "ID": 12,
+      "Name": "Valdovų rūmų muziejus",
+      "Address": "Katedros a. 4, Vilnius",
+      "Phone": "+37052127476",
+      "Email": "info@valdovurumai.lt",
+      "WorkingHours": "I - III 10.00 – 18.00, IV - VI 10.00 – 20.00, VII 10.00 – 16.00 (06-01 - 08-31)\n\nII, III, V, VI 10.00 – 18.00, IV 10.00 – 20.00, VII 10.00 – 16.00 (09-01 - 05-31)",
+      "Description": "Nacionaliniame muziejuje Lietuvos Didžiosios Kunigaikštystės valdovų rūmuose galima apžiūrėti kelias nuolatines ekspozicijas, atspindinčias istorinės rezidencijos funkcijas: Rūmų istorinė ir architektūrinė raida, Rūmų atkurti istoriniai reprezentaciniai interjerai, Valdovų lobynas bei iždinė. Gausūs radiniai kartu su rūmų raidos maketais, ikonografine medžiaga ir tekstiniais komentarais rodomi Rūmų istorinės ir architektūrinės raidos ekspozicijoje (I maršrutas). Rūmų atkurtų istorinių reprezentacinių interjerų ekspozicija (II maršrutas) lankytojus atves į reprezentacines menes su atkurtais istoriniais vėlyvosios gotikos, renesanso ir ankstyvojo baroko reprezentaciniais interjerais, taip pat į specialią lobyno salę."
+  },
+  {
+      "ID": 13,
+      "Name": "1863 metų sukilimo muziejus",
+      "Address": "Paberžė, Kėdainių r.",
+      "Phone": "+37064512407",
+      "Email": "muziejus1863@gmail.com",
+      "WorkingHours": "I - VI 09.00 - 17.00",
+      "Description": "1863 m. sukilimo muziejaus koncepciją padiktavo istoriniai faktai – sukilimo eiga, jo dalyviai bei dvaro pastatas, išlikęs per daugelį neramumų, kuriame įsikūręs muziejus. Siekiant kuo išsamiau lankytoją supažindinti su sukilimo priežastimis, eiga, skirtingomis dalyvių grupėmis, iškiliais asmenimis, ekspozicijos koncepcijos pagrindu pasirinktas raudonos ir baltos spalvų derinys bei dvipusiškumo aspektas. Būtent šios spalvos pasirinktos ekspozicijoje todėl, kad jos simbolizuoja sukilimo dalyvių grupes – \"raudonuosius\" ir \"baltuosius\"."
+  },
+  {
+      "ID": 14,
+      "Name": "A. ir J. Juškų etninės kultūros muziejus",
+      "Address": "Kauno mažoji g. 2, Vilkija, Kauno r.",
+      "Phone": "+37037556400",
+      "Email": "ajjekm@gmail.com",
+      "WorkingHours": "II – VI 08.00 – 17.00 (12-01 - 04-30)\nIII - VII 08.00 – 17.00 (05-02 - 11-30)",
+      "Description": "Antano ir Jono Juškų etninės kultūros muziejus įkurtas 1990 m. buvusioje klebonijoje. Tai seniausias išlikęs pastatas Vilkijoje. Manoma, kad šiam namui yra virš 300 metų."
+  },
+  {
+      "ID": 15,
+      "Name": "Adomynės dvaro muziejus",
+      "Address": "Adomo Vilėniškio g. 4, Adomynės k., Šimonių sen., Kupiškio r.",
+      "Phone": "+370 640 96 175",
+      "Email": "adomynesdvaras@gmail.com",
+      "WorkingHours": "Not found!",
+      "Description": "Tai nėra tipiškas muziejus. Tai Adomynės kaimo bendruomenės aktyvistų (iniciatorė – kultūros darbuotoja Rima Lapienienė) dar praėjusiame šimtmetyje pradėta kaupti Adomynės apylinkių senųjų buities reikmenų, spaudinių, radinių kolekcija. Kiekvienas čia atneštas daiktelis turi įdomią istoriją ir yra savaip vertingas. Dvare buvusių autentiškų daiktų beveik nėra, išskyrus vieną stalelį, krapylą ir užuolaidos kutą:"
+  },
+  {
+      "ID": 16,
+      "Name": "Akmenės krašto muziejus",
+      "Address": "K. Kasakausko g. 17, Akmenė",
+      "Phone": "+37062032254",
+      "Email": "akmenesmuziejus@gmail.com",
+      "WorkingHours": "II - V 09.00 – 18.00, VI 09.00 – 17.00",
+      "Description": "Akmenės krašto muziejuje saugoma ir eksponuojama vieno žinomiausių Lietuvoje dieninių drugių kolekcionieriaus Boriso Izenbeko (1910-2006) kolekcija. Lietuvos zoologas, biomedicinos mokslų daktaras Povilas Ivinskis teigė, kad saugoma kolekcija yra didžiausia dieninių drugių kolekcija Lietuvoje. B. Izenbeko kolekcijoje yra apie 5000 dieninių drugių iš viso pasaulio (ekspozicijoje šiuo metu – arti 2000)."
+  },
+  {
+      "ID": 17,
+      "Name": "Alytaus kraštotyros muziejus",
+      "Address": "Savanorių g. 6, Alytus",
+      "Phone": "+37031553370",
+      "Email": "direktorius@alytausmuziejus.lt",
+      "WorkingHours": "II - V 09.00 - 18.00, VI 10.00 - 16.00",
+      "Description": "Alytaus kraštotyros muziejus miesto inteligentų iniciatyva buvo įkurtas 1928 m. Šiandien jame saugoma beveik 100 tūkst. eksponatų – tai istorinė, etnografinė ir archeologinė medžiaga, patekusi į muziejaus fondus iš visų Pietų Lietuvos rajonų. Modernios ir interaktyvios ekspozicijos išradingai pasakoja krašto istoriją."
+  },
+  {
+      "ID": 18,
+      "Name": "Antano Baranausko klėtelė",
+      "Address": "A. Vienuolio g. 2, Anykščiai",
+      "Phone": "+37038158015",
+      "Email": "a.vienuolis@gmail.com",
+      "WorkingHours": "I - V 09.00 - 18.00, VI 09.00 - 19.00, VII 09.00 - 18.00 (07-01 - 09-30)\n\nI - VII 08.00 - 17.00 (10-01 - 06-30)",
+      "Description": "Anykščiuose yra pirmasis Lietuvoje memorialinis muziejus – 1927 metais rašytojo Antano Žukausko-Vienuolio pastangomis įkurtas poeto Antano Baranausko klėtelėje. Vėliau muziejus pavadintas A. Baranausko ir A. Vienuolio-Žukausko memorialiniu muziejumi."
+  },
+  {
+      "ID": 19,
+      "Name": "Aštuonračio muziejus",
+      "Address": "Vyšnių g. 22, Nemakščiai, Raseinių r.",
+      "Phone": "+37068749215",
+      "Email": "astuonratis@gmail.com",
+      "WorkingHours": "Rekomenduojama dėl lankymo susitarti iš anksto.",
+      "Description": "Prieš šimtą metų, Lietuvos bajoras Pšemislovas Neveravičius, būdamas savamoksliu konstruktoriumi be aukštojo išsilavinimo, pirmasis pasaulyje sukūrė laiką pralenkusį aštuonratį savaeigį vežimą. Nors praėjo daug laiko, tačiau ir šiandien keturių ašių važiuoklės prototipu naudojasi visų aštuonračių mašinų gamintojai: nuo kariškių naudojamų transporterių iki astronautų mėnuleigių.\n\nNemakščių apylinkėse 1865 – 1936 m. gyvenusį Lietuvos bajorą, genialų konstruktorių P."
+  },
+  {
+      "ID": 20,
+      "Name": "Biržų muziejus \"Sėla\"",
+      "Address": "Radvilos g. 3, Biržai",
+      "Phone": "+37045033390",
+      "Email": "sela@birzumuziejus.lt",
+      "WorkingHours": "II 09.00 - 16.30, III - VI 09.00 - 17.30, VII 09.00 - 16.30 (10-01 - 03-31)\n\nII 10.00 - 17.30, III - VI 10.00 - 18.30, VII 10.00 - 17.30 (04-01 - 09-30)",
+      "Description": "Biržų krašto muziejus \"Sėla” įsikūręs Biržų pilies rūmuose, kur savo veiklą pradėjo 1989 m. kovo 9 d. tarptautine moksline konferencija, skirta 400 – tosioms Magdeburgo teisių Biržams suteikimo metinėms. 25-iose salėse saugoma apie 110 tūkst."
+  },
+  {
+      "ID": 21,
+      "Name": "Dionizo Poškos Baublių muziejus",
+      "Address": "Muziejaus g. 10A, Bijotai, Šilalės r.",
+      "Phone": "+37061456223",
+      "Email": "baubliu.muziejus@gmail.com",
+      "WorkingHours": "I - VII 09.00 - 18.00 (05-01 - 10-31)\nI - V 08.00 - 17.00 (11-01 - 04-30)",
+      "Description": "Baubliai – pirmasis senienų muziejus Lietuvoje. Muziejų išskabtuoto ąžuolo kamiene 1812 m. įrengė žemaičių bajoras, rašytojas ir istorikas, kultūros šviesuolis Dionizas Poška (1764 – 1830). Ąžuolą, kuriam tuomet buvo apie tūkstantis metų, žmonės vadino Baubliu."
+  },
+  {
+      "ID": 22,
+      "Name": "Etnografinė Nidos žvejo sodyba",
+      "Address": "Naglių g. 4, Neringos sav.",
+      "Phone": "+37046952260",
+      "Email": "aplankyk@neringosmuziejai.lt",
+      "WorkingHours": "I – VII 10.00 – 18.00 (06-01 - 08-31)\nII – VI 10.00 – 17.00 (09-01 - 05-31)",
+      "Description": "Žvejyba Pamario kraštui visuomet buvo ne tik pagrindinis verslas, bet ir gyvenimo būdas. Ar įsivaizduojate, kokia buvo eilinė žvejo diena? Kaip atrodė jo namai? Persikelti šimtu metų atgal galite nuvykę į Nidą. Ant Kuršių marių kranto stovi etnografinė žvejo sodyba, kuri stebina savo paprastumu ir subtilia estetika. Sodyboje nerasite jokių nereikalingų daiktų – visi jie turi savo vietą, vyrauja harmonija."
+  },
+  {
+      "ID": 23,
+      "Name": "Etnografinė Prano Dzūko sodyba",
+      "Address": "Delnica, Lazdijų r.",
+      "Phone": "+37061731489",
+      "Email": "jurate.paciukoniene@lazdijai.lt",
+      "WorkingHours": "Lankymas iš anksto susitarus.",
+      "Description": "Etnografinė Prano Dzūko sodyba – tarsi senelių namai, kuriuose jaunoji karta gali susipažinti su praeitimi, vyresnė – prisiminti vaikystę, o senjorų karta – atminti savo jaunystės laikus. Erdviuose pastatuose saugomi didelių matmenų eksponatai: aliejaus spaudimo aparatas, skiedrų gaminimo įrenginys, kuliamoji ir kt. Sodyba atspindi XX a."
+  },
+  {
+      "ID": 24,
+      "Name": "Ežerų žvejybos muziejus",
+      "Address": "Muziejaus g. 7, Mindūnai, Molėtų r.",
+      "Phone": "+37069833018",
+      "Email": "alfreda.petrauskiene@moletumuziejus.lt",
+      "WorkingHours": "II - VII 09.00 – 17.00",
+      "Description": "Ežerų žvejybos muziejaus ekspozicijose galima pamatyti įvairius žvejybos įrankius, kuriais žvejojo Rytų Lietuvos žmonės 19 a. pabaigoje, susipažinti su archaine žvejyba bei sužinoti, kaip šis verslas kito. Ekspozicija išdėstyta atstatytoje XIX a. žvejo pirkioje ir svirne."
+  },
+  {
+      "ID": 25,
+      "Name": "Fotografijos muziejus",
+      "Address": "Vilniaus g. 140, Šiauliai",
+      "Phone": "+37041524396",
+      "Email": "foto@ausrosmuziejus.lt",
+      "WorkingHours": "II 10.00 – 18.00, III 10.00 – 19.00, IV – V 10.00 – 18.00, VI – VII 11.00 – 17.00",
+      "Description": "Fotografijos muziejaus – vienintelis specializuotas fotografijos meno ir technikos muziejus Lietuvoje, svarbus daugiafunkcinis fotografijos centras, kuris saugo ir reprezentuoja reikšmingą beveik 150 000 eksponatų ir muziejinių vertybių Lietuvos vizualiojo paveldo, fotografijos technikos ir įrangos, spaudinių ir dokumentų rinkinį. 2014 m. modernizuotame muziejuje organizuojamos šiuolaikinės ir istorinės Lietuvos ir užsienio fotografijos parodos, vyksta susitikimai su autoriais, fotografijos tyrinėtojais, edukaciniai užsiėmimai bei kita įvairiapusė šiuolaikiška ir inovatyvi edukacinė ir pramoginė veikla. Lietuvos Respublikos kultūros ministerijos, Šiaulių \"Aušros\" muziejaus ir Tatjanos Luckienės–Aldag trišaliu susitarimu 2014 m."
+  },
+  {
+      "ID": 26,
+      "Name": "Gedimino pilies bokštas",
+      "Address": "Arsenalo g. 5, Vilnius",
+      "Phone": "+37052617453",
+      "Email": "pilis@lnm.lt",
+      "WorkingHours": "Not found!",
+      "Description": "Pirmoje pilies bokšto salėje eksponuojamas XIV a. antros pusės Vilniaus Aukštutinės, Žemutinės ir Kreivosios pilių rekonstrukcijos maketas. Greta rodomos XIX–XX a. žinomų Vilniaus fotografų nuotraukos su Pilies kalno ir pilies griuvėsių bei atstatymo darbų vaizdais."
+  },
+  {
+      "ID": 27,
+      "Name": "Geležinkelių muziejus",
+      "Address": "Geležinkelio g. 16, Vilnius",
+      "Phone": "+37052693741",
+      "Email": "muziejus@litrail.lt",
+      "WorkingHours": "II - V 09.00 - 17.00, VI 09.00 - 16.00",
+      "Description": "\"Senesnieji žmonės dar atsimena, kaip tai 1862 metuose pirmutinį sykį nuo Vilniaus į Varšuvą ir į Prūsų rubežių geležkeliniai trukiai vaikščioti pradėjo. Kiek tai dyvų, kalbų, o net ir baimės buvo- tai sunku apsakyti!\" - Iš knygos \"Garo mašinos ir geležkeliai\". Tokiais žodžiais lankytojus pasitinka atsinaujinęs ir svetingas Geležinkelių muziejus, įsikūręs pačiuose sostinės vartuose - Vilniaus Geležinkelio stotyje.\n\nGeležinkelių muziejus savo veiklos metus skaičiuoja nuo 1966 metų. Kelis kartus keitęs savo buveinę, 2011 m."
+  },
+  {
+      "ID": 28,
+      "Name": "Gelžbetoninių skulptūrų muziejus ir pasakų namelis \"Drakono džiunglės\"",
+      "Address": "Vytauto g. 10, Kuktiškės, Utenos r.",
+      "Phone": "+37068545961",
+      "Email": "levutemeskauskiene@gmail.com",
+      "WorkingHours": "I - VII 09.00 - 19.00",
+      "Description": "Šį muziejų savo sodyboje 2000 metais pradėjo kurti Levutė Meškauskienė su šeima. Per 16 metų iš gelžbetonio nulipdyta įvairiausių skulptūrų - gyvūnų (arklys, elnias, krokodilas, liūtas, meška, erelis, sakalas, pelėda, gulbė, varlė, ežys, šuo ir kt.), kurių muziejuje yra daugiau nei 70 vienetų. Visos skulptūros stovi ištisus metus lauke, o atėjus vis kitam pavasariui atsinaujina naujomis spalvomis. Lankytojai skulptūras gali netik liesti rankomis, bet ir apsisėsti ant jų."
+  },
+  {
+      "ID": 29,
+      "Name": "Genocido aukų muziejus",
+      "Address": "Aukų g. 2A, Vilnius",
+      "Phone": "+37052498156",
+      "Email": "muziejus@genocid.lt",
+      "WorkingHours": "III - VI 10.00 - 18.00, VII 10.00 - 17.00",
+      "Description": "Genocido aukų muziejus įsteigtas 1992 m. Tai vienintelis toks muziejus Baltijos valstybėse, įkurtas tame pačiame pastate, kuriame nuo 1940 m. antrosios pusės iki pat 1991 m. rugpjūčio dirbo sovietinės represinės institucijos NKVD ir NKGB-MGB-KGB."
+  },
+  {
+      "ID": 30,
+      "Name": "Ignalinos krašto muziejus",
+      "Address": "Ateities g. 43, Ignalina",
+      "Phone": "+37067501098",
+      "Email": "muziejus@ignalina.lt",
+      "WorkingHours": "I 08.00 – 17.00, II - V 08.00 – 18.00, VI 08.00 – 14.45",
+      "Description": "Ignalinos krašto muziejų sudaro keletas ekspozicijų, parodančių senuosius Ignalinos krašto gyventojų papročius, amatus ir gyvenimo būdą. Etnografinėje ekspozicijoje išvysite įvairius XIX ir XX a. naudotus daiktus, įrankius ir prietaisus: senovinius lygintuvus, audimo stakles, kraičio skrynias, baldus ir daugybę kitų autentiškų namų apyvokos daiktų."
+  },
+  {
+      "ID": 31,
+      "Name": "Joniškio krepšinio muziejus",
+      "Address": "Livonijos g. 3, Joniškis",
+      "Phone": "+37061289986",
+      "Email": "leonas.karaliunas@joniskis.lt",
+      "WorkingHours": "Not found!",
+      "Description": "Krepšinis Lietuvoje vadinamas antrąja religija, tačiau vietos, kur šios sporto šakos gerbėjai, sportininkai ir visi besidomintys galėtų pamatyti žymiausius šalies krepšininkų laimėjimus, atributiką, istorines nuotraukas, ilgą laiką nebuvo. 2009–aisiais metais,– Joniškyje duris atvėrė vienintelis Lietuvoje krepšinio muziejus. Nedaug kas tikėjo ar tikėjosi, kad šiame mažame Lietuvos miestelyje duris atvers būtent krepšinio muziejus.\n\nJoniškio krepšinio muziejuje sukaupta nemąža eksponatų. Galybę Lietuvos krepšinio legendų fotografijų, piešinius, pasakojančius apie Lietuvos krepšinio istoriją ir krepšinio žaidimo pasaulyje atsiradimo pradžią."
+  },
+  {
+      "ID": 32,
+      "Name": "Kalvystės muziejus",
+      "Address": "Šaltkalvių g. 2A, Klaipėda",
+      "Phone": "+37046410526",
+      "Email": "info@mlimuziejus.lt",
+      "WorkingHours": "II – VI 10.00 – 18.00",
+      "Description": "Kalvystės muziejus atidarytas 1992 m. šaltkalvio Fr. Grimo kalvės vietoje. Pirmajame aukšte daugiausia vietos skirta medžiagai apie žymaus Klaipėdos meistro G."
+  },
+  {
+      "ID": 33,
+      "Name": "Kauno T. Ivanausko zoologijos muziejus",
+      "Address": "Laisvės al. 106, Kaunas",
+      "Phone": "+37037200292",
+      "Email": "info@zoomuziejus.lt",
+      "WorkingHours": "II–VII 10.00–18.00",
+      "Description": "Muziejaus ekspozicija išdėstyta per 3 aukštus 6 salėse, 96 stenduose pagal mokslinę sistematiką – nuo primityviausių iki sudėtingiausių organizmų. Eksponuojama daugiau kaip 14 000 eksponatų, įruošta 34 dioramos ir 46 biogrupės.\n\nĮrengta nauja medžioklės trofėjų salė. Osteologinėje salėje yra eksponuojami skeletai ir paleontologinė medžiaga. Klasikinė ekspozicija papildyta interaktyviais informaciniais terminalais – iš jų galima patiems pasižiūrėti filmuotą, animuotą medžiagą apie biogrupių atstovus."
+  },
+  {
+      "ID": 34,
+      "Name": "Kauno miesto muziejus",
+      "Address": "Rotušės a. 15, Kaunas",
+      "Phone": "+37061082503",
+      "Email": "kasa@kaunomuziejus.lt",
+      "WorkingHours": "II–V 10.00 –18.00, VI 10.00 – 17.00",
+      "Description": "Kauno rotušė – gyva miesto istorija ir miesto simbolis, kauniečių dar vadinama Baltąja gulbe. Ne tik mėgstama švenčių, jaunavedžių tuoktuvių vieta, bet ir muziejus, kuriame pirmoji ekspozicija atidaryta 2015 m.\n\n1408 m. Lietuvos didžiajam kunigaikščiui Vytautui Kauno miestui suteikus Magdeburgo savivaldos teises, miesto valdžia palaipsniui perėjo į miestiečių renkamos tarybos – magistrato rankas. Čia svarbi vieta teko burmistro pareigybei."
+  },
+  {
+      "ID": 35,
+      "Name": "Kauno pilies muziejus",
+      "Address": "Pilies g. 17, Kaunas",
+      "Phone": "+37037300672",
+      "Email": "pilis.kasa@kaunomuziejus.lt",
+      "WorkingHours": "II – V 10.00 – 18.00, VI 10.00 – 17.00",
+      "Description": "Seniausiame miesto istoriniame objekte – Kauno pilyje – kviečiame apžiūrėti ekspozicijas \"Kauno pilies istorijos mozaika\" ir \"Prisiliesk prie XVII a. Kauno: nuo koklio iki puodo šukės\". Čia pristatomi reikšmingiausi istoriniai faktai bei asmenybės, pilies pastatų metamorfozės, jos funkcijų kitimas nuo XIV amžiaus iki šių dienų."
+  },
+  {
+      "ID": 36,
+      "Name": "Kauno tvirtovės VII forto muziejus",
+      "Address": "Archyvo g. 61, Kaunas",
+      "Phone": "+37065566550",
+      "Email": "info@septintasfortas.lt",
+      "WorkingHours": "II – VI 10.00 – 17.00, VII 10.00 – 15.00",
+      "Description": "Kauno tvirtovės VII forto muziejaus ekspozicijos tikslas – suteikti lankytojui kuo daugiau žinių apie skirtingus VII forto istorinius laikotarpius bei pristatyti amžiną gynybinių įtvirtinimų ir artilerijos kovą.\n\nKareivinių kazematuose įsikūrusioje ekspozicijoje lankytojai gali susipažinti su VII forto ir jo įgulos istorija, pamatyti kaip evoliucionavo artilerija nuo viduramžių iki šaltojo karo laikų, iš arti patyrinėti skirtingų laikotarpių ir sistemų šautuvus bei pažinti stambiausią, visiškai funkcionuojantį muziejaus eksponatą – 1938 metų pavyzdžio 122 mm kalibro haubicą M-30.\n\n2016 metų gegužės mėnesį Kauno tvirtovės VII forto ekspoziciją papildė karinės ryšių technikos, skaičiavimų mašinų ir kompiuterių eksponatai, leidžiantys susipažinti su šios technikos raida bei veikimo principais. Penktajame, šeštajame ir devintajame kareivinių kazematuose įsikūrusioje ekspozicijoje galima pamatyti ypatingai retų ir vienintelių visame Pabaltyje veikiančių ryšių technikos eksponatų.\n\nVII forto pirmajame šaudmenų sandėlyje lankytojai gali rasti muziejinę ekspoziciją \"VII fortas: Lietuviška tragedija\", kuri nagrinėja tris pagrindinius segmentus, atskleidžiančius skirtingus žydų genocido Lietuvoje aspektus: nacių propagandą, Tautinio Darbo Apsaugos bataliono vaidmenį ir įvykius VII forte."
+  },
+  {
+      "ID": 37,
+      "Name": "Kelmės krašto muziejus",
+      "Address": "Dvaro g. 15, Kelmė",
+      "Phone": "+37061494140",
+      "Email": "kelmesmuziejus@gmail.com",
+      "WorkingHours": "I - V 08.00 – 18.00, VII 10.00 – 14.00 (09-01 - 04-30)\n\nI - V 08.00 - 18.00, VI - VII 10.00 - 14.00 (05-01 - 08-31)",
+      "Description": "Kelmės krašto muziejus įsikūręs Kelmės dvaro rūmuose. Muziejaus ekspozicijos išdėstytos trijuose šio ansamblio pastatuose: rūmuose, vartuose ir svirne. Kelmės dvaro ansamblis – valstybės saugomas kultūros paveldo objektas, vertinamas kaip retai išlikusi baroko stiliaus Lietuvos provincijos dvaro sodyba."
+  },
+  {
+      "ID": 38,
+      "Name": "Klemento Sakalausko senienų muziejus",
+      "Address": "Saulėtekio g. 7, Piniava, Panevėžio r.",
+      "Phone": "+37068748167",
+      "Email": "Not found!",
+      "WorkingHours": "Lankymas iš anksto susitarus.",
+      "Description": "Klėtelėje eksponuojamos unikalios gramofonų, lygintuvų, ąsočių, svietmušių, verpimo ratelių ir kt. kolekcijos. Yra nemažai kitų unikalių eksponatų. Lankoma iš anksto susitarus."
+  },
+  {
+      "ID": 39,
+      "Name": "Kražių M. K. Sarbievijaus kultūros centro muziejus",
+      "Address": "Kolegijos g. 5, Kražiai, Kelmės r.",
+      "Phone": "+37062221321",
+      "Email": "kraziai.turizmas@kraziai.lt",
+      "WorkingHours": "II - VI 08.00 – 17.00 (06-01 - 08-31)\nI - V 08.00 – 17.00 (09-01 - 05-31)",
+      "Description": "Šiandien Kražiuose veikiančio muziejaus pamatai pradėti lipdyti 1966 m., kuomet švenčiant Kražių vidurinės mokyklos 350 metų jubiliejų, mokyklos mokytojų kolektyvas parengė ekspoziciją \"Kražių mokyklos kelias\". Nuo 1969 m. įkuriamas mokyklos muziejėlis, kuris dar po 7 metų perkeliamas į Kražių kolegijos pastatą, bet čia jis veikė neilgai. Prakiurus kolegijos stogui, neatitinkant saugumo reikalavimų, muziejus buvo uždarytas."
+  },
+  {
+      "ID": 40,
+      "Name": "Kretingos muziejus",
+      "Address": "Vilniaus g. 20, Kretinga",
+      "Phone": "+37044577612",
+      "Email": "info@kretingosmuziejus.lt",
+      "WorkingHours": "III - VII 10.00 - 18.00",
+      "Description": "Naujas muziejaus raidos etapas prasidėjo 1992 m. persikėlus į buvusius grafų Tiškevičių rūmus. 1994 m. gruodžio mėn."
+  },
+  {
+      "ID": 41,
+      "Name": "Kuršių Nerijos istorijos muziejus",
+      "Address": "Pamario g. 53, Nida, Neringos sav.",
+      "Phone": "+37046952260",
+      "Email": "aplankyk@neringosmuziejai.lt",
+      "WorkingHours": "I – VII 10.00 – 18.00 (06-01 - 08-31)\nII – VI 10.00 – 17.00 (09-01 - 05-31)",
+      "Description": "Kuršių Nerija – ne tik miško ornamentais išdabintas boluojantis smėlio kilimas. Ši ypatinga vieta turi įdomią istoriją, kuri mena čia gyvenusių ir gyvenančių žmonių kultūrinį palikimą. Su juo lankytojus supažindina Kuršių nerijos istorijos muziejus. Istorijos ir meno vertybes puoselėjantis muziejus ne kartą buvo kilnojamas iš vienos vietos į kitą, o 2002 metais įsikūrė jaukioje kultūrinėje erdvėje, netoliese Tomo Mano memorialinio muziejaus."
+  },
+  {
+      "ID": 42,
+      "Name": "Lazdijų krašto muziejus",
+      "Address": "Seinų g. 29, Lazdijai",
+      "Phone": "+37061877442",
+      "Email": "muziejus@lazdijai.lt",
+      "WorkingHours": "II - V 08.30 – 17.00, VI 09.00 – 16.00",
+      "Description": "Lazdijų krašto muziejaus istorija ilga ir įdomi. Pats muziejaus pastatas yra vienas seniausių Lazdijų miesto eksponatų – tai senoji Seinų \"Žiburio\" gimnazija. 1924 m. pirmąjį muziejų Lazdijuose prie senosios \"Žiburio\" gimnazijos įkūrė šios gimnazijos direktorius, kunigas, talentingas pedagogas Motiejus Gustaitis."
+  },
+  {
+      "ID": 43,
+      "Name": "Lekėčių \"Miško muziejus\"",
+      "Address": "Draugystės g. 69, Lekėčiai, Šakių r.",
+      "Phone": "+37034547760",
+      "Email": "Not found!",
+      "WorkingHours": "I - V 08.00 - 17.00",
+      "Description": "Pamatykite daugiau nei 1000 gyvūnų eksponatų, iškamšų, drugių ir vabzdžių kolekcijų, brakonierių darbo įrankių, gamtos išdaigų... Muziejų itin mėgsta vaikai, o ir suaugusieji čia sužino įdomių ir naujų faktų. Jei turite laiko - muziejuje galite pasižiūrėti ir dokumentinių filmų apie Novaraisčio valstybinio ornitologinio draustinio gyvenimą, pasiklausyti įrašytų paukščių balsų."
+  },
+  {
+      "ID": 44,
+      "Name": "Lietuvos Etnokosmologijos muziejus",
+      "Address": "Žvaigždžių g. 10, Kulionys, Molėtų r.",
+      "Phone": "+37061520688",
+      "Email": "info@etnokosmomuziejus.lt",
+      "WorkingHours": "Į visas programas, ekskursijas, paskaitas registruojama internetu ir telefonu +37061520688 (I - V 08.00 – 16.30)",
+      "Description": "Etnokosmologija – vizualinių, emocinių, etninių, dvasinių, pažintinių, pragmatinių, prognostinių ir ontologinių ryšių su Kosminiu pasauliu visuma. Lietuvos etnokosmologijos muziejus yra pirmas ir vienintelis tokio pobūdžio muziejus pasaulyje. Muziejaus esmė – žmogaus ir žmonijos ryšiai su Kosminiu pasauliu.\n\nApsilankę muziejuje turėsite galimybę rankose palaikyti kosminį ateivį – meteoritą, pasigrožėti Visatos vaizdais, pasikelti apžvalgos aikštelę, pasižvalgyti po nuostabias Aukštaitijos apylinkes. Saulės teleskopų pagalba dienos metu galite išvysti mūsų žvaigždės ugnikalnius – protuberantus, o 40 cm  ir 80 cm."
+  },
+  {
+      "ID": 45,
+      "Name": "Lietuvos Jūrų muziejus",
+      "Address": "Smiltynės g. 2, Klaipėda",
+      "Phone": "+37069837299",
+      "Email": "ljm@muziejus.lt",
+      "WorkingHours": "Not found!",
+      "Description": "Vyrai užsiaugina ūsus dėl grožio. O ruoniai, kad ... nenugaištų iš bado. Ūsai jiems – ne papuošalas, o antenos, gebančios sugauti net už 100 m plaukiančios žuvies sukeliamus vandens virpesius."
+  },
+  {
+      "ID": 46,
+      "Name": "Lietuvos aviacijos muziejus",
+      "Address": "Veiverių g. 132, Kaunas",
+      "Phone": "+37037390357",
+      "Email": "aviacijos.muziejus@gmail.com",
+      "WorkingHours": "I - VI 09.00 - 17.00",
+      "Description": "Lietuvos aviacijos muziejaus pirmtakas – Visuomeninis sportinės aviacijos muziejus – pradėtas kurti Lietuvos aviatorių pastangomis 1971 m. ir oficialiai atidarytas 1983 m. Kultūros ministerijos Lietuvos aviacijos muziejus įsteigtas 1990-02-19 (iki 1995-02-01 vadinosi Lietuvos technikos muziejumi) ir įsikūrė Kaune, Veiverių g. 132 - nuo 1915 m."
+  },
+  {
+      "ID": 47,
+      "Name": "Lietuvos banko Pinigų muziejus",
+      "Address": "Totorių g. 2/8, Vilnius",
+      "Phone": "+37052680337",
+      "Email": "muziejus@lb.lt",
+      "WorkingHours": "II - V 10.00 - 19.00, VI 11.00 - 18.00 (04-01 - 10-31)\nII - V 09.00 - 18.00, VI 10.00 - 17.00 (11-01 - 03-31)",
+      "Description": "Pinigų muziejus – interaktyvus muziejus, pritaikytas ne tik pasyviai apžiūrėti ekspoziciją, bet ir pačiam aktyviai dalyvauti pažinimo procese. Muziejus aprūpintas kompiuteriniais terminalais su specialiomis programomis, specialiai orientuota interneto prieiga, teminiais, mokomaisiais ir dokumentiniais filmais, žaidimais, prezentacijomis, virtualiomis ekspozicijomis. Daug dėmesio skirta ir ekonominiam švietimui skatinti bei propaguoti. Vizualūs Pinigų muziejaus grafiniai sprendimai, meno kūrinių integravimas, įvairūs interaktyvūs įrankiai, vaizdo, garso ir šviesos efektai pasitelkti ne tik sudominti lankytoją ir suteikti jam žinių, bet ir padėti jas kaupti, įtvirtinti, skatinti gilintis, savarankiškai interpretuoti ir ieškoti atsakymų."
+  },
+  {
+      "ID": 48,
+      "Name": "Lietuvos liaudies buities muziejus",
+      "Address": "L. Lekavičiaus g. 2, Rumšiškės, Kaišiadorių r.",
+      "Phone": "+37068767237",
+      "Email": "info@llbm.lt",
+      "WorkingHours": "I – VII 10:00 – 18:00 (05 01 – 09 30), I-VII 10:00-17:00 (10 01 – 10 15)",
+      "Description": "Lietuvos liaudies buities muziejus – tai muziejus po atviru dangumi, įkurtas 1966 m. sausio 1 d. (lankytojams atidarytas 1974 m. birželio 21 d.) Rumšiškėse, prie Pravienos upelio žiočių, Kauno marių pakrantėje."
+  },
+  {
+      "ID": 49,
+      "Name": "Lietuvos nacionalinio radijo ir televizijos istorijos muziejus",
+      "Address": "S. Konarskio g. 49, Vilnius",
+      "Phone": "+37052363214",
+      "Email": "raiimp@lrt.lt",
+      "WorkingHours": "I – IV 10.00 – 17.00, V 10.00 – 15.45",
+      "Description": "LRT muziejus įkurtas 1997 m. balandžio 30 d. Muziejus atviras visiems lankytojams. Rengiamos šviečiamosios-pažintinės ir teminės ekskursijos."
+  },
+  {
+      "ID": 50,
+      "Name": "Lietuvos nacionalinis muziejus",
+      "Address": "Arsenalo g. 1, Vilnius",
+      "Phone": "+37052627774",
+      "Email": "muziejus@lnm.lt",
+      "WorkingHours": "Muziejus randasi greta Arkikatedros bazilikos ir Valdovų rūmų.",
+      "Description": "Pagrindinė muziejaus ekspozicija skirta Lietuvos valstybės istorijai nuo valstybės susidarymo iki XX amžiaus bei lietuvių etninei kultūrai. Pirmoje salėje pristatoma Vilniaus senienų muziejaus, kurio muziejinę tradiciją tęsia Lietuvos nacionalinis muziejus, istorija. Autentiški Senienų muziejaus eksponatai ir to meto vitrinos, pasitelkiant šiandienos muziejinio eksponavimo stilistiką, atgaivina Senienų muziejaus dvasią. Antroje salėje įrengta Senosios Lietuvos istorijos ekspozicija atspindi permainingus Lietuvos Didžiosios Kunigaikštystės klestėjimo ir nuosmukio laikus nuo valstybės susidarymo XIII amžiuje iki jos žlugimo 1795 metais, pristato šios epochos visuomeninę Lietuvos valstybės raidą.\n\nSavarankiškos, vidinės logikos ryšiais susietos temos autentiškais eksponatais perteikia nuoseklius istorinius įvykius nuo ankstyvosios Gediminaičių Lietuvos iki LDK Abiejų Tautų Respublikoje."
+  },
+  {
+      "ID": 51,
+      "Name": "Liubavo dvaro malūnas-muziejus",
+      "Address": "Malūno g. 25, Liubavas, Vilniaus r.",
+      "Phone": "+37052377077",
+      "Email": "hq@europosparkas.lt",
+      "WorkingHours": "I - V susitarus iš anksto, VI - VII 10.00 - 18.00 (04-15 - 10-15)\n\nŠaltuoju metų laiku grupėms tik iš anksto susitarus",
+      "Description": "Muziejus įkurtas Liubavo dvaro sodyboje 2011 metais skulptoriaus ir šio dvaro tyrinėtojo Gintaro Karoso iniciatyva. Netoli Vilniaus esantis Liubavas – vienas seniausių ir romantiškiausių Lietuvos dvarų, įsikūręs vaizdingoje vietovėje prie Gerėjos upės, dabar vadinamos Žalesa. Jau 1546 metais Lietuvos valdovo Žygimanto Augusto dvaro iždo knygoje detaliai aprašyti tuo metu remontuoti Liubavo tvenkiniai. Per daug šimtmečių Liubavo dvaras išgyveno didžiules permainas – kadaise jo teritorijos siekė net Siesarties ežerą, o sovietmečiu jis patyrė nemenkus išbandymus."
+  },
+  {
+      "ID": 52,
+      "Name": "M. K. Čiurlionio memorialinis muziejus",
+      "Address": "M. K. Čiurlionio g. 35, Druskininkai",
+      "Phone": "+37031351131",
+      "Email": "ciurlioniomemorialinis@ciurlionis.lt",
+      "WorkingHours": "II - VI 11.00 – 18.00, VII 11.00 – 16.00",
+      "Description": "1878 m. Konstantinas Čiurlionis su žmona Adele ir pirmagimiu Mikalojumi Konstantinu kėlėsi gyventi į Druskininkus, nes K.Čiurlionis buvo pakviestas dirbti vargonininku miestelio mažoje bažnytėlėje.  Pradžioje jis išsinuomojo mažą namelį ant ežero kranto, bet padidėjus šeimai, Konstantinas, pasiskolinęs pinigų, įsigijo du namelius, stovėjusius šalia vienas kito. Pirmasis jų stovėjo prie kelio ir buvo skirtas vasarotojams (tai padėjo grąžinti skolą), o antrajame apsigyveno šeima."
+  },
+  {
+      "ID": 53,
+      "Name": "MO muziejus",
+      "Address": "Pylimo g. 17, Vilnius",
+      "Phone": "+37060983764",
+      "Email": "mo@mo.lt",
+      "WorkingHours": "VI - IV - 10.00 – 20.00, V 10.00–22.00 (II nedirba)",
+      "Description": "MO muziejus, įkurtas asmenine mokslininkų Danguolės ir Viktoro Butkų iniciatyva, beveik dešimtmetį veikė kaip muziejus be sienų. Sukauptą 5000 modernaus ir šiuolaikinio meno kūrinių kolekciją sudaro Lietuvos dailės aukso fondas nuo XX a. 6-ojo dešimtmečio iki šių dienų.\n\nNuo 2018 m. spalio MO tapo gero laisvalaikio vieta."
+  },
+  {
+      "ID": 54,
+      "Name": "Macikų lagerio karceris-muziejus",
+      "Address": "Vilties g. 1, Macikai, Šilutės r.",
+      "Phone": "+37065751909",
+      "Email": "info@silutesmauziejus.lt",
+      "WorkingHours": "II – VI 11.00 – 15.00 (05-15 – 09-30)",
+      "Description": "Buvęs Macikų dvaras nuo seno buvo garsus stambia alaus darykla. Po 1923 m. Klaipėdos krašto prijungimo prie Lietuvos, pasikeitė šio krašto gyvenimas. 1924 m."
+  },
+  {
+      "ID": 55,
+      "Name": "Miško muziejus \"Girios aidas\"",
+      "Address": "M. K. Čiurlionio g. 116, Druskininkai",
+      "Phone": "+37062319217",
+      "Email": "agne.petruleviciene@vmu.lt",
+      "WorkingHours": "III - VII 10.00 - 17.00",
+      "Description": "Kultūrinio miškininkystės ir gamtosaugos populiarinimo idėja gimė Druskininkų miškų ūkio specialistų tarpe. Jaunas, energingas miškininkas A. Valavičius bei jau didelę patirtį turėjęs S. Stankevičius mintijo apie vietelę, kurioje galima būtų gražius miškininkų veiklos darbus parodyti, taigi dėjo grūdą prie grūdo, kol sudėjo miškininkystės kultūros aruodą."
+  },
+  {
+      "ID": 56,
+      "Name": "Muitinės muziejus",
+      "Address": "Jeruzalės g. 25, Vilnius",
+      "Phone": "+37052796346",
+      "Email": "muziejus@lrmuitine.lt",
+      "WorkingHours": "I - IV 08.00 - 17.00, V 08.00 - 15.45",
+      "Description": "Muitinės muziejus įsteigtas 1994 metais. Jame kaupiama ir saugoma istorinė, dokumentinė ir kitokia medžiaga, susijusi su muitinės istorija. Nuo muziejaus veiklos pradžios jo fonduose sukaupta daugiau kaip 7 tūkst. įvairių eksponatų."
+  },
+  {
+      "ID": 57,
+      "Name": "Nacionalinis M. K. Čiurlionio dailės muziejus",
+      "Address": "V. Putvinskio g. 55, Kaunas",
+      "Phone": "+37037229475",
+      "Email": "mkc.info@ciurlionis.lt",
+      "WorkingHours": "I - nedirba, II, III, V, VI, VII 10.00 – 18.00, IV 11.00 – 19.00",
+      "Description": "Nacionalinis M. K. Čiurlionio dailės muziejus,9,\"Nacionalinis M. K."
+  },
+  {
+      "ID": 58,
+      "Name": "Palangos gintaro muziejus",
+      "Address": "Vytauto g. 17, Palanga",
+      "Phone": "+37046053501",
+      "Email": "gintaro.muziejus@ldm.lt",
+      "WorkingHours": "II - VI 10.00 – 20.00,  VII 10.00 – 19.00 (06-01 - 08-31)\nII - VI 11.00 – 17.00,  VII 11.00 – 16.00 (09-01 - 05-30)",
+      "Description": "Palangos gintaro muziejus veikia XIX a. pabaigoje pastatytuose Palangos grafų Tiškevičių rūmuose, kuriuos supa didelis ir gražiai tvarkomas Palangos botanikos parkas. Muziejaus rinkiniuose sukaupta apie 29 tūkst. gintaro eksponatų, iš jų apie 4,5 tūkst."
+  },
+  {
+      "ID": 59,
+      "Name": "Perlojos istorijos muziejus",
+      "Address": "Perliaus g. 22, Perloja, Varėnos r.",
+      "Phone": "+37031051116",
+      "Email": "vienaragiui@gmail.com",
+      "WorkingHours": "III - VII 09.00 – 18.00 (05-01 - 08-31)\nII - VI 09.00 – 18.00 (09-01 - 04-30)",
+      "Description": "Muziejuje galima susipažinti su Perlojos archeologine ir istorine praeitimi: gyvenvietės raida didžiųjų kunigaikščių laikais, caro valdžios metais, žymiąja Perlojos respublika, gyvenimu nepriklausomos Lietuvos laikotarpiu; sužinoti, kaip perlojiškiai išgyveno Antrojo pasaulinio karo ir pokario peripetijas, kaip buvo kuriamas kolūkis ir eksperimentinis ūkis. Čia Jūsų dėmesiui eksponuojami archeologiniai radiniai, seni spaudiniai, nuotraukos, žymiausi vietinių meistrų darbai, senolių ūkiniai padargai bei buityje naudoti reikmenys."
+  },
+  {
+      "ID": 60,
+      "Name": "Prienų krašto muziejus",
+      "Address": "F. Martišiaus g. 13, Prienai",
+      "Phone": "+37031960379",
+      "Email": "info@prienumuziejus.lt",
+      "WorkingHours": "I – IV 08.00 – 17.00\nV 08.00 – 15.45\nVI 10.00 – 16.00",
+      "Description": "Muziejus atidarytas 1995 m., kuriame kaupiama medžiaga apie Prienų krašto rašytojus, iškilius kunigus, mokslininkus, tautiečius užsienyje, politinius kalinius, tremtinius ir rezistentus. Gausi medžiaga, liudijanti apie legendinio kunigo, kovotojo už tikinčiųjų teises, pogrindininko, politinio kalinio Juozo Zdebskio gyvenimą ir veiklą. Muziejuje vykdoma daugybė edukacinių programų.\n\nEtnografijos ir tautodailės ekspozicijoje rasite vertingiausius tautodailės ir etnografijos eksponatus. Dabartinis Prienų rajonas yra savotiškai išskirtinė vieta pokario kovų istorijoje."
+  }
+]
+
 }

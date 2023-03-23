@@ -1,16 +1,10 @@
-<div class="container">
-  <app-nav-bar></app-nav-bar>
+<app-nav-bar></app-nav-bar>
 
-  <div class="intro-gallery-container">
-    <app-intro-gallery>
-      <button (click)="expandGallery()" class="expand-btn">Expand</button>
-      <button (click)="collapseGallery()" class="collapse-btn">Collapse</button>
-    </app-intro-gallery>
-  </div>
+<app-intro-gallery>
+  <button (click)="expandGallery()" class="expand-btn">Expand</button>
+  <button (click)="collapseGallery()" class="collapse-btn">Collapse</button>
+</app-intro-gallery>
 
-  <div class="filter-container">
-    <app-filter (onSearch)="onSearchResults($event)" [filterTerm]="filterTerm"></app-filter>
-  </div>
+<app-filter (onSearch)="onSearchResults($event)" [filterTerm]="filterTerm"></app-filter>
 
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
