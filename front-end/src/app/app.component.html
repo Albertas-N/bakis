@@ -1,27 +1,16 @@
-<app-nav-bar></app-nav-bar>
-
 <div class="container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Populariausi</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <app-intro-gallery></app-intro-gallery>
-    </mat-card-content>
-  </mat-card>
+  <app-nav-bar></app-nav-bar>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Paieška</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <app-filter></app-filter>
-    </mat-card-content>
-  </mat-card>
-
-  <div class="filter-table-container">
-    <app-filter-table></app-filter-table>
+  <div class="intro-gallery-container">
+    <app-intro-gallery>
+      <button (click)="expandGallery()" class="expand-btn">Expand</button>
+      <button (click)="collapseGallery()" class="collapse-btn">Collapse</button>
+    </app-intro-gallery>
   </div>
-</div>
 
-<router-outlet></router-outlet>
+  <div class="filter-container">
+    <app-filter (onSearch)="onSearchResults($event)" [filterTerm]="filterTerm"></app-filter>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

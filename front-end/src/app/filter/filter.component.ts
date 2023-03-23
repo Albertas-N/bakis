@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class FilterComponent {
   filterTerm: string = ' ';
   results: any[]=[];
+  @Output() onSearch: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   constructor(private dataService: DataService) { }
 
@@ -18,6 +19,7 @@ export class FilterComponent {
     this.dataService.search(this.filterTerm).subscribe(
       (results) => {
         this.results = results;
+        this.onSearch.emit(results); 
       },
       (error) => {
         console.error(error);
@@ -25,11 +27,12 @@ export class FilterComponent {
     );
   }
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://localhost:3000/Categories';
+  private apiUrl = 'http://localhost:8000/pamatykLietuvoje/';
 
   constructor(private http: HttpClient) {}
 

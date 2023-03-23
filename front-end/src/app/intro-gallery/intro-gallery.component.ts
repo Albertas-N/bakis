@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-intro-gallery',
   templateUrl: './intro-gallery.component.html',
   styleUrls: ['./intro-gallery.component.css']
 })
-export class IntroGalleryComponent implements OnInit {
+export class IntroGalleryComponent {
+  isExpanded = false;
 
-  constructor() { }
-
-  ngOnInit() {
+  toggleGallery(): void {
+    this.isExpanded = !this.isExpanded;
   }
 }

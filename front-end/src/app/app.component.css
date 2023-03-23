@@ -19,4 +19,68 @@
   
   mat-card-content {
     padding: 1rem;
+  }.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
+  
+  .intro-gallery-container {
+    margin-bottom: 30px;
+  }
+  
+  .filter-container {
+    margin-bottom: 30px;
+  }
+  
+  .expand-btn {
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .collapse-btn {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .collapse-btn:focus,
+  .expand-btn:focus {
+    outline: none;
+  }
+  
+  .intro-gallery-container .mat-expansion-panel-header {
+    background-color: #2196f3;
+    color: #fff;
+  }
+  
+  .intro-gallery-container mat-panel-title {
+    color: #fff;
+  }
+  
+  .intro-gallery-container mat-panel-description {
+    color: #000;
+  }
+  
+  .filter-container .mat-expansion-panel-header {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .filter-container mat-panel-title {
+    color: #fff;
+  }
+  
+  .filter-container mat-panel-description {
+    color: #000;
+  }
+  

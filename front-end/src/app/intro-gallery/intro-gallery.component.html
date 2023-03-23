@@ -1,6 +1,10 @@
-<div class="image-container">
+<mat-expansion-panel [expanded]="isExpanded" (expandedChange)="isExpanded = $event">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Gallery</mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="image-container">
     <img src="assets/kryziai.jpg" alt="Slide 1">
     <img src="assets/gediminopilis.jpg" alt="Slide 2">
     <img src="assets/trakupilis.jpg" alt="Slide 3">
   </div>
-  
+</mat-expansion-panel>

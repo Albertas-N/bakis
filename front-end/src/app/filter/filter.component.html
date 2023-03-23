@@ -1,11 +1,21 @@
-<form (ngSubmit)="onSubmit()" class="search-form">
-    <input type="text" [(ngModel)]="filterTerm" name="filterTerm" placeholder="Search" class="search-input">
-    <button type="submit" class="search-button">Submit</button>
-  </form>
-  <ul class="results-list">
-    <li *ngFor="let result of results" class="result-item">
-      {{ result.name }} - {{ result.category }}
-    </li>
-  </ul>
-
-  
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Filter</mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-form-field>
+    <input matInput [(ngModel)]="filterTerm" name="filterTerm" placeholder="Search" class="search-input">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Results</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item *ngFor="let result of results">
+          {{ result.name }} - {{ result.category }}
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-expansion-panel>
