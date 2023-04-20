@@ -3,9 +3,13 @@
     <mat-panel-title>Filter</mat-panel-title>
   </mat-expansion-panel-header>
 
-  <mat-form-field>
-    <input matInput [(ngModel)]="filterTerm" name="filterTerm" placeholder="Search" class="search-input">
-  </mat-form-field>
+  <mat-chip-grid #chipList>
+    <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="[separatorKeyCodes.ENTER, separatorKeyCodes.COMMA]" (matChipInputTokenEnd)="add($event)" placeholder="Search" class="search-input">
+    <mat-chip *ngFor="let term of filterTerms" [removable]="true" (removed)="remove(term)">
+      {{term}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-grid>
 
   <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
 
@@ -28,4 +32,3 @@
     </mat-expansion-panel>
   </mat-accordion>
 </mat-expansion-panel>
-  

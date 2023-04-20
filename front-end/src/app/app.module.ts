@@ -31,6 +31,10 @@ import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AppContainerComponent } from './app-container/app-container.component';
 import { MainComponent } from './main/main.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 
 @NgModule({
@@ -53,6 +57,8 @@ import { MainComponent } from './main/main.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatAutocompleteModule,
+    MatChipsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -66,7 +72,8 @@ import { MainComponent } from './main/main.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    ScrollingModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

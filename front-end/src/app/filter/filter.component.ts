@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 export interface Category {
   ID: number;
@@ -38,23 +37,24 @@ export class DataService {
 })
 export class FilterComponent implements OnInit {
   @Input() categories: Category[] = [];
-  filterTerm: string = '';
+  filterTerms: string[] = [];
   results: Category[] = [];
   dataSource: MatTableDataSource<Category>;
 
   isExpanded: boolean = false;
   displayedColumns: string[] = ['Name', 'Address', 'Phone', 'Email', 'WorkingHours', 'Description'];
+  separatorKeyCodes = { ENTER, COMMA };
 
   constructor(private dataService: DataService) {
     this.dataSource = new MatTableDataSource<Category>([]);
   }
 
   ngOnInit(): void {
-    this.onSubmit();
+    // Add any initialization logic here if needed
   }
 
   onSubmit(): void {
-    this.dataService.search(this.filterTerm).subscribe(
+    this.dataService.search(this.filterTerms.join(' ')).subscribe(
       (results) => {
         this.results = results;
         this.dataSource.data = this.results;
@@ -63,5 +63,26 @@ export class FilterComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.filterTerms.push(value.trim());
+    }
+
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  remove(term: string): void {
+    const index = this.filterTerms.indexOf(term);
+
+    if (index >= 0) {
+      this.filterTerms.splice(index, 1);
+    }
   }
 }
