@@ -55,3 +55,12 @@ class PamatykLietuvoje(models.Model):
         class Meta:
                 managed = False
                 db_table = "pamatyk_Lietuvoje"
+
+class UserLogIn(models.Model):
+        ID = models.AutoField(primary_key=True)
+        Username = models.CharField(max_length=100)
+        Password = models.CharField(max_length=100)
+        
+        class Meta:
+                managed = False
+                db_table = "user"

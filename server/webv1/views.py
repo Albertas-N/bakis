@@ -5,8 +5,10 @@ from django.db import models
 from django import forms
 from .models import Category
 from .models import PamatykLietuvoje
+from .models import UserLogIn
 from .serializers import CategorySerializer
 from .serializers import PamatykLietuvojeSerializer
+from .serializers import UserLogInSerializer
 from rest_framework import serializers, viewsets
 
 def home_view(request):
@@ -20,6 +22,10 @@ class categoriesViewSet(viewsets.ModelViewSet):
 class pamatykLietuvojeVewSet(viewsets.ModelViewSet):
     queryset = PamatykLietuvoje.objects.all()
     serializer_class = PamatykLietuvojeSerializer
+
+class userLoginViewSet(viewsets.ModelViewSet):
+    queryset = UserLogIn.objects.all()
+    serializer_class = UserLogInSerializer
 
 """def categories(request):
     category = request.GET.get('categories')
