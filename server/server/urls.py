@@ -32,4 +32,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    path('userLogin', userLoginViewSet.as_view(), name='register'),
 ]

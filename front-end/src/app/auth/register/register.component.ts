@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -9,12 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private registerService: RegisterService) {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      // Add form controls here
     });
   }
 
@@ -23,6 +21,17 @@ export class RegisterComponent {
       return;
     }
 
-    // Perform registration logic here
+    const newUser = {
+      // Get values from the form
+    };
+
+    this.registerService.register(newUser).subscribe(
+      response => {
+        console.log('User registered successfully', response);
+      },
+      error => {
+        console.error('Error registering user', error);
+      }
+    );
   }
 }

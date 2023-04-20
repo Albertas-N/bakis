@@ -29,6 +29,8 @@ import { MatCardModule } from '@angular/material/card';
 import { FilterTableComponent } from './filter-table/filter-table.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AppContainerComponent } from './app-container/app-container.component';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { RegisterComponent } from './auth/register/register.component';
     LoginComponent,
     FilterTableComponent,
     AuthComponent,
-    RegisterComponent
+    RegisterComponent,
+    AppContainerComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

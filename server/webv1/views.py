@@ -9,7 +9,8 @@ from .models import UserLogIn
 from .serializers import CategorySerializer
 from .serializers import PamatykLietuvojeSerializer
 from .serializers import UserLogInSerializer
-from rest_framework import serializers, viewsets
+from rest_framework import serializers, viewsets, status, generics
+from rest_framework.response import Response
 
 def home_view(request):
     return render(request, 'web/home.html')
@@ -26,6 +27,14 @@ class pamatykLietuvojeVewSet(viewsets.ModelViewSet):
 class userLoginViewSet(viewsets.ModelViewSet):
     queryset = UserLogIn.objects.all()
     serializer_class = UserLogInSerializer
+
+    def post(self, request):
+        user_data = request.data
+        serializer = self.serializer_class(data=user_data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 """def categories(request):
     category = request.GET.get('categories')

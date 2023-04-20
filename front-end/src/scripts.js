@@ -18,3 +18,4 @@ searchBar.addEventListener('input', () => {
 
   results.classList.add('show');
 });
+

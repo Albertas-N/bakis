@@ -1,5 +1,16 @@
 import { Component } from '@angular/core';
 import { DataService } from './filter/filter.component';
+import { MatTableDataSource } from '@angular/material/table';
+
+interface Category {
+  ID: number;
+  Name: string;
+  Address: string;
+  Phone: string;
+  Email: string;
+  WorkingHours: string;
+  Description: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -10,14 +21,19 @@ export class AppComponent {
   title = 'front-end';
   filterTerm: string = '';
   searchResults: any[] = [];
-  galleryExpanded = false;
+  dataSource: MatTableDataSource<Category>;
 
-  constructor(private dataService: DataService) { }
+  isExpanded: boolean = false;
+
+  constructor(private dataService: DataService) {
+    this.dataSource = new MatTableDataSource<Category>([]);
+  }
 
   onSubmit(): void {
     this.dataService.search(this.filterTerm).subscribe(
-      (results: any[] = []) => {
+      (results: Category[] = []) => {
         this.searchResults = results;
+        this.dataSource = new MatTableDataSource<Category>(this.searchResults);
       },
       (error: any[] = []) => {
         console.error(error);
@@ -27,13 +43,14 @@ export class AppComponent {
 
   onSearchResults(event: any) {
     this.searchResults = event;
+    this.dataSource = new MatTableDataSource<Category>(this.searchResults);
   }
 
   expandGallery(): void {
-    this.galleryExpanded = true;
+    this.isExpanded = true;
   }
 
   collapseGallery(): void {
-    this.galleryExpanded = false;
+    this.isExpanded = false;
   }
 }

@@ -1,0 +1,146 @@
+[33mcommit c9cc08e5252e80f480e971bf4f054672deb1b15c[m[33m ([m[1;31morigin/features/modules_version1[m[33m, [m[1;32mfeatures/modules_version1[m[33m)[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Fri Mar 3 10:35:36 2023 +0200
+
+    Feat: UI improvement
+
+[33mcommit 6a9cd6130dedd49a041e1430df4731c81f40a756[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Sat Feb 25 21:48:06 2023 +0200
+
+    Feat: Front-end through Angular CLI
+
+[33mcommit 13e74c5e6ee0b51b4fe92b22066effc2e43981de[m[33m ([m[1;35mrefs/stash[m[33m)[m
+Merge: b5613ae a29a243
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Wed Feb 8 16:24:59 2023 +0200
+
+    WIP on features/modules_version1: b5613ae feat: db update
+
+[33mcommit a29a243c13adf62af32bbed5eaafbc7fc190f60d[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Wed Feb 8 16:24:59 2023 +0200
+
+    index on features/modules_version1: b5613ae feat: db update
+
+[33mcommit 376d4c2926261700fa71dd8a10373a116459f3e9[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Wed Feb 1 18:02:44 2023 +0200
+
+    feat: django db changes are now valid
+
+[33mcommit b5613ae77f533b430960e5b520e18794a60b4687[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Tue Jan 17 21:09:27 2023 +0200
+
+    feat: db update
+
+[33mcommit 75add9340f0382d20b0a5cb80d7adcccc0086c93[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Tue Jan 17 19:07:28 2023 +0200
+
+    feat: views.py changed
+
+[33mcommit 31c0ecadab13ec70a539a903c26aad8e1a88ec2e[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Sun Jan 15 18:55:08 2023 +0200
+
+    fix: db table data added
+
+[33mcommit 75382d0b95eefccc191ea34dbd409b597bc7f58e[m
+Author: Vakare Lazickaite <vakare.lazickaite@stud.vgtu.lt>
+Date:   Thu Jan 12 22:07:54 2023 +0200
+
+    updated models.py file, commented urls.py and views.py, copied latest home.html (hope so), also views.py first comment section - maybe an old version and 2nd section - (hope so) newest version
+
+[33mcommit c9d11dc728f430666951113024dcc4acabe1945a[m[33m ([m[1;31morigin/features/front_end[m[33m, [m[1;32mfeatures/front_end[m[33m)[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Thu Jan 12 18:35:51 2023 +0200
+
+    feat: db change
+
+[33mcommit 2fd0bca8ed90fbb85cadda85b5375dcfedf9d2e6[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Wed Jan 11 21:49:44 2023 +0200
+
+    Added proper styling
+
+[33mcommit eeda4fe8c03172ff9791214d4221829408cd0e85[m[33m ([m[1;36mHEAD -> [m[1;32mexpb/base[m[33m, [m[1;31morigin/expb/base[m[33m)[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Wed Jan 11 20:17:01 2023 +0200
+
+    feat: adding migration
+
+[33mcommit d727c0d08b4b7570caa7dd365b7ac79786556ae2[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Wed Jan 11 18:00:24 2023 +0200
+
+    Updated database collection functions and updated main page
+
+[33mcommit f064d6939dde7c8057587508f786c3d92746128e[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Wed Jan 11 01:30:06 2023 +0200
+
+    Created code to take database information and display it, fixed templates
+
+[33mcommit 37298375ec450ff9b93d46a1ccb9c30c34eafb29[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Mon Jan 9 22:31:13 2023 +0200
+
+    V ir S url appsu pakeitimai; homepage display
+
+[33mcommit ca5bf0813bfad1a9600c33c3e43ba5b1d106edc4[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Mon Jan 9 20:50:26 2023 +0200
+
+    FEAT: basic front-end features
+
+[33mcommit 9776e68402dcb508f518d5417c145e6f573572a5[m[33m ([m[1;31morigin/features/saras[m[33m)[m
+Author: sarunassarunassarunassarunas <sarunas.vitkus@stud.vilniustech.lt>
+Date:   Mon Jan 9 20:18:51 2023 +0200
+
+    saro sudas
+
+[33mcommit 40ec23ddc4a1bee654c47c1a11670a5de0ba0a34[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Thu Dec 29 12:55:18 2022 +0200
+
+    feat: added simple sqlite db
+
+[33mcommit 2398fb5293116e5989562753631d4d1dc2b48579[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Tue Dec 20 22:22:19 2022 +0200
+
+    feat: adding DB
+
+[33mcommit ac7fc15f72f8832f02c072ee7512b82bbcdb9b30[m[33m ([m[1;31morigin/v_server[m[33m)[m
+Author: Vakare Lazickaite <vakare.lazickaite@stud.vgtu.lt>
+Date:   Tue Dec 20 22:19:40 2022 +0200
+
+    V: made server side, created virtual environment, ready to get db to the project.
+    
+    Needs changes from A (insert db file, configure manage.py, models.py.
+
+[33mcommit bc7fdbe5a037f96302f09c8cda98ab1a5a302fef[m[33m ([m[1;31morigin/feature/saruno_bbz[m[33m)[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Sat Dec 17 15:41:25 2022 +0200
+
+    feat:saro_pakeitimai
+
+[33mcommit adc64ef9464a5995e9810226adb1b80845ff764a[m[33m ([m[1;31morigin/feature/mano_pakeitimai[m[33m)[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Sat Dec 17 15:03:33 2022 +0200
+
+    feat: adding new shit
+
+[33mcommit 2eed773fc52b0b3cc5e03c84416e9b669f44817a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Vakare Lazickaite <vakare.lazickaite@stud.vgtu.lt>
+Date:   Sat Dec 17 15:00:44 2022 +0200
+
+    bandymas
+
+[33mcommit c0c47a1372a8139e666e8a4c98e71564e3d0bcb8[m
+Author: albertnaimovicisvf19 <a.naimovic@stud.vilniustech.lt>
+Date:   Sat Dec 17 14:45:59 2022 +0200
+
+    feat: adding first test file
