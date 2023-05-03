@@ -12,69 +12,35 @@ from .serializers import UserLogInSerializer
 from rest_framework import serializers, viewsets, status, generics
 from rest_framework.response import Response
 
+
 def home_view(request):
     return render(request, 'web/home.html')
-
 
 class categoriesViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class pamatykLietuvojeVewSet(viewsets.ModelViewSet):
+class pamatykLietuvojeViewSet(viewsets.ModelViewSet):
     queryset = PamatykLietuvoje.objects.all()
     serializer_class = PamatykLietuvojeSerializer
 
-class userLoginViewSet(viewsets.ModelViewSet):
+class UserLogInViewSet(viewsets.ModelViewSet):
     queryset = UserLogIn.objects.all()
     serializer_class = UserLogInSerializer
 
-    def post(self, request):
-        user_data = request.data
-        serializer = self.serializer_class(data=user_data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def create(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        username = request.data.get('username')
+        password = request.data.get('password')
 
-"""def categories(request):
-    category = request.GET.get('categories')
-    return render(request, 'web/categories.html', {'category': category})
+        # perform any necessary validation here
+        # ...
 
+        user_login = UserLogIn.objects.create(
+            email=email,
+            username=username,
+            password=password
+        )
 
-def restaurants(request):
-    return render(request, 'web/restaurants.html')
-
-
-def clubs(request):
-    return render(request, 'web/clubs.html')
-
-
-def bars(request):
-    return render(request, 'web/bars.html')
-
-
-def attractions(request):
-    return render(request, 'web/attractions.html')
-
-
-def about_view(request):
-    return render(request, 'web/about.html')
-    
-
-def my_view(request):
-    # Connect to the database
-    conn = sqlite3.connect('sqlite_db.db')
-
-
-# creating a view to retrieve all category types and categories from database
-def home(request):
-    category_types = Category_typetb.objects.all()
-    #form = CategoryTypeForm()
-    context= {'category_types': category_types}
-    return render(request, 'web/home.html', context)"""
-
-"""def categories(request, catid):
-    category_type = Category_typetb.objects.get(catid=catid)
-    categories = Categoriestb.objects.filter(category_id=category_type)
-    return render(request, 'web/categories.html', {'categories': categories})
-"""
+        serializer = self.get_serializer(user_login)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

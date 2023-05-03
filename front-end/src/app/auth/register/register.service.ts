@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class RegisterService {
-  private apiUrl = 'http://localhost:8000/userLogin/'; 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  register(user: any): Observable<any> {
-    return this.http.post(this.apiUrl, user);
+  register(username: string, password: string): Observable<any> {
+    const body = { username: username, password: password };
+    return this.http.post("http://localhost:8000/userLogin/", body);
   }
 }

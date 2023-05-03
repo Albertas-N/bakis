@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterService } from './register.service';
 
 @Component({
@@ -7,31 +8,33 @@ import { RegisterService } from './register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
+export class RegisterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private registerService: RegisterService) {
+  registerForm!: FormGroup;
+  errorMessage = '';
+
+  constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router) { }
+
+  ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      // Add form controls here
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  onSubmit() {
-    if (this.registerForm.invalid) {
-      return;
-    }
+  onSubmit(): void {
+    this.errorMessage = '';
+    const username = this.registerForm.value.username;
+    const password = this.registerForm.value.password;
 
-    const newUser = {
-      // Get values from the form
-    };
-
-    this.registerService.register(newUser).subscribe(
-      response => {
-        console.log('User registered successfully', response);
+    this.registerService.register(username, password).subscribe(
+      () => {
+        this.router.navigate(['/login']);
       },
-      error => {
-        console.error('Error registering user', error);
+      (error) => {
+        this.errorMessage = error.error.message;
       }
     );
   }
+
 }

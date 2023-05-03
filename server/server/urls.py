@@ -19,18 +19,18 @@ from django.conf.urls import include
 from rest_framework import routers
 
 from webv1.views import categoriesViewSet
-from webv1.views import pamatykLietuvojeVewSet
-from webv1.views import userLoginViewSet
+from webv1.views import pamatykLietuvojeViewSet
+from webv1.views import UserLogInViewSet
 
 router = routers.DefaultRouter()
 
 router.register('categories', categoriesViewSet, basename='category')
-router.register('pamatykLietuvoje', pamatykLietuvojeVewSet, basename='pamatykLietuvoje')
-router.register('userLogin', userLoginViewSet, basename='userLogin')
+router.register('pamatykLietuvoje', pamatykLietuvojeViewSet, basename='pamatykLietuvoje')
+router.register('userLogin', UserLogInViewSet, basename='userLogin')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
-    path('userLogin', userLoginViewSet.as_view(), name='register'),
+    path('userLogin/', UserLogInViewSet.as_view({'post': 'create'}), name='register'),
 ]
