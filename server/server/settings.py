@@ -80,31 +80,16 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'sqlite_db.db',
         'NAME': BASE_DIR / 'test_db.db',
+    },
+    'postgresql':{
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'ujomvHMqKDUUOUXsTfIX',
+        'HOST': 'containers-us-west-125.railway.app',
+        'PORT': '6457',
     }
 }
-
-#cia prisijungimas prie postgresql, nepadarytas pilnai dar
-'''
-DATABASES={
-
-  'default':{
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'Filtravimo-Sistemos',
-
-        'USER': 'postgres',
-
-        'PASSWORD': 'password',
-
-        'HOST': 'localhost',
-
-        'PORT': '5432',
-
-  }
-
-}
-'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

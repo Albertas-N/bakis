@@ -5,10 +5,16 @@ from django.db import models
 from django import forms
 from .models import Category
 from .models import PamatykLietuvoje
-from .models import UserLogIn
+from .models import VilniusEvents
+#from .models import UserLogIn
+from .models import UserLogin
+from .models import UserRegister
 from .serializers import CategorySerializer
 from .serializers import PamatykLietuvojeSerializer
-from .serializers import UserLogInSerializer
+#from .serializers import UserLogInSerializer
+from .serializers import VilniusEventsSerializer
+from .serializers import UserLoginSerializer
+from .serializers import UserRegisterSerializer
 from rest_framework import serializers, viewsets, status, generics
 from rest_framework.response import Response
 
@@ -24,23 +30,44 @@ class pamatykLietuvojeViewSet(viewsets.ModelViewSet):
     queryset = PamatykLietuvoje.objects.all()
     serializer_class = PamatykLietuvojeSerializer
 
-class UserLogInViewSet(viewsets.ModelViewSet):
-    queryset = UserLogIn.objects.all()
-    serializer_class = UserLogInSerializer
+# class UserLogInViewSet(viewsets.ModelViewSet):
+#     queryset = UserLogIn.objects.all()
+#     serializer_class = UserLogInSerializer
 
-    def create(self, request, *args, **kwargs):
-        email = request.data.get('email')
-        username = request.data.get('username')
-        password = request.data.get('password')
+#     def create(self, request, *args, **kwargs):
+#         email = request.data.get('email')
+#         username = request.data.get('username')
+#         password = request.data.get('password')
 
-        # perform any necessary validation here
-        # ...
+#         # perform any necessary validation here
+#         # ...
 
-        user_login = UserLogIn.objects.create(
-            email=email,
-            username=username,
-            password=password
-        )
+#         user_login = UserLogIn.objects.create(
+#             email=email,
+#             username=username,
+#             password=password
+#         )
 
-        serializer = self.get_serializer(user_login)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         serializer = self.get_serializer(user_login)
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+class VilniusEventsViewSet(viewsets.ModelViewSet):
+    queryset = VilniusEvents.objects.all()
+    serializer_class = VilniusEventsSerializer
+
+    def get_queryset(self):
+        return VilniusEvents.objects.using('postgresql').all()
+    
+class UserLoginViewSet(viewsets.ModelViewSet):
+    queryset = UserLogin.objects.all()
+    serializer_class = UserLoginSerializer
+
+    def get_queryset(self):
+        return UserLogin.objects.using('postgresql').all()
+    
+class UserRegisterViewSet(viewsets.ModelViewSet):
+    queryset = UserRegister.objects.all()
+    serializer_class = UserRegisterSerializer
+
+    def get_queryset(self):
+        return UserRegister.objects.using('postgresql').all()

@@ -56,11 +56,43 @@ class PamatykLietuvoje(models.Model):
                 managed = False
                 db_table = "pamatyk_Lietuvoje"
 
-class UserLogIn(models.Model):
-        ID = models.AutoField(primary_key=True)
-        Username = models.CharField(max_length=100)
-        Password = models.CharField(max_length=100)
+# class UserLogIn(models.Model):
+#         ID = models.AutoField(primary_key=True)
+#         Username = models.CharField(max_length=100)
+#         Password = models.CharField(max_length=100)
         
+#         class Meta:
+#                 managed = False
+#                 db_table = "user"
+
+class VilniusEvents(models.Model):
+        id = models.AutoField(primary_key=True)
+        title = models.CharField(max_length=100)
+        image_src = models.TextField()
+        date = models.CharField(max_length=100)
+        address = models.CharField(max_length=100)
+        content = models.TextField()
+
         class Meta:
+                db_table = 'vilnius_events'
                 managed = False
-                db_table = "user"
+
+class UserLogin(models.Model):
+        id = models.AutoField(primary_key=True)
+        username = models.CharField(max_length=100)
+        password = models.CharField(max_length=100)
+
+        class Meta:
+                db_table = 'user_login'
+                managed = False
+
+class UserRegister(models.Model):
+        id = models.AutoField(primary_key=True)
+        name = models.CharField(max_length=100)
+        email = models.CharField(max_length=100)
+        username = models.CharField(max_length=100)
+        password = models.CharField(max_length=100)
+
+        class Meta:
+                db_table = 'user_register'
+                managed = False
