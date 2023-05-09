@@ -1,6 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 
-
+declare var google: any;
 
 @Component({
   selector: 'app-app-container',
@@ -13,7 +13,10 @@ export class AppContainerComponent implements OnInit {
   map!: google.maps.Map;
   infoWindow!: google.maps.InfoWindow;
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
     this.initMap();
   }
 
