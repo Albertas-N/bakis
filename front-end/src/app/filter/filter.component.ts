@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,13 +20,14 @@ export interface Category {
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://localhost:3000/Categories';
+  private apiUrl = 'http://localhost:8000/pamatykLietuvoje/';
 
   constructor(private http: HttpClient) { }
 
   search(searchTerm: string): Observable<Category[]> {
-    const params = new HttpParams().set('Name_like', searchTerm);
-    return this.http.get<Category[]>(this.apiUrl, { params });
+    const params = new HttpParams().set('search', searchTerm);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json'); // Add custom header
+    return this.http.get<Category[]>(this.apiUrl, { params, headers }); // Include headers in the request
   }
 }
 
