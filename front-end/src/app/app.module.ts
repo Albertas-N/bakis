@@ -35,6 +35,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { RegisterService } from './auth/register/register.service';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -76,6 +77,7 @@ import { RegisterService } from './auth/register/register.service';
     MatIconModule,
     MatListModule,
     ScrollingModule,
+    GoogleMapsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

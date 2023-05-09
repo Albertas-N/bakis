@@ -19,11 +19,12 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "typeRoots": ["node_modules/@types"],
     "lib": [
       "ES2022",
       "dom"
     ],
-    "types": ["googlemaps", "jest"]
+    "types": ["google.maps", "jest"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
