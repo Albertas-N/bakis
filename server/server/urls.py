@@ -19,7 +19,7 @@ from django.conf.urls import include
 from rest_framework import routers
 
 from webv1.views import categoriesViewSet
-from webv1.views import pamatykLietuvojeViewSet
+#from webv1.views import pamatykLietuvojeViewSet
 #from webv1.views import UserLogInViewSet
 from webv1.views import VilniusEventsViewSet
 from webv1.views import UserLoginViewSet
@@ -28,7 +28,7 @@ from webv1.views import UserRegisterViewSet
 router = routers.DefaultRouter()
 
 router.register('categories', categoriesViewSet, basename='category')
-router.register('pamatykLietuvoje', pamatykLietuvojeViewSet, basename='pamatykLietuvoje')
+#router.register('pamatykLietuvoje', pamatykLietuvojeViewSet, basename='pamatykLietuvoje')
 #router.register('userLogin', UserLogInViewSet, basename='userLogin')
 router.register('vilniusEvents', VilniusEventsViewSet, basename='vilniusEvents')
 router.register('userLogin', UserLoginViewSet, basename='userLogin')

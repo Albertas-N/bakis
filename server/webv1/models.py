@@ -23,9 +23,15 @@ class Categoriestb(models.Model):
 
 
 class Category(models.Model):
-        cat_id = models.AutoField(primary_key=True)
-        category_type = models.CharField(max_length=30)
-        parent_id = models.IntegerField()
+        id = models.AutoField(primary_key=True)
+        category = models.CharField(max_length=30)
+
+        class Meta:
+                db_table = 'categories'
+                managed = False
+
+        def __str__(self):
+                return self.name
 
 
 class Entertainment(models.Model):
@@ -43,18 +49,18 @@ class Profile(models.Model):   #add this class and the following fields
         user_seen = models.IntegerField()
         user_setting = models.CharField(max_length=50)
 
-class PamatykLietuvoje(models.Model): 
-        ID = models.AutoField(primary_key=True)
-        Name = models.CharField(max_length=100)
-        Address = models.CharField(max_length=100)
-        Phone = models.CharField(max_length=100)
-        Email = models.CharField(max_length=100)
-        WorkingHours = models.CharField(max_length=100)
-        Description = models.TextField()
+# class PamatykLietuvoje(models.Model): 
+#         ID = models.AutoField(primary_key=True)
+#         Name = models.CharField(max_length=100)
+#         Address = models.CharField(max_length=100)
+#         Phone = models.CharField(max_length=100)
+#         Email = models.CharField(max_length=100)
+#         WorkingHours = models.CharField(max_length=100)
+#         Description = models.TextField()
 
-        class Meta:
-                managed = False
-                db_table = "pamatyk_Lietuvoje"
+#         class Meta:
+#                 managed = False
+#                 db_table = "pamatyk_Lietuvoje"
 
 # class UserLogIn(models.Model):
 #         ID = models.AutoField(primary_key=True)
@@ -76,6 +82,9 @@ class VilniusEvents(models.Model):
         class Meta:
                 db_table = 'vilnius_events'
                 managed = False
+        
+        def __str__(self):
+                return self.name
 
 class UserLogin(models.Model):
         id = models.AutoField(primary_key=True)
@@ -85,6 +94,9 @@ class UserLogin(models.Model):
         class Meta:
                 db_table = 'user_login'
                 managed = False
+
+        def __str__(self):
+                return self.name
 
 class UserRegister(models.Model):
         id = models.AutoField(primary_key=True)
@@ -96,3 +108,6 @@ class UserRegister(models.Model):
         class Meta:
                 db_table = 'user_register'
                 managed = False
+
+        def __str__(self):
+                return self.name

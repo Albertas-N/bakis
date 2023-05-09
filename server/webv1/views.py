@@ -4,13 +4,13 @@ from django.contrib import messages
 from django.db import models
 from django import forms
 from .models import Category
-from .models import PamatykLietuvoje
+# from .models import PamatykLietuvoje
 from .models import VilniusEvents
 #from .models import UserLogIn
 from .models import UserLogin
 from .models import UserRegister
 from .serializers import CategorySerializer
-from .serializers import PamatykLietuvojeSerializer
+# from .serializers import PamatykLietuvojeSerializer
 #from .serializers import UserLogInSerializer
 from .serializers import VilniusEventsSerializer
 from .serializers import UserLoginSerializer
@@ -26,9 +26,9 @@ class categoriesViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class pamatykLietuvojeViewSet(viewsets.ModelViewSet):
-    queryset = PamatykLietuvoje.objects.all()
-    serializer_class = PamatykLietuvojeSerializer
+# class pamatykLietuvojeViewSet(viewsets.ModelViewSet):
+#     queryset = PamatykLietuvoje.objects.all()
+#     serializer_class = PamatykLietuvojeSerializer
 
 # class UserLogInViewSet(viewsets.ModelViewSet):
 #     queryset = UserLogIn.objects.all()
@@ -54,20 +54,11 @@ class pamatykLietuvojeViewSet(viewsets.ModelViewSet):
 class VilniusEventsViewSet(viewsets.ModelViewSet):
     queryset = VilniusEvents.objects.all()
     serializer_class = VilniusEventsSerializer
-
-    def get_queryset(self):
-        return VilniusEvents.objects.using('postgresql').all()
     
 class UserLoginViewSet(viewsets.ModelViewSet):
     queryset = UserLogin.objects.all()
     serializer_class = UserLoginSerializer
-
-    def get_queryset(self):
-        return UserLogin.objects.using('postgresql').all()
     
 class UserRegisterViewSet(viewsets.ModelViewSet):
     queryset = UserRegister.objects.all()
     serializer_class = UserRegisterSerializer
-
-    def get_queryset(self):
-        return UserRegister.objects.using('postgresql').all()
