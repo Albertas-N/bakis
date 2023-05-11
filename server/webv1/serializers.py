@@ -24,7 +24,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class VilniusEventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = VilniusEvents
-        fields = ['id', 'title', 'image_src', 'date', 'address', 'content']
+        fields = ['id',"title",'image_src', 'date', 'address', 'content', 'email', 'working_hours', 'category', 'phone_number', 'rating']
 
 class UserLoginSerializer(serializers.ModelSerializer):
     class Meta:
