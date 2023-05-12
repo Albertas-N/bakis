@@ -36,6 +36,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { RegisterService } from './auth/register/register.service';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CommonModule } from '@angular/common';
+import { ResultDetailsComponent } from './result-details/result-details.component';
 
 
 
@@ -53,10 +57,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AuthComponent,
     RegisterComponent,
     AppContainerComponent,
-    MainComponent
+    MainComponent,
+    ResultDetailsComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -78,10 +84,13 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatListModule,
     ScrollingModule,
     GoogleMapsModule,
+    MatCheckboxModule,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MatTableDataSource],
+  bootstrap: [AppComponent],
+  exports: [ResultDetailsComponent],
 })
 export class AppModule { }
 

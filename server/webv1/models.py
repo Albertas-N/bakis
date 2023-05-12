@@ -78,6 +78,11 @@ class VilniusEvents(models.Model):
         date = models.CharField(max_length=100)
         address = models.CharField(max_length=100)
         content = models.TextField()
+        email = models.CharField(max_length=100)
+        working_hours = models.TextField()
+        category = models.CharField(max_length=100)
+        phone_number = models.CharField(max_length=20)
+        rating = models.CharField(max_length=10)
 
         class Meta:
                 db_table = 'vilnius_events'

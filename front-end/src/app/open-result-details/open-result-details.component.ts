@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDetailsComponent } from '../result-details/result-details.component';
 
+
 @Component({
   selector: 'app-open-result-details',
   templateUrl: './open-result-details.component.html',
@@ -9,14 +10,4 @@ import { ResultDetailsComponent } from '../result-details/result-details.compone
 })
 export class OpenResultDetailsComponent {
   constructor(private dialog: MatDialog) {}
-
-  openDialog(id: number, type: string): void {
-    const dialogRef = this.dialog.open(ResultDetailsComponent, {
-      data: { id, type },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog closed: ${result}`);
-    });
-  }
 }

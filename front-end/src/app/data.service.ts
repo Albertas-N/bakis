@@ -1,22 +1,9 @@
-// data.service.ts
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 export interface Category {
-  ID: number;
-  Name: string;
-  Address: string;
-  Phone: string;
-  Email: string;
-  WorkingHours: string;
-  Description: string;
-}
-
-export interface Event {
   id: number;
   title: string;
   image_src: string;
@@ -25,59 +12,73 @@ export interface Event {
   content: string;
 }
 
+export interface SearchResult {
+  id: number;
+  title: string;
+  image_src: string;
+  date: string;
+  address: string;
+  content: string;
+}
+
+export interface FilterValues {
+  searchTerm: string;
+  category: string[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private eventsUrl = 'http://localhost:8000/vilniusEvents/';
-  private museumsUrl = 'http://localhost:8000/pamatykLietuvoje/';
+  private categoryUrl = 'http://localhost:8000/vilniusEvents/';
+  searchTerm: string = '';
+  category: string[] = [];
 
   constructor(private http: HttpClient) {}
 
-  getEvent(id: number): Observable<Event> {
-    return this.http.get<Event>(`${this.eventsUrl}${id}/`);
+  search(searchTerm: string, categoryName: string): Observable<SearchResult[]> {
+    const params = new HttpParams().set('q', searchTerm);
+    return this.http.get<SearchResult[]>(this.categoryUrl, { params }).pipe(
+      map((results) =>
+        results.filter((result) =>
+          (categoryName.length === 0 || result.title.includes(categoryName)) &&
+          result.title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      )
+    );
   }
 
-  getCategory(id: number): Observable<Category> {
-    return this.http.get<Category>(`${this.museumsUrl}${id}/`);
+  getAllData(): Observable<SearchResult[]> {
+    return this.http.get<SearchResult[]>(this.categoryUrl).pipe(
+      tap((response) => {
+        console.log('getAllData response:', response);
+      })
+    );
   }
 
-  getMuseum(id: number): Observable<Category> {
-    return this.http.get<Category>(`${this.museumsUrl}${id}/`);
-  }
-  
-
-  search(query: string): Observable<[Category[], Event[]]> {
-    const params = new HttpParams().set('q', query);
-    const searchEvents = this.searchEvents(query);
-    const searchCategories = this.searchCategories(query);
-    return forkJoin([searchCategories, searchEvents]);
-  }
-
-  private searchCategories(query: string): Observable<Category[]> {
-    const params = new HttpParams().set('q', query);
-    return this.http.get<Category[]>(this.museumsUrl, { params });
-  }
-
-  private searchEvents(query: string): Observable<Event[]> {
-    const params = new HttpParams().set('q', query);
-    return this.http.get<Event[]>(this.eventsUrl, { params });
-  }
-
-  getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.eventsUrl}`);
+  getResultDetails(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.categoryUrl}/${id}`);
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.museumsUrl}`);
+    return this.http.get<Category[]>(`${this.categoryUrl}`);
   }
 
-  applyFilter(filterValues: { category: string[]; searchTerm: string }): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.eventsUrl}`).pipe(
-      map((events) =>
-        events.filter((event) =>
-          filterValues.category.some((category) => event.title.includes(category)) &&
-          event.title.toLowerCase().includes(filterValues.searchTerm.toLowerCase())
+  getResults(): Observable<SearchResult[]> {
+    return this.http.get<SearchResult[]>(this.categoryUrl);
+  }
+
+  applyFilter(filterValues: FilterValues): Observable<SearchResult[]> {
+    return this.getResults().pipe(
+      map((results) =>
+        results.filter(
+          (result) =>
+            (filterValues.searchTerm.length === 0 ||
+              result.title.toLowerCase().includes(filterValues.searchTerm.toLowerCase())) &&
+            (filterValues.category.length === 0 ||
+              filterValues.category.some((categoryName) =>
+                result.title.includes(categoryName)
+              ))
         )
       )
     );

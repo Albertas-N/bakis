@@ -14,7 +14,7 @@ from .models import VilniusEvents, UserLogin, UserRegister
 # admin.site.register(PamatykLietuvoje, PamatykLietuvojeAdminView)
 
 class VilniusEventsAdminView(admin.ModelAdmin):
-    list_display = ('id',"title",'image_src', 'date', 'address', 'content')
+    list_display = ('id',"title",'image_src', 'date', 'address', 'content', 'email', 'working_hours', 'category', 'phone_number', 'rating')
 
 admin.site.register(VilniusEvents, VilniusEventsAdminView)
 

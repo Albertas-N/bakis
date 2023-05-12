@@ -1,54 +1,18 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>Filter</mat-panel-title>
-  </mat-expansion-panel-header>
-
-  <mat-chip-grid #chipList>
-    <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="[separatorKeyCodes.ENTER, separatorKeyCodes.COMMA]" (matChipInputTokenEnd)="add($event)" placeholder="Search" class="search-input">
-    <mat-chip *ngFor="let term of filterTerms" [removable]="true" (removed)="remove(term)">
-      {{term}}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-  </mat-chip-grid>
-
-  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-
-  <mat-accordion>
-    <mat-expansion-panel [expanded]="isExpanded" (opened)="isExpanded = true" (closed)="isExpanded = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>Results</mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="Name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let result">{{ result.Name }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Address">
-          <th mat-header-cell *matHeaderCellDef>Address</th>
-          <td mat-cell *matCellDef="let result">{{ result.Address }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Phone">
-          <th mat-header-cell *matHeaderCellDef>Phone</th>
-          <td mat-cell *matCellDef="let result">{{ result.Phone }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Email">
-          <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let result">{{ result.Email }}</td>
-        </ng-container>
-        <ng-container matColumnDef="WorkingHours">
-          <th mat-header-cell *matHeaderCellDef>Working Hours</th>
-          <td mat-cell *matCellDef="let result">{{ result.WorkingHours }}</td>
-        </ng-container>
-        <ng-container matColumnDef="Description">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let result">{{ result.Description }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-expansion-panel>
+<div class="filter-container">
+  <div class="search-form">
+    <input matInput class="search-input" #searchInput placeholder="Type to search..." [(ngModel)]="searchTerm">
+    <button mat-raised-button class="search-button" (click)="search()">Search</button>
+  </div>
+  <div class="results-container">
+    <div *ngIf="filteredDataSource.length === 0" class="no-results">No results found.</div>
+    <div *ngFor="let result of filteredDataSource" class="result-item">
+      <div class="result-image">
+        <img [src]="result.image_src" alt="Result Image">
+      </div>
+      <div class="result-details">
+        <h3>{{ result.title }}</h3>
+        <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>
