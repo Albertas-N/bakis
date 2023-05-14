@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import FilterScreen from './components/FilterScreen';
 import ProfileScreen from './components/ProfileScreen';
 import FavoriteScreen from './components/FavouriteScreen';
+import MapsScreen from './components/Maps';
 
 const colors = {
   top: "#034F34",
@@ -84,31 +85,6 @@ function HomeScreen({ navigation }) {
   );
 }
 
-
-/*function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={images}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: item.uri }} />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <Text
-              style={styles.link}
-              onPress={() => navigation.navigate('Details', { item })}
-            >
-              View details
-            </Text>
-          </View>
-        )}
-      />
-    </View>
-  );
-}*/
-
 function DetailsScreen({ route }) {
   const { item } = route.params;
   return (
@@ -127,7 +103,7 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator 
+    <Tab.Navigator style={styles.navigator}
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
@@ -148,9 +124,12 @@ function MyTabs() {
           iconName = focused 
           ? 'bookmark' 
           : 'bookmark-outline';
+        } else if (route.name === 'Maps'){
+          iconName = focused 
+          ? 'md-map'
+          : 'md-map-outline';
         }
         
-
         // You can return any component that you like here!
         return <Ionicons name={iconName} size={size} color={color} />;
       },
@@ -161,6 +140,7 @@ function MyTabs() {
       <Tab.Screen name="Filter" component={FilterScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Favorite" component={FavoriteScreen} />
+      <Tab.Screen name="Maps" component={MapsScreen}/>
     </Tab.Navigator>
   );
 }
@@ -169,9 +149,10 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer style = {{backgroundColor: colors.top}}>
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          style={styles.navigator}
           name="Home"
           component={MyTabs}
           options={{ headerShown: false }}
@@ -237,6 +218,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  navigator: {
+    backgroundColor: colors.bottom,
+  }
 });
 
 /*export default function App() {
