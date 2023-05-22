@@ -12,13 +12,57 @@ export class AppComponent {
   filterTerm: string = '';
   selectedCategory: string = '';
   searchResults: any[] = [];
+  keywords: string[] = [];
+  results: SearchResult[] = [];
+  filteredResults: SearchResult[] = [];
+  filteredDataSource: SearchResult[] = [];
+  searchTerm: string = '';
   dataSource: MatTableDataSource<SearchResult>;
 
   isExpanded: boolean = false;
 
   constructor(private dataService: DataService) {
-    this.dataSource = new MatTableDataSource<SearchResult>([]);
+    this.dataSource = new MatTableDataSource<SearchResult>([]),
+    this.fetchResults();
   }
+
+  fetchResults(): void {
+    this.dataService.getAllData().subscribe(results => {
+      this.results = results;
+      this.filteredResults = [...results];
+    });
+  }
+
+  onKeywordsChanged(keywords: string[]): void {
+    this.keywords = keywords;
+    this.search();
+  }
+
+  onSearchKeywordChanged(searchKeyword: string): void {
+    this.searchTerm = searchKeyword;
+    this.search();
+  }
+
+  search(): void {
+    if (this.searchTerm.length === 0 && this.selectedCategory.length === 0) {
+      this.dataService.search(this.searchTerm, this.selectedCategory).subscribe(
+        (results: SearchResult[]) => {
+          this.filteredDataSource = this.filterResultsByKeywords(results);
+          console.log('Results from search():', this.filteredDataSource);
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+  filterResultsByKeywords(results: SearchResult[]): SearchResult[] {
+    return results.filter(result => 
+      this.keywords.every(keyword => result.title.toLowerCase().includes(keyword.toLowerCase()))
+    );
+  }
+
 
   onSubmit(): void {
     this.dataService.search(this.filterTerm, this.selectedCategory).subscribe(

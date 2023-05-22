@@ -1,0 +1,20 @@
+.keyword-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .keyword {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+  }
+  
+  .remove-button {
+    margin-left: 5px;
+    border: none;
+    background-color: transparent;
+  }
+  

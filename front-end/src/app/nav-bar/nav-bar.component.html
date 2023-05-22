@@ -5,6 +5,7 @@
     <a mat-button routerLink="/about">About</a>
     <a mat-button routerLink="/categories">Categories</a>
     <a mat-button routerLink="/login">Log in</a>
+    <a *ngIf="isLoggedIn" routerLink="/profile">Profile</a>
   </mat-toolbar-row>
 </mat-toolbar>
 

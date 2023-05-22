@@ -21,7 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { IntroGalleryComponent } from './intro-gallery/intro-gallery.component';
 import { FilterComponent } from './filter/filter.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavbarComponent } from './nav-bar/nav-bar.component';
 import { AboutComponent } from './about/about.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -40,6 +40,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { ResultDetailsComponent } from './result-details/result-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -49,7 +50,7 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
     AppComponent,
     IntroGalleryComponent,
     FilterComponent,
-    NavBarComponent,
+    NavbarComponent,
     AboutComponent,
     CategoriesComponent,
     LoginComponent,
@@ -58,7 +59,8 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
     RegisterComponent,
     AppContainerComponent,
     MainComponent,
-    ResultDetailsComponent
+    ResultDetailsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,6 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelectChange } from '@angular/material/select';
 import { Observable, of } from 'rxjs';
 import { DataService, Category, SearchResult } from '../data.service';
@@ -15,7 +14,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDetailsComponent } from '../result-details/result-details.component';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filter',
@@ -39,8 +38,12 @@ export class FilterComponent implements OnInit {
   dataSource = new MatTableDataSource<SearchResult>();
   displayedColumns: string[] = ['id', 'title', 'date', 'address', 'details'];
   filteredDataSource: SearchResult[] = [];
+  keywords: string[] = [];
+  searchKeyword: string = '';
 
   @Output() searchResults = new EventEmitter<string[]>();
+  @Output() keywordsChanged = new EventEmitter<string[]>();
+  @Output() searchKeywordChanged = new EventEmitter<string>();
 
   @ViewChild('searchInput') searchInput!: ElementRef;
 
@@ -112,17 +115,21 @@ export class FilterComponent implements OnInit {
 
   openDetailsDialog(result: SearchResult): void {
     const dialogRef = this.dialog.open(ResultDetailsComponent, {
-      width: '500px',
+      width: '1000px',
+      panelClass: 'dialog-container',
       data: result,
     });
-
+  
     dialogRef.afterClosed().subscribe((result: any) => {
       console.log('The dialog was closed');
     });
   }
+  
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim().toLowerCase();
     this.filteredDataSource = this.dataSource.data.filter(result => result.title.toLowerCase().includes(filterValue));
   }
+
+  
 }

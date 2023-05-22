@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, EventEmitter, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-filter-table',
@@ -7,15 +7,29 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./filter-table.component.css']
 })
 export class FilterTableComponent {
-  @Input() tableData: any[] = [];
-  displayedColumns: string[] = [];
-  dataSource: MatTableDataSource<any>;
+  keywords: string[] = [];
+  @Output() keywordsChanged = new EventEmitter<string[]>();
 
-  constructor() {
-    this.dataSource = new MatTableDataSource();
+  addKeyword(event: any): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.keywords.push(value.trim());
+      this.keywordsChanged.emit(this.keywords);
+    }
+
+    if (input) {
+      input.value = '';
+    }
   }
 
-  ngOnInit() {
-    this.dataSource.data = this.tableData;
+  removeKeyword(keyword: string): void {
+    const index = this.keywords.indexOf(keyword);
+
+    if (index >= 0) {
+      this.keywords.splice(index, 1);
+      this.keywordsChanged.emit(this.keywords);
+    }
   }
 }

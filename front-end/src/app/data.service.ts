@@ -83,4 +83,13 @@ export class DataService {
       )
     );
   }
+
+  filterResultsByKeywords(keywords: string[], results: SearchResult[]): SearchResult[] {
+    return results.filter(result =>
+      keywords.every(keyword =>
+        result.title.toLowerCase().includes(keyword.toLowerCase())
+      )
+    );
+  }
+  
 }
