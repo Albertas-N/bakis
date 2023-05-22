@@ -9,12 +9,14 @@ from .models import VilniusEvents
 #from .models import UserLogIn
 from .models import UserLogin
 from .models import UserRegister
+from .models import Likes
 from .serializers import CategorySerializer
 # from .serializers import PamatykLietuvojeSerializer
 #from .serializers import UserLogInSerializer
 from .serializers import VilniusEventsSerializer
 from .serializers import UserLoginSerializer
 from .serializers import UserRegisterSerializer
+from .serializers import LikesSerializer
 from rest_framework import serializers, viewsets, status, generics
 from rest_framework.response import Response
 
@@ -62,3 +64,7 @@ class UserLoginViewSet(viewsets.ModelViewSet):
 class UserRegisterViewSet(viewsets.ModelViewSet):
     queryset = UserRegister.objects.all()
     serializer_class = UserRegisterSerializer
+
+class LikesViewSet(viewsets.ModelViewSet):
+    queryset = Likes.objects.all()
+    serializer_class = LikesSerializer
