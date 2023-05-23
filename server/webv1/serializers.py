@@ -1,3 +1,4 @@
+import json
 from rest_framework import serializers
 from .models import Category
 # from .models import PamatykLietuvoje
@@ -5,6 +6,7 @@ from .models import Category
 from .models import VilniusEvents
 from .models import UserLogin
 from .models import UserRegister
+from .models import Likes
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,3 +37,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserRegister
         fields = ['id', 'name', 'email', 'username', 'password']
+
+class LikesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Likes
+        fields = ['client_id', 'activity_id_list']

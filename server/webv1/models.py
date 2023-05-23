@@ -1,5 +1,7 @@
 from django.db import models
+import json
 from django.contrib.auth.models import User 
+from django.contrib.postgres.fields import JSONField
 
 class Category_typetb(models.Model):
     catid = models.AutoField(primary_key=True)
@@ -112,6 +114,23 @@ class UserRegister(models.Model):
 
         class Meta:
                 db_table = 'user_register'
+                managed = False
+
+        def __str__(self):
+                return self.name
+
+class Likes(models.Model):
+        client_id = models.AutoField(primary_key=True)
+        activity_id_list = models.TextField(default="[]")
+
+        def add_activity(self, client_id, activity_id):
+                activity_list = json.loads(self.activity_id_list)
+                activity_list.append(activity_id)
+                self.activity_id_list = json.dumps(activity_list)
+                self.save()
+
+        class Meta:
+                db_table = 'likes'
                 managed = False
 
         def __str__(self):

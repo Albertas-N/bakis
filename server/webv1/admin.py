@@ -6,7 +6,7 @@ admin.site.register(Entertainment)
 admin.site.register(Profile)
 
 #from .models import PamatykLietuvoje
-from .models import VilniusEvents, UserLogin, UserRegister
+from .models import VilniusEvents, UserLogin, UserRegister, Likes
 
 # class PamatykLietuvojeAdminView(admin.ModelAdmin):
 #     list_display = ['ID', 'Name', 'Address', 'Phone', 'Email', 'WorkingHours', 'Description']
@@ -27,3 +27,8 @@ class UserRegisterAdminView(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'username', 'password')
 
 admin.site.register(UserRegister, UserRegisterAdminView)
+
+class LikesAdminView(admin.ModelAdmin):
+    list_display = ('client_id', 'activity_id_list')
+
+admin.site.register(Likes, LikesAdminView)
