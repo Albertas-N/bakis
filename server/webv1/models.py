@@ -99,7 +99,7 @@ class UserLogin(models.Model):
         password = models.CharField(max_length=100)
 
         class Meta:
-                db_table = 'user_login'
+                db_table = 'client_login_table'
                 managed = False
 
         def __str__(self):
@@ -113,7 +113,7 @@ class UserRegister(models.Model):
         password = models.CharField(max_length=100)
 
         class Meta:
-                db_table = 'user_register'
+                db_table = 'client_register_table'
                 managed = False
 
         def __str__(self):
@@ -130,8 +130,52 @@ class Likes(models.Model):
                 self.save()
 
         class Meta:
-                db_table = 'likes'
+                db_table = 'client_likes_table'
                 managed = False
 
         def __str__(self):
                 return self.name
+        
+##---------------------
+# class ClientLogin(models.Model):
+#         id = models.AutoField(primary_key=True)
+#         username = models.CharField(max_length=100)
+#         password = models.CharField(max_length=100)
+
+#         class Meta:
+#                 db_table = 'client_login_table'
+#                 managed = False
+
+#         def __str__(self):
+#                 return self.name
+        
+# class ClientRegister(models.Model):
+#         id = models.AutoField(primary_key=True)
+#         name = models.CharField(max_length=100)
+#         email = models.CharField(max_length=100)
+#         username = models.CharField(max_length=100)
+#         password = models.CharField(max_length=100)
+
+#         class Meta:
+#                 db_table = 'client_register_table'
+#                 managed = False
+
+#         def __str__(self):
+#                 return self.name
+
+# class ClientLiked(models.Model):
+#         client_id = models.AutoField(primary_key=True)
+#         activity_id_list = models.TextField(default="[]")
+
+#         def add_activity(self, client_id, activity_id):
+#                 activity_list = json.loads(self.activity_id_list)
+#                 activity_list.append(activity_id)
+#                 self.activity_id_list = json.dumps(activity_list)
+#                 self.save()
+
+#         class Meta:
+#                 db_table = 'clientliked'
+#                 managed = False
+
+#         def __str__(self):
+#                 return self.name
