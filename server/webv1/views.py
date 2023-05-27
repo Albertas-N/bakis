@@ -16,6 +16,23 @@ from rest_framework.decorators import action
 from django.contrib.auth import authenticate
 from django.db.models import Q
 from .models import VilniusEvents
+from django.contrib.auth import authenticate, get_user_model
+
+
+def authenticate_user_by_id(user_id):
+    User = get_user_model()
+    try:
+        user = User.objects.get(id=user_id)
+        authenticated_user = authenticate(request=None, username=user.username, password=user.password)
+        if authenticated_user is not None:
+            # User is authenticated successfully
+            return authenticated_user
+        else:
+            # Authentication failed
+            return None
+    except User.DoesNotExist:
+        # User does not exist
+        return None
 
 
 def home_view(request):
@@ -78,36 +95,46 @@ class UserLikedViewSet(viewsets.ModelViewSet):
     queryset = UserLiked.objects.all()
     serializer_class = UserLikedSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.queryset.filter(user=request.user)
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
-
     @action(detail=False, methods=['post'])
     def add_like(self, request):
-        user_id = request.data.get('user').id
+        user_id = request.data.get('user_id')
         activity_id = request.data.get('entertainment')
 
         if user_id is not None and activity_id is not None:
-            user = UserRegister.objects.get(id=user_id)
-            entertainment = VilniusEvents.objects.get(id=activity_id)
-            UserLiked.objects.create(user=user, entertainment=entertainment)
-            return Response({'status': 'like added'})
+            authenticated_user = authenticate_user_by_id(user_id)
+            if authenticated_user is not None:
+                # User is authenticated
+                user_liked_data = {
+                    'user': authenticated_user.id,
+                    'entertainment': activity_id
+                }
+                serializer = self.serializer_class(data=user_liked_data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({'status': 'like added'}, status=status.HTTP_201_CREATED)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'status': 'Authentication failed'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({'status': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=True, methods=['post'])
     def remove_like(self, request, pk=None):
-        user_id = request.data.get('user')
+        user_id = request.data.get('user_id')
         activity_id = request.data.get('entertainment')
 
-        if activity_id is not None:
-            # get user and activity objects
-            user = UserRegister.objects.get(id=user_id)
-            entertainment = VilniusEvents.objects.get(id=activity_id)
-
-            # remove like
-            UserLiked.objects.filter(user=user, entertainment=entertainment).delete()
-            return Response({'status': 'like removed'})
+        if user_id is not None and activity_id is not None:
+            authenticated_user = authenticate_user_by_id(user_id)
+            if authenticated_user is not None:
+                # User is authenticated
+                try:
+                    user_liked = UserLiked.objects.get(user=authenticated_user.id, entertainment=activity_id)
+                    user_liked.delete()
+                    return Response({'status': 'like removed'}, status=status.HTTP_200_OK)
+                except UserLiked.DoesNotExist:
+                    return Response({'status': 'User like not found'}, status=status.HTTP_404_NOT_FOUND)
+            else:
+                return Response({'status': 'Authentication failed'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({'status': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
