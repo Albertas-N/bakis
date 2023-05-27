@@ -81,7 +81,7 @@ export default function FilterScreen({ navigation }) {
     <View style={styles.container}>
       <TextInput
         style={styles.searchInput}
-        placeholder="Search events"
+        placeholder="Paieškokim, ką nuveikti?"
         value={searchQuery}
         onChangeText={handleSearch}
       />
