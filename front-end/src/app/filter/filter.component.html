@@ -1,18 +1,24 @@
 <div class="filter-container">
   <div class="search-form">
-    <input matInput class="search-input" #searchInput placeholder="Type to search..." [(ngModel)]="searchTerm">
+    <mat-form-field class="search-input">
+      <mat-label>Type to search...</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchTermChange()" />
+    </mat-form-field>
     <button mat-raised-button class="search-button" (click)="search()">Search</button>
   </div>
   <div class="results-container">
-    <div *ngIf="filteredDataSource.length === 0" class="no-results">No results found.</div>
-    <div *ngFor="let result of filteredDataSource" class="result-item">
-      <div class="result-image">
-        <img [src]="result.image_src" alt="Result Image">
+    <ng-container *ngIf="newResults | async as results; else loading">
+      <div *ngIf="!results.length" class="no-results">No results found.</div>
+      <div *ngFor="let result of results" class="result-item">
+        <div class="result-image">
+          <img [src]="result.image_src" alt="Result Image">
+        </div>
+        <div class="result-details">
+          <h3>{{ result.title }}</h3>
+          <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">View Details</button>
+        </div>
       </div>
-      <div class="result-details">
-        <h3>{{ result.title }}</h3>
-        <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">View Details</button>
-      </div>
-    </div>
+    </ng-container>
+    <ng-template #loading>Loading...</ng-template>
   </div>
 </div>

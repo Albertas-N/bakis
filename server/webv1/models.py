@@ -12,7 +12,7 @@ class Category(models.Model):
                 db_table = 'categories'
 
         def __str__(self):
-                return self.category
+                return str(self.id)
 
 class VilniusEvents(models.Model):
         id = models.AutoField(primary_key=True)
@@ -31,7 +31,7 @@ class VilniusEvents(models.Model):
                 db_table = 'vilnius_events'
         
         def __str__(self):
-                return self.title
+                return str(self.id)
 
 class UserRegister(models.Model):
         id = models.AutoField(primary_key=True)
@@ -44,7 +44,7 @@ class UserRegister(models.Model):
                 db_table = 'client_register_table'
 
         def __str__(self):
-                return self.name
+                return str(self.id)
 
 class UserLiked(models.Model):
         user = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
@@ -54,4 +54,4 @@ class UserLiked(models.Model):
                 db_table = 'user_liked'
 
         def __str__(self):
-                return self.user
+                return str(self.id)

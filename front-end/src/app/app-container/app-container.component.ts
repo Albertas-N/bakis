@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { ResultDetailsComponent } from '../result-details/result-details.component';
 
 declare var google: any;
 

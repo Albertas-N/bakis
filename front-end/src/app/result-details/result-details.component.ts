@@ -1,55 +1,48 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SearchResult } from '../data.service';
-import { MatDialog } from '@angular/material/dialog';
-import { AppComponent } from '../app.component';
-
-declare var google: any;
+import { Category } from '../data.service';
+import { UserService } from '../user.service';
+import { DataService } from '../data.service';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-result-details',
   templateUrl: './result-details.component.html',
   styleUrls: ['./result-details.component.css'],
 })
-export class ResultDetailsComponent implements OnInit, AfterViewInit {
-  @ViewChild('map', { static: false }) mapElement!: ElementRef;
-
-  map!: google.maps.Map;
-  geocoder!: google.maps.Geocoder;
+export class ResultDetailsComponent implements OnInit {
+  currentUser: any = null;
+  item!: Category;
 
   constructor(
     public dialogRef: MatDialogRef<ResultDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SearchResult
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dataService: DataService,
+    private userService: UserService,
+  ) {
+    this.currentUser = this.userService.getCurrentUser();
+  }
 
   ngOnInit(): void {
-    // Initialize Geocoder
-    this.geocoder = new google.maps.Geocoder();
-  }
-
-  ngAfterViewInit() {
-    this.initMap();
-  }
-
-  initMap(): void {
-    // Initialize map
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 8
-    });
-
-    // Geocode the address and center the map and add a marker on it
-    this.geocoder.geocode({ 'address': this.data.address }, (results, status) => {
-      if (status == 'OK' && results !== null) {
-        this.map.setCenter(results[0].geometry.location);
-        new google.maps.Marker({
-          map: this.map,
-          position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+    this.dataService.getItemDetails(this.data.id).subscribe(
+      (item: Category) => {
+        this.item = item;
+      },
+      (error: any) => {
+        console.error('Error fetching item details:', error);
       }
-    });    
+    );
+}
+
+  onLike(itemId: number): void {
+    if (!this.currentUser) {
+      console.log('Only logged in users can like items.');
+      return;
+    }
+    this.userService.addLike(this.currentUser.id, itemId).subscribe(
+      () => console.log('Item liked!'),
+      (error) => console.log('Error liking item:', error)
+    );
   }
 
   onClose(): void {

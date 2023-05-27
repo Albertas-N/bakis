@@ -21,8 +21,7 @@
       </form>
       <!-- Notification message after login attempt -->
       <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-      <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
     </mat-card-content>
   </mat-card>
-  <button mat-raised-button color="accent" type="button" [routerLink]="['/register']">Register</button>
+  <button mat-raised-button color="primary" (click)="goToRegister()" [disabled]="userService.getCurrentUser()">Register</button>
 </div>

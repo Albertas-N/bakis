@@ -1,20 +1,14 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  Input,
-  OnInit,
-  ViewChild,
-  ElementRef,
-} from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
-import { Observable, of } from 'rxjs';
-import { DataService, Category, SearchResult } from '../data.service';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
+import { DataService, Category } from '../data.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDetailsComponent } from '../result-details/result-details.component';
-import { map } from 'rxjs/operators';
+import { map, debounceTime, switchMap } from 'rxjs/operators';
+import { MatFormFieldControl } from '@angular/material/form-field';
+
 
 @Component({
   selector: 'app-filter',
@@ -22,114 +16,51 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./filter.component.css'],
 })
 export class FilterComponent implements OnInit {
-  @Input() filterTerms: string[] = [];
-  @Input() results: SearchResult[] = [];
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  categories$: Observable<string[]> = of([]);
-  selectedCategory: string = '';
-  filteredResults: SearchResult[] = [];
   searchTerm: string = '';
-  selectedCategories: string[] = [];
-  selectedOption: string = '';
-  dataSource = new MatTableDataSource<SearchResult>();
-  displayedColumns: string[] = ['id', 'title', 'date', 'address', 'details'];
-  filteredDataSource: SearchResult[] = [];
-  keywords: string[] = [];
-  searchKeyword: string = '';
+  newResults: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
 
-  @Output() searchResults = new EventEmitter<string[]>();
-  @Output() keywordsChanged = new EventEmitter<string[]>();
-  @Output() searchKeywordChanged = new EventEmitter<string>();
+  searchTerm$ = new Subject<string>();
 
   @ViewChild('searchInput') searchInput!: ElementRef;
 
-  constructor(private dataService: DataService, private dialog: MatDialog) {}
+  constructor(private dataService: DataService, private dialog: MatDialog) { }
 
-  ngOnInit() {
-    this.categories$ = this.dataService.getCategories().pipe(
-      map(categories => categories.map(category => category.title))
-    );
-    this.updateDataSource();
-  }
-
-  add(category: string): void {
-    if (category.trim() !== '') {
-      this.selectedCategories.push(category.trim());
-      this.updateDataSource();
-    }
-  }
-
-  addSelectedCategories(): void {
-    if (this.selectedOption) {
-      const selectedOptions = this.selectedOption.split(',');
-      selectedOptions.forEach(option => {
-        if (!this.selectedCategories.includes(option)) {
-          this.selectedCategories.push(option.trim());
-        }
-      });
-      this.updateDataSource();
-      this.selectedOption = '';
-    }
-  }
-
-  remove(category: string): void {
-    const index = this.selectedCategories.indexOf(category);
-    if (index >= 0) {
-      this.selectedCategories.splice(index, 1);
-      this.updateDataSource();
-    }
-  }
-
-  search(): void {
-    if (this.searchTerm.length === 0 && this.selectedCategory.length === 0) {
-      this.dataService.search(this.searchTerm, this.selectedCategory).subscribe(
-        (results: SearchResult[]) => {
-          this.filteredDataSource = results;
+  ngOnInit(): void {
+    this.searchTerm$
+      .pipe(
+        debounceTime(300),
+        switchMap(term => this.dataService.search(term))
+      )
+      .subscribe(
+        (results: Category[]) => {
+          this.newResults.next(results);
           console.log('Results from search():', results);
         },
         (error: any) => {
-          console.error(error);
+          console.error('Error fetching search results:', error);
         }
       );
-    }
   }
 
-  updateDataSource(): void {
-    const filterValues = {
-      category: this.selectedCategories,
-      searchTerm: this.searchTerm
-    };
-
-    this.dataService.applyFilter(filterValues).subscribe((results: SearchResult[]) => {
-      this.filteredDataSource = results;
-    });
+  search(): void {
+    this.searchTerm$.next(this.searchTerm);
   }
 
-  onCategoryChange(event: MatSelectChange): void {
-    this.selectedCategory = event.value;
-  }
+  openDetailsDialog(result: Category): void {
+    console.log(result);  // for debugging
 
-  openDetailsDialog(result: SearchResult): void {
     const dialogRef = this.dialog.open(ResultDetailsComponent, {
-      width: '1000px',
-      panelClass: 'dialog-container',
-      data: result,
+        width: '1000px',
+        panelClass: 'dialog-container',
+        data: { id: result.id },
     });
-  
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log('The dialog was closed');
+
+    dialogRef.afterClosed().subscribe(() => {
+        console.log('The dialog was closed');
     });
-  }
-  
+}
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim().toLowerCase();
-    this.filteredDataSource = this.dataSource.data.filter(result => result.title.toLowerCase().includes(filterValue));
+  onSearchTermChange(): void {
+    this.search();
   }
-
-  
 }
