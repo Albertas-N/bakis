@@ -2,7 +2,7 @@
   padding-top: 64px; /* adjust to the height of your navigation bar */
 }
 
-:host ::ng-deep .mat-toolbar {
+.mat-toolbar {
   position: sticky;
   top: 0;
   left: 0;
@@ -10,12 +10,12 @@
   z-index: 1;
 }
 
-:host ::ng-deep .logo {
+.logo {
   font-size: 24px;
   font-weight: bold;
   margin-right: 16px;
 }
 
-:host ::ng-deep .spacer {
+.spacer {
   flex: 1 1 auto;
 }

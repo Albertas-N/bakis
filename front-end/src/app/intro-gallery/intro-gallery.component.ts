@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+// intro-gallery.component.ts
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
-
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-intro-gallery',
@@ -19,19 +20,18 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class IntroGalleryComponent {
-  isExpanded = false;
-
-  toggleGallery(): void {
-    this.isExpanded = !this.isExpanded;
-  }
-  images = [
-    { src: 'assets/kryziai.jpg', alt: 'Category 1' },
-    { src: 'assets/gediminopilis.jpg', alt: 'Category 2' },
-    { src: 'assets/trakupilis.jpg', alt: 'Category 3' }
-  ];
+export class IntroGalleryComponent implements OnInit {
+  images: { src: string; alt: string }[] = [];
 
   currentIndex = 0;
+
+  constructor(private dataService: DataService) { }
+
+  ngOnInit(): void {
+    this.dataService.getItems().subscribe(events => {
+      this.images = events.map(event => ({ src: event.image_src, alt: 'Vilnius Event' }));
+    });
+  }
 
   next() {
     this.currentIndex = (this.currentIndex + 1) % this.images.length;

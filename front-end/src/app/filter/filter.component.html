@@ -1,21 +1,21 @@
 <div class="filter-container">
   <div class="search-form">
     <mat-form-field class="search-input">
-      <mat-label>Type to search...</mat-label>
+      <mat-label>Įveskite tekstą</mat-label>
       <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchTermChange()" />
     </mat-form-field>
-    <button mat-raised-button class="search-button" (click)="search()">Search</button>
+    <button mat-raised-button class="search-button" (click)="search()">Ieškoti</button>
   </div>
   <div class="results-container">
     <ng-container *ngIf="newResults | async as results; else loading">
-      <div *ngIf="!results.length" class="no-results">No results found.</div>
+      <div *ngIf="!results.length" class="no-results">Rezultatų nerasta.</div>
       <div *ngFor="let result of results" class="result-item">
         <div class="result-image">
-          <img [src]="result.image_src" alt="Result Image">
+          <img [src]="result.image_src" alt="Result Image" class="result-image">
         </div>
         <div class="result-details">
           <h3>{{ result.title }}</h3>
-          <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">View Details</button>
+          <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">Žiūrėti plačiau</button>
         </div>
       </div>
     </ng-container>

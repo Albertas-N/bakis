@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import sqlite3
 from django.contrib import messages
 from django.db import models
@@ -95,9 +95,16 @@ class UserLikedViewSet(viewsets.ModelViewSet):
     queryset = UserLiked.objects.all()
     serializer_class = UserLikedSerializer
 
+    def get_queryset(self):
+        queryset = self.queryset
+        user_id = self.request.query_params.get('user_id', None)
+        if user_id is not None:
+            queryset = queryset.filter(user=user_id)
+        return queryset
+
     @action(detail=False, methods=['post'])
     def add_like(self, request):
-        user_id = request.data.get('user_id')
+        user_id = request.data.get('user')
         activity_id = request.data.get('entertainment')
 
         if user_id is not None and activity_id is not None:
@@ -119,9 +126,9 @@ class UserLikedViewSet(viewsets.ModelViewSet):
         else:
             return Response({'status': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=True, methods=['post'])
-    def remove_like(self, request, pk=None):
-        user_id = request.data.get('user_id')
+    @action(detail=False, methods=['post'])
+    def remove_like(self, request):
+        user_id = request.data.get('user')
         activity_id = request.data.get('entertainment')
 
         if user_id is not None and activity_id is not None:

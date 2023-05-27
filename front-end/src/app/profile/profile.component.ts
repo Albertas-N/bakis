@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, UserLiked } from '../user.service';
 import { RegisterService, User } from '../auth/register/register.service';
+import { DataService } from '../data.service';
 import { Category } from '../data.service';
 import { ResultDetailsComponent } from '../result-details/result-details.component';
 import { tap, map, switchMap } from 'rxjs';
@@ -17,7 +18,7 @@ export class ProfileComponent implements OnInit {
   likedItems: Category[] = [];
   errorMessage: string = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private dataService: DataService) { }
 
   ngOnInit(): void {
     const user = this.userService.getCurrentUser();
@@ -28,15 +29,16 @@ export class ProfileComponent implements OnInit {
           error => this.errorMessage = error
         );
 
-      this.userService.getLikes(user.id)
-        .pipe(
-          tap(response => console.log(response)),
-          map(likedItems => likedItems.map(item => item.entertainment)),
-          switchMap(entertainmentIds => forkJoin(entertainmentIds.map(id => this.userService.getCategoriesByIds([id]))))
-        )
+        this.userService.getLikes(user.id)
         .subscribe(
-          categories => {
-            this.likedItems = categories.flat();
+          likedItems => {
+            const entertainmentIds = likedItems.map(item => item.entertainment);
+            
+            forkJoin(entertainmentIds.map(id => this.dataService.getItemDetails(id)))
+              .subscribe(
+                entertainments => this.likedItems = entertainments,
+                error => this.errorMessage = error
+              );
           },
           error => this.errorMessage = error
         );

@@ -9,14 +9,6 @@ import { Category } from '../data.service';
   styleUrls: ['./categories.component.css']
 
 })
-export class CategoriesComponent implements OnInit {
-  categories: Category[]=[];
+export class CategoriesComponent  {
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit(): void {
-    this.http.get<Category[]>('./assets/data.json').subscribe((data: Category[]) => {
-      this.categories = data;
-    });
-  }
 }

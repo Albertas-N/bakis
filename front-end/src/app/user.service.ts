@@ -30,15 +30,17 @@ export class UserService {
   }
 
   getLikes(userId: number): Observable<UserLiked[]> {
-    return this.http.get<UserLiked[]>(`${this.likesUrl}${userId}/`).pipe(
-    );
-  }
-  
-  
-  getCategoriesByIds(ids: number[]): Observable<Category[]> {
-    return this.http.post<Category[]>(`http://localhost:8000/categories/byIds/`, {ids});
-  }
-  
+    let params = new HttpParams().set('user_id', userId.toString());
+    return this.http.get<UserLiked[]>(this.likesUrl, { params });
+}
+
+getCategoriesByIds(ids: number[]): Observable<Category[]> {
+  let params = new HttpParams();
+  ids.forEach(id => params = params.append('ids', id.toString()));
+  return this.http.get<Category[]>(`http://localhost:8000/categories/byIds/`, { params: params });
+}
+
+
   getEntertainmentsByIds(ids: number[]): Observable<Category[]> {
     let params = new HttpParams();
     ids.forEach(id => params = params.append('ids', id.toString()));

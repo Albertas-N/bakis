@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Category } from '../data.service';
 import { UserService } from '../user.service';
@@ -12,7 +12,8 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 })
 export class ResultDetailsComponent implements OnInit {
   currentUser: any = null;
-  item!: Category;
+  @Input() item!: Category;
+  
 
   constructor(
     public dialogRef: MatDialogRef<ResultDetailsComponent>,

@@ -9,7 +9,7 @@
     <ul>
       <li *ngFor="let entertainment of likedItems">
         {{ entertainment.title }}
-        <button routerLink="/category-detail/{{ entertainment.id }}">More Details</button>
+        <app-result-details *ngFor="let entertainment of likedItems" [item]="entertainment"></app-result-details>
       </li>      
     </ul>
   </div>
