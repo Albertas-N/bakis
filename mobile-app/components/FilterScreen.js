@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, TextInput } from 'react-native';
 
 export default function FilterScreen({ navigation }) {
   const [events, setEvents] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     getData();
@@ -21,12 +22,23 @@ export default function FilterScreen({ navigation }) {
     }
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filterEvents = (event) => {
+    // Apply search filter based on event title
+    if (searchQuery !== '' && !event.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false;
+    }
+    return true;
+  };
+
   const renderEventBox = (event) => {
     const { id, title, image_src } = event;
 
     const handlePress = () => {
       navigation.navigate('EventDetails', { event });
-      //console.log('EventDetails', {event});
     };
 
     return (
@@ -39,12 +51,17 @@ export default function FilterScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Paieškokim, ką nuveikti? "
+        value={searchQuery}
+        onChangeText={handleSearch}
+      />
       <ScrollView contentContainerStyle={styles.eventContainer}>
-        {events.map((event) => renderEventBox(event))}
+        {events.filter(filterEvents).map((event) => renderEventBox(event))}
       </ScrollView>
     </View>
   );
-
 }
 
 const styles = StyleSheet.create({
@@ -53,10 +70,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  heading: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
+  searchInput: {
+    width: '90%',
+    height: 40,
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
   },
   eventContainer: {
     flexDirection: 'row',
