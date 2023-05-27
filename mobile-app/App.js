@@ -10,6 +10,7 @@ import FilterScreen from './components/FilterScreen';
 import ProfileScreen from './components/ProfileScreen';
 import FavoriteScreen from './components/FavouriteScreen';
 import MapsScreen from './components/Maps';
+import EventDetailsScreen from './components/EventDetailsScreen';
 
 const colors = {
   top: "#034F34",
@@ -157,7 +158,7 @@ export default function App() {
           component={MyTabs}
           options={{ headerShown: false }}
           />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="EventDetails" component={EventDetailsScreen} />
         </Stack.Navigator>
         </NavigationContainer>
         );
