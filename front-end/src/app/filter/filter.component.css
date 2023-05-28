@@ -1,7 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-.filter-container {
+.search-container {
   background-color: #eeeeee;
   padding: 10px;
   border-radius: 5px;
@@ -19,12 +19,12 @@
 }
 
 .search-input {
-  font-size: 16px;
-  padding: 10px;
+  font-size: 18px;
+  padding: 12px;
   border: none;
   border-radius: 5px;
   margin-right: 10px;
-  max-width: 200px;
+  max-width: 300px;
   width: 100%;
 }
 
@@ -38,8 +38,12 @@
   cursor: pointer;
 }
 
-.results-container {
+.results-container,
+.recommendations-container {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .no-results {
@@ -48,30 +52,44 @@
   padding: 20px;
 }
 
-.result-item {
+.result-box,
+.recommendation-box {
+  width: 300px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.result-item,
+.recommendation-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  text-align: center;
 }
 
-.result-image {
-  width: 80px;
-  height: 80px;
+.result-image,
+.recommendation-image {
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
-.result-details {
-  flex: 1;
-  text-align: left;
-}
-
-.mat-elevation-z2 {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.result-details,
+.recommendation-details {
+  text-align: center;
 }
 
 .mat-raised-button {
-  margin-left: 10px;
+  margin-top: 10px;
 }

@@ -1,27 +1,27 @@
 <div class="container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
+      <mat-card-title>Prisijungti</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
-          <mat-label>Username</mat-label>
+          <mat-label>Vartotojo vardas</mat-label>
           <input matInput formControlName="username" type="text" required>
-          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Username is required</mat-error>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">Vartotojo vardas yra privalomas</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
+          <mat-label>Slaptažodis</mat-label>
           <input matInput formControlName="password" type="password" required>
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Slaptažodis yra privalomas</mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Prisijungti</button>
       </form>
       <!-- Notification message after login attempt -->
-      <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
     </mat-card-content>
   </mat-card>
-  <button mat-raised-button color="primary" (click)="goToRegister()" [disabled]="userService.getCurrentUser()">Register</button>
+  <button mat-raised-button color="primary" (click)="goToRegister()" [disabled]="userService.getCurrentUser()">Registracija</button>
 </div>

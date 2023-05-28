@@ -1,44 +1,41 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.gallery-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 .carousel {
   position: relative;
   overflow: hidden;
   width: 100%;
 }
 
-.carousel-inner img{
+.carousel-inner img {
   position: relative;
-  display: flex;
-  height: 300px; /* Set the desired fixed height */
-  width: auto;
-  max-width: 100%; /* Ensure the image doesn't exceed the carousel width */
-  object-fit: cover; /* Maintain the aspect ratio and crop if necessary */
-  margin: 0 auto; /* Center the image horizontally */
-  }
+  display: block;
+  height: 700px;
+  width: 100%;
+  object-fit: cover;
+  margin: 0 auto;
+}
 
 .carousel-item {
   flex: none;
   width: 100%;
 }
 
-.carousel-control-prev {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer
-}
+.carousel-control-prev,
 .carousel-control-next {
   position: absolute;
   top: 50%;
-  right: 10px;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -51,10 +48,11 @@
   align-items: center;
   cursor: pointer;
 }
-.gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%; /* Ensure that the container fills the available height */
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
 }

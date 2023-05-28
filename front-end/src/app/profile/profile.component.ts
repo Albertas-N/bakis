@@ -49,7 +49,8 @@ export class ProfileComponent implements OnInit {
 
   openDetailsDialog(entertainment: Category): void {
     const dialogRef = this.dialog.open(ResultDetailsComponent, {
-      width: '500px',
+      width: '1000px',
+      panelClass: 'dialog-container',
       data: { id: entertainment.id }
     });
 
