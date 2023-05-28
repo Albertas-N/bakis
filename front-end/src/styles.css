@@ -19,3 +19,11 @@ body {
 h1 {
   font-weight: 500;
 }
+
+.dialog-container .mat-dialog-container {
+  width: 80% !important;
+  height: 80% !important;
+  max-width: none !important;
+  max-height: none !important;
+  overflow: scroll;
+}

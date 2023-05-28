@@ -1,86 +1,42 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, map } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 export interface Category {
   id: number;
   title: string;
   image_src: string;
-  date: string;
+  date: string | null;
   address: string;
   content: string;
+  email: string | null;
+  phone_number: string | null;
+  working_hours: string | null;
+  category: string;
+  rating: number | null;
 }
 
-export interface SearchResult {
-  id: number;
-  title: string;
-  image_src: string;
-  date: string;
-  address: string;
-  content: string;
-}
-
-export interface FilterValues {
-  searchTerm: string;
-  category: string[];
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private categoryUrl = 'http://localhost:8000/vilniusEvents/';
-  searchTerm: string = '';
-  category: string[] = [];
+  private categoriesUrl = 'http://localhost:8000/vilniusEvents/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  search(searchTerm: string, categoryName: string): Observable<SearchResult[]> {
-    const params = new HttpParams().set('q', searchTerm);
-    return this.http.get<SearchResult[]>(this.categoryUrl, { params }).pipe(
-      map((results) =>
-        results.filter((result) =>
-          (categoryName.length === 0 || result.title.includes(categoryName)) &&
-          result.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      )
-    );
+  getItemDetails(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.categoriesUrl}${id}/`);
   }
 
-  getAllData(): Observable<SearchResult[]> {
-    return this.http.get<SearchResult[]>(this.categoryUrl).pipe(
-      tap((response) => {
-        console.log('getAllData response:', response);
-      })
-    );
+  getItems(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.categoriesUrl);
   }
 
-  getResultDetails(id: number): Observable<Category> {
-    return this.http.get<Category>(`${this.categoryUrl}/${id}`);
+  search(searchTerm: string): Observable<Category[]> {
+    let params = new HttpParams().set('search', searchTerm);
+    return this.http.get<Category[]>(this.categoriesUrl, { params });
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.categoryUrl}`);
-  }
-
-  getResults(): Observable<SearchResult[]> {
-    return this.http.get<SearchResult[]>(this.categoryUrl);
-  }
-
-  applyFilter(filterValues: FilterValues): Observable<SearchResult[]> {
-    return this.getResults().pipe(
-      map((results) =>
-        results.filter(
-          (result) =>
-            (filterValues.searchTerm.length === 0 ||
-              result.title.toLowerCase().includes(filterValues.searchTerm.toLowerCase())) &&
-            (filterValues.category.length === 0 ||
-              filterValues.category.some((categoryName) =>
-                result.title.includes(categoryName)
-              ))
-        )
-      )
-    );
-  }
 }

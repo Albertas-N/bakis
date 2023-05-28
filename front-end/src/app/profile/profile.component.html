@@ -1,0 +1,16 @@
+<div *ngIf="userData">
+  <h2>User Profile</h2>
+  <p>
+    <strong>Name:</strong> {{ userData.name }}<br>
+    <strong>Email:</strong> {{ userData.email }}<br>
+  </p>
+  <div>
+    <h3>Liked Categories:</h3>
+    <ul>
+      <li *ngFor="let entertainment of likedItems">
+        {{ entertainment.title }}
+        <button (click)="openDetailsDialog(entertainment)">More Details</button>
+      </li>      
+    </ul>
+  </div>
+</div>

@@ -11,3 +11,8 @@
     width: 100%;
     margin-bottom: 1rem;
   }
+  
+  .error-message {
+    color: red;
+    margin-top: 1rem;
+  }

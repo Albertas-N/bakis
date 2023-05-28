@@ -1,15 +1,14 @@
 <mat-toolbar color="primary" class="mat-elevation-z4" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1;">
   <mat-toolbar-row>
-    <a mat-button routerLink="/">Logo</a>
+    <a mat-button routerLink="/">LeiLink</a>
     <span class="spacer"></span>
-    <a mat-button routerLink="/about">About</a>
-    <a mat-button routerLink="/categories">Categories</a>
-    <a mat-button routerLink="/login">Log in</a>
+    <a mat-button routerLink="/about">Apie mus</a>
+    <a mat-button routerLink="/categories">Pramogos</a>
+    <a mat-button routerLink="/login">Prisijungti</a>
+    <a *ngIf="isLoggedIn" mat-button routerLink="/profile">Profilis</a>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!-- Wrap your page content in a div with class "page-content" -->
 <div class="page-content">
-  <!-- Your page content goes here -->
   <router-outlet></router-outlet>
 </div>

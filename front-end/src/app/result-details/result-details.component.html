@@ -1,14 +1,26 @@
-<h2 mat-dialog-title>{{ data.title }}</h2>
-<mat-dialog-content>
-  <div class="result-image">
-    <img [src]="data.image_src" alt="Result Image">
+<mat-dialog-content *ngIf="item">
+  <h2 mat-dialog-title>{{ item.title }}</h2>
+
+  <div class="item-image">
+    <img mat-card-image [src]="item.image_src" alt="Item Image">
   </div>
-  <div class="event-details">
-    <p><strong>Date:</strong> {{ data.date }}</p>
-    <p><strong>Address:</strong> {{ data.address }}</p>
+
+  <mat-card-content class="item-details">
+    <p><strong>Date:</strong> {{ item.date | date }}</p>
+    <p><strong>Address:</strong> {{ item.address }}</p>
     <p><strong>Content:</strong></p>
-    <p>{{ data.content }}</p>
+    <p>{{ item.content }}</p>
+
+    <p *ngIf="item.email"><strong>Email:</strong> {{ item.email }}</p>
+    <p *ngIf="item.phone_number"><strong>Phone Number:</strong> {{ item.phone_number }}</p>
+    <p *ngIf="item.working_hours"><strong>Working Hours:</strong> {{ item.working_hours }}</p>
+    <p *ngIf="item.rating !== null"><strong>Rating:</strong> {{ item.rating }}</p>
+  </mat-card-content>
+
+  <div *ngIf="currentUser">
+    <button mat-button color="primary" (click)="onLike(item.id)">Like</button>
   </div>
+
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>

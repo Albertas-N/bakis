@@ -21,7 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { IntroGalleryComponent } from './intro-gallery/intro-gallery.component';
 import { FilterComponent } from './filter/filter.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavbarComponent } from './nav-bar/nav-bar.component';
 import { AboutComponent } from './about/about.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -40,7 +40,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { ResultDetailsComponent } from './result-details/result-details.component';
-
+import { ProfileComponent } from './profile/profile.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -49,7 +52,7 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
     AppComponent,
     IntroGalleryComponent,
     FilterComponent,
-    NavBarComponent,
+    NavbarComponent,
     AboutComponent,
     CategoriesComponent,
     LoginComponent,
@@ -58,9 +61,11 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
     RegisterComponent,
     AppContainerComponent,
     MainComponent,
-    ResultDetailsComponent
+    ResultDetailsComponent,
+    ProfileComponent
   ],
   imports: [
+    MatGridListModule,
     BrowserModule,
     CommonModule,
     AppRoutingModule,
@@ -73,6 +78,7 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
     LayoutModule,
     MatFormFieldModule,
     MatTableModule,
+    MatSelectModule,
     MatInputModule,
     MatExpansionModule,
     MatDialogModule,
@@ -85,12 +91,9 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
     ScrollingModule,
     GoogleMapsModule,
     MatCheckboxModule,
-    
+    MatProgressSpinnerModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [MatTableDataSource],
-  bootstrap: [AppComponent],
-  exports: [ResultDetailsComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
