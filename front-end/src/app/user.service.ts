@@ -12,26 +12,50 @@ export interface UserLiked {
   entertainment: number;
 }
 
+export interface Recommendation {
+  id: number;
+  title: string;
+  image_src: string;
+  date?: string | null;
+  address?: string;
+  content?: string;
+  email?: string | null;
+  phone_number?: string | null;
+  working_hours?: string | null;
+  category?: string;
+  rating?: number | null;
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private likesUrl = 'http://localhost:8000/userLiked/';
   private userUrl = 'http://localhost:8000/userRegister/';
+  private readonly recommendationsUrl = 'http://localhost:8000/';
   private userSubject = new BehaviorSubject<User | null>(null);
   currentUser = this.userSubject.asObservable();
   private loginStatusSubject = new BehaviorSubject<boolean>(false);
   loginStatus = this.loginStatusSubject.asObservable();
+  likedCategoriesUpdated: BehaviorSubject<null> = new BehaviorSubject(null);
+
+
+
+
+  constructor(private http: HttpClient) { }
 
   setCurrentUser(user: User): void {
     this.userSubject.next(user);
   }
 
-  getCurrentUser() {
+  getCurrentUser(): User | null {
     return this.userSubject.value;
   }
 
-  constructor(private http: HttpClient) { }
+  getRecommendations(userId: number): Observable<Recommendation[]> {
+    return this.http.get<Recommendation[]>(`${this.recommendationsUrl}userLiked/recommendations/${userId}`);
+  }
 
   getUserData(userId: number): Observable<User> {
     return this.http.get<User>(`${this.userUrl}${userId}/`);
@@ -48,7 +72,6 @@ export class UserService {
     return this.http.get<Category[]>(`http://localhost:8000/categories/byIds/`, { params: params });
   }
 
-
   getEntertainmentsByIds(ids: number[]): Observable<Category[]> {
     let params = new HttpParams();
     ids.forEach(id => params = params.append('ids', id.toString()));
@@ -63,10 +86,12 @@ export class UserService {
       user: userId,
       entertainment: itemId
     };
-    return this.http.post(`${this.likesUrl}add_like/`, body, { headers });
+    return this.http.post(`${this.likesUrl}add_like/`, body, { headers }).pipe(
+      map(() => {
+        this.likedCategoriesUpdated.next(null);
+      })
+    );
   }
-
-  
   private getToken(): string {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return currentUser && currentUser.token;
