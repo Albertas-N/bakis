@@ -6,19 +6,40 @@
     </mat-form-field>
     <button mat-raised-button class="search-button" (click)="search()">Ieškoti</button>
   </div>
-  <div class="results-container">
-    <ng-container *ngIf="newResults | async as results; else loading">
-      <div *ngIf="!results.length" class="no-results">Rezultatų nerasta.</div>
-      <div *ngFor="let result of results" class="result-item">
-        <div class="result-image">
-          <img [src]="result.image_src" alt="Result Image" class="result-image">
+  
+  <ng-container *ngIf="!showRecommendations; else recs">
+    <div class="results-container">
+      <ng-container *ngIf="newResults | async as results; else loading">
+        <div *ngIf="!results.length" class="no-results">Rezultatų nerasta.</div>
+        <div *ngFor="let result of results" class="result-item">
+          <div class="result-image">
+            <img [src]="result.image_src" alt="Result Image" class="result-image">
+          </div>
+          <div class="result-details">
+            <h3>{{ result.title }}</h3>
+            <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">Žiūrėti plačiau</button>
+          </div>
         </div>
-        <div class="result-details">
-          <h3>{{ result.title }}</h3>
-          <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">Žiūrėti plačiau</button>
+      </ng-container>
+      <ng-template #loading>Loading...</ng-template>
+    </div>
+  </ng-container>
+
+  <ng-template #recs>
+    <div class="recommendations-container">
+      <h2>Recommendations</h2>
+      <ng-container *ngIf="recommendations.length; else noRecs">
+        <div *ngFor="let recommendation of recommendations" class="recommendation-item">
+          <div class="recommendation-image">
+            <img [src]="recommendation.image_src" alt="Recommendation Image" class="recommendation-image">
+          </div>
+          <div class="recommendation-details">
+            <h3>{{ recommendation.title }}</h3>
+            <button mat-raised-button color="primary" (click)="openDetailsDialog(recommendation)">Žiūrėti plačiau</button>
+          </div>
         </div>
-      </div>
-    </ng-container>
-    <ng-template #loading>Loading...</ng-template>
-  </div>
+      </ng-container>
+      <ng-template #noRecs><div>No recommendations found.</div></ng-template>
+    </div>
+  </ng-template>
 </div>

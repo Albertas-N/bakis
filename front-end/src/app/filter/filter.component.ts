@@ -9,6 +9,10 @@ import { ResultDetailsComponent } from '../result-details/result-details.compone
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { UserService, Recommendation } from '../user.service';
+
+type CategoryOrRecommendation = Category | Recommendation;
+
 
 @Component({
   selector: 'app-filter',
@@ -18,14 +22,20 @@ import { MatGridListModule } from '@angular/material/grid-list';
 export class FilterComponent implements OnInit {
   searchTerm: string = '';
   newResults: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
-
   searchTerm$ = new Subject<string>();
-
   @ViewChild('searchInput') searchInput!: ElementRef;
+  recommendations: Recommendation[] = [];
+  originalRecommendations: Recommendation[] = [];
+  showRecommendations: boolean = false;
 
-  constructor(private dataService: DataService, private dialog: MatDialog) { }
+
+
+  constructor(private dataService: DataService, private dialog: MatDialog, private userService: UserService) { }  // Add userService to constructor
 
   ngOnInit(): void {
+    this.loadRecommendations();
+    this.userService.likedCategoriesUpdated.subscribe(() => this.loadRecommendations());
+
     this.searchTerm$
       .pipe(
         debounceTime(300),
@@ -42,25 +52,42 @@ export class FilterComponent implements OnInit {
       );
   }
 
-  search(): void {
-    this.searchTerm$.next(this.searchTerm);
+  loadRecommendations(): void {
+    const user = this.userService.getCurrentUser();
+    if (user) {
+      this.userService.getRecommendations(user.id)
+        .subscribe(data => {
+          this.recommendations = data;
+          this.originalRecommendations = [...data];
+          this.showRecommendations = data.length > 0;
+        });
+    }
   }
 
-  openDetailsDialog(result: Category): void {
-    console.log(result);  // for debugging
+  search(): void {
+    if (this.showRecommendations) {
+      this.recommendations = this.recommendations.filter(item => item.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    } else {
+      this.searchTerm$.next(this.searchTerm);
+    }
+  }
 
+  openDetailsDialog(result: CategoryOrRecommendation): void {
     const dialogRef = this.dialog.open(ResultDetailsComponent, {
-        width: '1000px',
-        panelClass: 'dialog-container',
-        data: { id: result.id },
+      width: '1000px',
+      panelClass: 'dialog-container',
+      data: { id: result.id },
     });
 
     dialogRef.afterClosed().subscribe(() => {
-        console.log('The dialog was closed');
+      console.log('The dialog was closed');
     });
-}
+  }
 
   onSearchTermChange(): void {
+    if (this.searchTerm.length === 0) {
+      this.recommendations = [...this.originalRecommendations]; // <--- new
+    }
     this.search();
   }
 }
