@@ -5,14 +5,52 @@ export default function ProfileScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log(`Logging in with email: ${email} and password: ${password}`);
     // Perform login logic here
+    try {
+      const response = await fetch('http://16.171.43.32:8000/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+      // Handle successful login, navigate to the next screen, etc.
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle login error
+    }
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     console.log(`Registering with email: ${email} and password: ${password}`);
     // Perform registration logic here
+    try {
+      const response = await fetch('http://16.171.43.32:8000/userRegister/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+      // Handle successful registration, navigate to the next screen, etc.
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle registration error
+    }
   };
 
   return (
@@ -45,6 +83,7 @@ export default function ProfileScreen() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -85,23 +124,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-
-/*import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function ProfileScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>profile view</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});*/

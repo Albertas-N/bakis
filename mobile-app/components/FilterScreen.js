@@ -13,7 +13,7 @@ export default function FilterScreen({ navigation }) {
 
   const getData = async () => {
     try {
-      const response = await fetch('http://13.51.199.146:8000/vilniusEvents/');
+      const response = await fetch('http://16.171.43.32:8000/vilniusEvents/');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
