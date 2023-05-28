@@ -20,7 +20,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         model = UserRegister
         fields = ['id', 'name', 'email', 'username', 'password']
 
-class UserLikedSerializer(serializers.ModelSerializer):    
+class UserLikedSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserLiked
         fields = ['id', 'user', 'entertainment']
@@ -28,3 +28,7 @@ class UserLikedSerializer(serializers.ModelSerializer):
     def get_related_user_record(self, obj):
         if not self.context["request"].user.pk:
             return None
+        else:
+            # Implement the logic to retrieve and return the related user record
+            return obj.user
+

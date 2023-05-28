@@ -35,27 +35,6 @@ class VilniusEvents(models.Model):
         def __str__(self):
                 return str(self.id)
         
-# class VilniusEventsNew(models.Model):
-#         id = models.AutoField(primary_key=True)
-#         title = models.CharField(max_length=100, null=True)
-#         image_src = models.TextField(null=True)
-#         date = models.CharField(max_length=100, null=True)
-#         address = models.CharField(max_length=100, null=True)
-#         content = models.TextField(null=True)
-#         email = models.CharField(max_length=100, null=True)
-#         working_hours = models.TextField(max_length=100, null=True)
-#         category = models.ForeignKey(Category, on_delete=models.CASCADE)
-#         phone_number = models.CharField(max_length=20, null=True)
-#         rating = models.CharField(max_length=10, null=True)
-#         latitude = models.CharField(max_length=30, null=True)
-#         longitude = models.CharField(max_length=30, null=True)
-
-#         class Meta:
-#                 db_table = 'vilnius_events_2'
-        
-#         def __str__(self):
-#                 return str(self.id)
-
 class UserRegister(models.Model):
         id = models.AutoField(primary_key=True)
         name = models.CharField(max_length=100)
@@ -68,13 +47,14 @@ class UserRegister(models.Model):
 
         def __str__(self):
                 return str(self.id)
-
+        
 class UserLiked(models.Model):
-        user = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
-        entertainment = models.ForeignKey(VilniusEvents, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
+    entertainment = models.ForeignKey(VilniusEvents, on_delete=models.CASCADE, db_column='entertainment_id', to_field='id', db_constraint=False)
 
-        class Meta:
-                db_table = 'user_liked'
+    class Meta:
+        db_table = 'user_liked'
 
-        def __str__(self):
-                return str(self.id)
+    def __str__(self):
+        return str(self.id)
+
