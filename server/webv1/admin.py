@@ -13,7 +13,7 @@ from .models import VilniusEvents, UserRegister, UserLiked
 # admin.site.register(PamatykLietuvoje, PamatykLietuvojeAdminView)
 
 class VilniusEventsAdminView(admin.ModelAdmin):
-    list_display = ('id',"title",'image_src', 'date', 'address', 'content', 'email', 'working_hours', 'category', 'phone_number', 'rating')
+    list_display = ('id',"title",'image_src', 'date', 'address', 'content', 'email', 'working_hours', 'category', 'phone_number', 'rating', 'latitude', 'longitude')
 
 admin.site.register(VilniusEvents, VilniusEventsAdminView)
 
