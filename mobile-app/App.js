@@ -7,10 +7,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 import FilterScreen from './components/FilterScreen';
-import ProfileScreen from './components/ProfileScreen';
+import LoginScreen from '././components/LoginScreen';
 import FavoriteScreen from './components/FavouriteScreen';
 import MapsScreen from './components/Maps';
 import EventDetailsScreen from './components/EventDetailsScreen';
+import RegistrationScreen from './components/RegistrationScreen';
+import ProfileScreen from './components/ProfileScreen';
+
+
 
 const colors = {
   top: "#034F34",
@@ -30,7 +34,7 @@ function HomeScreen({ navigation }) {
 
   const getData = async () => {
     try {
-      const response = await fetch('http://16.171.43.32:8000/vilniusEvents/');
+      const response = await fetch('http://16.171.43.32:7000/vilniusEvents/');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -132,13 +136,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          style={styles.navigator}
-          name="Home"
-          component={MyTabs}
-          options={{ headerShown: false }}
-          />
+        <Stack.Screen style={styles.navigator} name="Home" component={MyTabs} options={{ headerShown: false }} />
         <Stack.Screen name="EventDetails" component={EventDetailsScreen} />
+        <Stack.Screen name="Registration" component={RegistrationScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         </Stack.Navigator>
         </NavigationContainer>
         );

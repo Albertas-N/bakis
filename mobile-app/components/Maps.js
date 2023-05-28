@@ -1,68 +1,97 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
-import MapView, {Marker} from 'react-native-maps';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-
+import MapView, { Marker } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 
 export default function MapsScreen() {
-    const [location, setLocation] = useState({})
-    useEffect(() => {
-        (async () => {
-            let {status} = await Location.requestForegroundPermissionsAsync()
-            if (status!== 'granted') {
-                alert('Permission to access location was denied')
-            } else{
-                console.log('Permission granted')
-            }
-            const loc = await Location.getCurrentPositionAsync()
-            console.log(loc)
-            setLocation(loc.coords)
-        })();
-    }, []);
+  const [location, setLocation] = useState({});
+  const [markers, setMarkers] = useState([]);
 
-    
 
-    const region = {
-        latitude: location.latitude,
-        longitude: location.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permission to access location was denied');
+      } else {
+        console.log('Permission granted');
+      }
+      const loc = await Location.getCurrentPositionAsync();
+      console.log(loc);
+      setLocation(loc.coords);
+    })();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://16.171.43.32:7000/vilniusEvents/');
+        const data = await response.json();
+        setMarkers(
+          data
+            .filter(marker => marker.latitude !== null && marker.longitude !== null && marker.latitude !== "null" && marker.longitude !== "null")
+            .map(marker => ({
+              ...marker,
+              latitude: parseFloat(marker.latitude),
+              longitude: parseFloat(marker.longitude),
+            }))
+        );
+      } catch (error) {
+        console.log('Error fetching markers:', error);
+      }
     };
-    
+  
+    fetchData();
+  }, []);
+
+  const region = {
+    latitude: location.latitude,
+    longitude: location.longitude,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  };
+
+  const navigation = useNavigation();
+
+  const handleMarkerPress = (marker) => {
+    navigation.navigate('EventDetails', { event: marker });
+  };
+
   return (
     <View style={styles.container}>
-      <GooglePlacesAutocomplete
-      styles={{
-        container: styles.container,
-        textInputContainer: styles.autocompleteContainer,
-        textInput: styles.inputField,
-        listView: styles.listView,
-        poweredContainer: styles.poweredContainer,
-        powered: styles.powered,
-      }}
-      placeholder='Search'
-      onPress={(data, details = null) => {
-        // Handle the selected place
-        console.log(data, details);
-      }}
-      query={{
-        key: 'AIzaSyARGjzXLegDAQIKZ922ju3adCFpepvlU2o',
-        //language: 'lt', // Language of the results
-        //components: 'country:us', // Restrict results to a specific country (optional)
-      }}
-      currentLocation={true} // Enable current location
-      currentLocationLabel='Current location'
-      enablePoweredByContainer={false}
-    />
-        <MapView style={styles.map} region={region}>
-            <Marker coordinate={region} title="Marker Title" description="Marker Description" />
-        </MapView>  
+      <MapView style={styles.map} region={region}>
+        {location && (
+          <Marker
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+            title="Tavo lokacija!"
+            pinColor="blue"
+          />
+        )}
+  
+        {markers.map(marker => (
+          <TouchableOpacity
+            key={marker.id}
+            onPress={() => handleMarkerPress(marker)}
+          >
+            <Marker
+              coordinate={{
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+              }}
+              title={marker.title}
+              description={marker.description}
+              onPress={() => handleMarkerPress(marker)}
+            />
+          </TouchableOpacity>
+        ))}
+      </MapView>
     </View>
   );
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -71,34 +100,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: -1,
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
-  autocompleteContainer: {
-    position: 'absolute',
-    top: 10,
-    width: '90%',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 5,
-    elevation: 4,
-  },
-  inputField: {
-    height: 40,
-    borderWidth: 0,
-  },
-  listView: {
-    width: '90%',
-    borderColor: '#ddd',
-    backgroundColor: '#fff',
-    marginHorizontal: 10,
-    marginTop: 10,
-    borderRadius: 5,
-    elevation: 4,
-  },
-  poweredContainer: {
-    display: 'none',
-  },
-  powered: {},
-  
 });
