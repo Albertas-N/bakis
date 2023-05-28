@@ -43,6 +43,7 @@ import { ResultDetailsComponent } from './result-details/result-details.componen
 import { ProfileComponent } from './profile/profile.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -64,6 +65,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ProfileComponent
   ],
   imports: [
+    MatGridListModule,
     BrowserModule,
     CommonModule,
     AppRoutingModule,

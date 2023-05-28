@@ -17,22 +17,7 @@ from django.contrib.auth import authenticate
 from django.db.models import Q
 from .models import VilniusEvents
 from django.contrib.auth import authenticate, get_user_model
-
-
-def authenticate_user_by_id(user_id):
-    User = get_user_model()
-    try:
-        user = User.objects.get(id=user_id)
-        authenticated_user = authenticate(request=None, username=user.username, password=user.password)
-        if authenticated_user is not None:
-            # User is authenticated successfully
-            return authenticated_user
-        else:
-            # Authentication failed
-            return None
-    except User.DoesNotExist:
-        # User does not exist
-        return None
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def home_view(request):
@@ -74,6 +59,13 @@ class UserRegisterViewSet(viewsets.ModelViewSet):
     queryset = UserRegister.objects.all()
     serializer_class = UserRegisterSerializer
 
+    @action(detail=False, methods=['get'], url_path='checkUsername/(?P<username>\w+)')
+    def check_username(self, request, username=None):
+        if UserRegister.objects.filter(username=username).exists():
+            return JsonResponse({'exists': True})
+        else:
+            return JsonResponse({'exists': False})
+
     @action(detail=False, methods=['post'])
     def login(self, request):
         username = request.data.get('username')
@@ -91,6 +83,17 @@ class UserRegisterViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Invalid username or password.'}, status=400)
 
 
+User = get_user_model()
+
+
+def authenticate_user_by_id(user_id):
+    try:
+        user = UserRegister.objects.get(pk=user_id)
+        return user
+    except ObjectDoesNotExist:
+        return None
+
+
 class UserLikedViewSet(viewsets.ModelViewSet):
     queryset = UserLiked.objects.all()
     serializer_class = UserLikedSerializer
@@ -105,12 +108,14 @@ class UserLikedViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def add_like(self, request):
         user_id = request.data.get('user')
+        print('Received user_id:', user_id)
         activity_id = request.data.get('entertainment')
 
         if user_id is not None and activity_id is not None:
             authenticated_user = authenticate_user_by_id(user_id)
             if authenticated_user is not None:
-                # User is authenticated
+                print('Authenticated user:', authenticated_user)
+
                 user_liked_data = {
                     'user': authenticated_user.id,
                     'entertainment': activity_id
@@ -122,6 +127,7 @@ class UserLikedViewSet(viewsets.ModelViewSet):
                 else:
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             else:
+                print('No user found with ID:', user_id)
                 return Response({'status': 'Authentication failed'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({'status': 'Bad request'}, status=status.HTTP_400_BAD_REQUEST)

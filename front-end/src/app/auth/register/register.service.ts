@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError, Observable, map } from 'rxjs';
+import { throwError, Observable, map, tap } from 'rxjs';
+import { UserService } from 'src/app/user.service';
 
 export interface User {
   id: number;
@@ -16,27 +17,51 @@ export interface User {
 })
 export class RegisterService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public userService: UserService) { }
 
   register(name: string, email: string, username: string, password: string): Observable<any> {
     const body = { name: name, email: email, username: username, password: password };
-    return this.http.post('http://localhost:8000/userRegister/', body).pipe(
+    return this.http.post<User>('http://localhost:8000/userRegister/', body).pipe(
+      tap((user: User) => {
+        // User registration successful. Update the current user.
+        this.userService.setCurrentUser(user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }),
       catchError((error) => {
         console.error('Error:', error);
         return throwError(error);
       })
     );
   }
+  
+  
+
+  checkUsername(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`http://localhost:8000/userRegister/checkUsername/${username}/`)
+      .pipe(
+        catchError((error) => {
+          console.error('Error:', error);
+          return throwError(error);
+        })
+      );
+  }
+
 
   loginUser(username: string, password: string): Observable<User> {
     const body = { username: username, password: password };
     return this.http.post<User>('http://localhost:8000/userRegister/login/', body).pipe(
+      tap((user: User) => {
+        // User login successful. Update the current user.
+        this.userService.setCurrentUser(user);
+      }),
       catchError((error) => {
         console.error('Error:', error);
         return throwError(error);
       })
     );
   }
+
+
 
   getUser(userId: string): Observable<User> {
     return this.http.get<User>(`http://localhost:8000/userRegister/${userId}/`)
@@ -47,7 +72,7 @@ export class RegisterService {
         })
       );
   }
-  
+
   getUserData(userId: string): Observable<User> {
     return this.http.get<User>(`http://localhost:8000/userRegister/${userId}/`)
       .pipe(
@@ -56,6 +81,6 @@ export class RegisterService {
           return throwError(error);
         })
       );
-  }  
+  }
 
 }

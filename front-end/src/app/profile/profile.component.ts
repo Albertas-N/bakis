@@ -6,6 +6,8 @@ import { Category } from '../data.service';
 import { ResultDetailsComponent } from '../result-details/result-details.component';
 import { tap, map, switchMap } from 'rxjs';
 import { forkJoin } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +20,7 @@ export class ProfileComponent implements OnInit {
   likedItems: Category[] = [];
   errorMessage: string = '';
 
-  constructor(private userService: UserService, private dataService: DataService) { }
+  constructor(public userService: UserService, private dataService: DataService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     const user = this.userService.getCurrentUser();
@@ -44,4 +46,16 @@ export class ProfileComponent implements OnInit {
         );
     }
   }
+
+  openDetailsDialog(entertainment: Category): void {
+    const dialogRef = this.dialog.open(ResultDetailsComponent, {
+      width: '500px',
+      data: { id: entertainment.id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 }

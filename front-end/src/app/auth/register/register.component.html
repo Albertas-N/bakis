@@ -3,7 +3,7 @@
     <mat-card-title>Register</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form *ngIf="!isRegistered" [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name" type="text" required>

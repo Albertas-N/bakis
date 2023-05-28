@@ -36,24 +36,23 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
-  
+
     this.registerService.loginUser(username, password).subscribe(
-      (user: User) => {
-        console.log('User:', user);  // <-- Add this
-  
-        if (user) {
-          this.userService.updateCurrentUser(user);
+      (user) => {
+        if (user && user.password === password) {
+          // If the login was successful, save the user's profile ID and navigate to another page.
+          this.userService.setCurrentUser(user);  // update this line
+          localStorage.setItem('currentUser', JSON.stringify(user));
           this.router.navigate(['/profile']);
         } else {
-          // login was unsuccessful, display an error message
-          this.errorMessage = 'Invalid username or password.';
+          this.errorMessage = 'Invalid password';
         }
       },
       (error) => {
-        console.error(error);
-        this.errorMessage = 'An error occurred while trying to log in.';
+        this.errorMessage = 'Error logging in: ' + (error.error.message || error.message);
       }
     );
+    
   }
-  
+
 }

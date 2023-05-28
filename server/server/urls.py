@@ -36,6 +36,7 @@ router.register('userLiked', UserLikedViewSet, basename='userLiked')
 router.register(r'vilniusEvents', VilniusEventsViewSet)
 router.register(r'userRegister', UserRegisterViewSet, basename='userRegister')
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),

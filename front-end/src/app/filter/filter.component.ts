@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ResultDetailsComponent } from '../result-details/result-details.component';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { MatFormFieldControl } from '@angular/material/form-field';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-filter',

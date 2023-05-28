@@ -9,14 +9,8 @@
     <ul>
       <li *ngFor="let entertainment of likedItems">
         {{ entertainment.title }}
-        <app-result-details *ngFor="let entertainment of likedItems" [item]="entertainment"></app-result-details>
+        <button (click)="openDetailsDialog(entertainment)">More Details</button>
       </li>      
     </ul>
   </div>
-</div>
-<div *ngIf="!userData && !errorMessage">
-  <p>Please log in to view your profile.</p>
-</div>
-<div *ngIf="errorMessage">
-  <p>{{ errorMessage }}</p>
 </div>

@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService } from './register.service';
+import { RegisterService, User } from './register.service';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { UserService } from 'src/app/user.service';
+
 
 @Component({
   selector: 'app-register',
@@ -14,7 +20,7 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
   isRegistered = false;
 
-  constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private registerService: RegisterService, private router: Router, public userService: UserService) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -25,6 +31,18 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  isUsernameUnique(username: string): Observable<boolean> {
+    return this.registerService.checkUsername(username).pipe(
+      map((response: boolean) => {
+        return response; // the username is unique if the response is true
+      }),
+      catchError((error) => {
+        console.error('Error checking username:', error);
+        return of(false); // default to not unique if there's an error
+      })
+    );
+  }
+
   onSubmit(): void {
     this.errorMessage = '';
     const name = this.registerForm.value.name;
@@ -32,24 +50,29 @@ export class RegisterComponent implements OnInit {
     const username = this.registerForm.value.username;
     const password = this.registerForm.value.password;
 
-
-    this.registerService.register(name, email, username, password).subscribe(
-      (registeredUser) => {
-        // After successfully registering the user, automatically log them in.
-        this.registerService.loginUser(username, password).subscribe(
-          (loggedInUser) => {
-            // If the login was successful, save the user's profile ID and navigate to another page.
-            localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-            this.router.navigate(['/profile']);
-          },
-          (error) => {
-            this.errorMessage = 'Error logging in: ' + (error.error.message || error.message);
-          }
-        );
-      },
-      (error) => {
-        this.errorMessage = 'Error registering: ' + (error.error.message || error.message);
+    this.isUsernameUnique(username).subscribe(isUnique => {
+      if (!isUnique) {
+        this.errorMessage = 'Username is already in use.';
+        return;
       }
-    );
+
+      this.registerService.register(name, email, username, password).subscribe(
+        (response: User) => {
+          console.log('Registration response:', response);
+          // Registration successful. Save the user data and redirect.
+          localStorage.setItem('currentUser', JSON.stringify(response));
+          this.router.navigate(['/profile']);
+        },
+        (error) => {
+          console.error('Registration error:', error);
+          this.errorMessage = 'Registration error. Please try again.';
+        }
+      );
+    }, (error) => {
+      console.error('Error checking username uniqueness:', error);
+      this.errorMessage = 'Error checking username uniqueness. Please try again.';
+    });
   }
+
+
 }
