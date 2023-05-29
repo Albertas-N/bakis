@@ -1,12 +1,16 @@
-<div *ngIf="currentUser">
-    <h2>User Profile</h2>
-    <p>
-      <strong>Name:</strong> {{ currentUser.name }}<br>
-      <strong>Email:</strong> {{ currentUser.email }}<br>
-      <strong>Username:</strong> {{ currentUser.username }}
-    </p>
+<div *ngIf="userData">
+  <h2 class="profile-heading">Vartotojo puslapis</h2>
+  <div class="user-info">
+    <p class="user-info-item"><strong>Vardas:</strong> {{ userData.name }}</p>
+    <p class="user-info-item"><strong>Elektroninis paštas:</strong> {{ userData.email }}</p>
   </div>
-  <div *ngIf="!currentUser">
-    <p>Please log in to view your profile.</p>
+  <div class="liked-categories">
+    <h3 class="liked-categories-heading">Pamėgtos kategorijos:</h3>
+    <ul>
+      <li *ngFor="let entertainment of likedItems" class="category-item">
+        {{ entertainment.title }}
+        <button mat-raised-button color="primary" class="more-details-button" (click)="openDetailsDialog(entertainment)">Žiūrėti plačiau</button>
+      </li>      
+    </ul>
   </div>
-  
+</div>

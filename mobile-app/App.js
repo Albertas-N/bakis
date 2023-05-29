@@ -1,14 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
 import FilterScreen from './components/FilterScreen';
-import ProfileScreen from './components/ProfileScreen';
+import LoginScreen from '././components/LoginScreen';
 import FavoriteScreen from './components/FavouriteScreen';
+import MapsScreen from './components/Maps';
+import EventDetailsScreen from './components/EventDetailsScreen';
+import RegistrationScreen from './components/RegistrationScreen';
+import ProfileScreen from './components/ProfileScreen';
+
+
 
 const colors = {
   top: "#034F34",
@@ -19,95 +25,50 @@ const colors = {
   bottom: "#B28E7C",
 };
 
-const images = [
-  {
-    id: '1',
-    title: 'Sunset',
-    uri: 'https://images.unsplash.com/photo-1478564988028-ce6aeebbccc2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3Vuc2V0JTIwbGFzdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    description: 'A beautiful sunset over the ocean.',
-  },
-  {
-    id: '2',
-    title: 'Mountain',
-    uri: 'https://images.unsplash.com/photo-1533638727518-5a941d0a59b7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW91bnRhaW4lMjBzdGF0aXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    description: 'A mountain peak covered in snow.',
-  },
-  {
-    id: '3',
-    title: 'Beach',
-    uri: 'https://images.unsplash.com/photo-1543149586-2f55d23f4644?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhY2glMjBzdGF0aXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    description: 'A beautiful beach with clear blue water.',
-  },
-];
-
 function HomeScreen({ navigation }) {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const response = await fetch('http://16.171.43.32:7000/vilniusEvents/');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setEvents(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const renderEventBox = (event) => {
+    const { id, title, image_src } = event;
+
+    const handlePress = () => {
+      navigation.navigate('EventDetails', { event });
+      //console.log('EventDetails', {event});
+    };
+
+    return (
+      <TouchableOpacity key={id} style={styles.eventBox} onPress={handlePress}>
+        <Image source={{ uri: image_src }} style={styles.eventImage} />
+        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.eventTitle}>{title}</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <View style={[styles.container, {backgroundColor: colors.background}]}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button]}
-          onPress={() => navigation.navigate('Filter', { category: 'Food' })}
-        >
-          <Text style={styles.buttonText}>Food</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button]}
-          onPress={() => navigation.navigate('Filter', { category: 'Museums' })}
-        >
-          <Text style={styles.buttonText}>Museums</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button]}
-          onPress={() => navigation.navigate('Filter', { category: 'Entertainment' })}
-        >
-          <Text style={styles.buttonText}>Entertainment</Text>
-        </TouchableOpacity>
-      </View>
-      <FlatList
-        data={images}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: item.uri }} />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <Text
-              style={styles.link}
-              onPress={() => navigation.navigate('Details', { item })}
-            >
-              View details
-            </Text>
-          </View>
-        )}
-      />
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.eventContainer}>
+        {events.map((event) => renderEventBox(event))}
+      </ScrollView>
     </View>
   );
 }
-
-
-/*function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={images}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{ uri: item.uri }} />
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <Text
-              style={styles.link}
-              onPress={() => navigation.navigate('Details', { item })}
-            >
-              View details
-            </Text>
-          </View>
-        )}
-      />
-    </View>
-  );
-}*/
 
 function DetailsScreen({ route }) {
   const { item } = route.params;
@@ -127,40 +88,44 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator 
+    <Tab.Navigator style={styles.navigator}
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
 
-        if (route.name === 'Home') {
+        if (route.name === 'LeiLink') {
           iconName = focused
             ? 'information-circle'
             : 'information-circle-outline';
-        } else if (route.name === 'Filter') {
+        } else if (route.name === 'Ieškai?') {
           iconName = focused 
           ? 'filter' 
           : 'filter-outline';
-        } else if (route.name === 'Profile') {
+        } else if (route.name === 'Apie Tave') {
           iconName = focused 
           ? 'body-sharp' 
           : 'body-outline';
-        } else if (route.name === 'Favorite') {
+        } else if (route.name === 'Mylimiausi') {
           iconName = focused 
           ? 'bookmark' 
           : 'bookmark-outline';
+        } else if (route.name === 'Kur?!'){
+          iconName = focused 
+          ? 'md-map'
+          : 'md-map-outline';
         }
         
-
         // You can return any component that you like here!
         return <Ionicons name={iconName} size={size} color={color} />;
       },
       tabBarActiveTintColor: colors.button,
       tabBarInactiveTintColor: 'gray',
     })}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{tabBarBadge:3}}/>
-      <Tab.Screen name="Filter" component={FilterScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Favorite" component={FavoriteScreen} />
+      <Tab.Screen name="LeiLink" component={HomeScreen} options={{tabBarBadge:3}}/>
+      <Tab.Screen name="Ieškai?" component={FilterScreen} />
+      <Tab.Screen name="Apie Tave" component={ProfileScreen} />
+      <Tab.Screen name="Mylimiausi" component={FavoriteScreen} />
+      <Tab.Screen name="Kur?!" component={MapsScreen}/>
     </Tab.Navigator>
   );
 }
@@ -169,14 +134,12 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer style = {{backgroundColor: colors.top}}>
+    <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={MyTabs}
-          options={{ headerShown: false }}
-          />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen style={styles.navigator} name="Home" component={MyTabs} options={{ headerShown: false }} />
+        <Stack.Screen name="EventDetails" component={EventDetailsScreen} />
+        <Stack.Screen name="Registration" component={RegistrationScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         </Stack.Navigator>
         </NavigationContainer>
         );
@@ -236,6 +199,41 @@ const styles = StyleSheet.create({
     color: colors.buttonText,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  navigator: {
+    backgroundColor: colors.bottom,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heading: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  eventContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  eventBox: {
+    width: 350,
+    height: 250,
+    margin: 5,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  eventImage: {
+    width: '100%',
+    height: '70%',
+    resizeMode: 'cover',
+  },
+  eventTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginVertical: 5,
   },
 });
 

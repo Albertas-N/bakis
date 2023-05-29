@@ -1,58 +1,73 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject, Input, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SearchResult } from '../data.service';
+import { Category } from '../data.service';
+import { UserService } from '../user.service';
+import { DataService } from '../data.service';
+import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
-import { AppComponent } from '../app.component';
 
-declare var google: any;
 
 @Component({
   selector: 'app-result-details',
   templateUrl: './result-details.component.html',
   styleUrls: ['./result-details.component.css'],
 })
-export class ResultDetailsComponent implements OnInit, AfterViewInit {
-  @ViewChild('map', { static: false }) mapElement!: ElementRef;
+export class ResultDetailsComponent implements OnInit {
+  currentUser: any = null;
+  @Input() item!: Category;
 
-  map!: google.maps.Map;
-  geocoder!: google.maps.Geocoder;
 
   constructor(
-    public dialogRef: MatDialogRef<ResultDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: SearchResult
-  ) {}
+    @Optional() public dialogRef: MatDialogRef<ResultDetailsComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    private dataService: DataService,
+    public userService: UserService,
+    private dialog: MatDialog
+  ) {
+    this.currentUser = this.userService.getCurrentUser();
+  }
 
   ngOnInit(): void {
-    // Initialize Geocoder
-    this.geocoder = new google.maps.Geocoder();
+    this.dataService.getItemDetails(this.data.id).subscribe(
+      (item: Category) => {
+        this.item = item;
+      },
+      (error: any) => {
+        console.error('Error fetching item details:', error);
+      }
+    );
   }
 
-  ngAfterViewInit() {
-    this.initMap();
-  }
-
-  initMap(): void {
-    // Initialize map
-    this.map = new google.maps.Map(this.mapElement.nativeElement, {
-      zoom: 8
+  openDetailsDialog(category: Category): void {
+    const dialogRef = this.dialog.open(ResultDetailsComponent, {
+      data: { id: category.id }
     });
 
-    // Geocode the address and center the map and add a marker on it
-    this.geocoder.geocode({ 'address': this.data.address }, (results, status) => {
-      if (status == 'OK' && results !== null) {
-        this.map.setCenter(results[0].geometry.location);
-        new google.maps.Marker({
-          map: this.map,
-          position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
+
+  onLike(itemId: number): void {
+    if (!this.currentUser) {
+      console.log('Only logged in users can like items.');
+      return;
+    }
+    console.log('User ID:', this.currentUser.id);
+    console.log('Item ID:', itemId);
+    this.userService.addLike(this.currentUser.id, itemId).subscribe(
+      () => console.log('Item liked!'),
+      (error) => console.log('Error liking item:', error)
+    );
+  }
+
+
+
+
   onClose(): void {
-    this.dialogRef.close();
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
   }
 }

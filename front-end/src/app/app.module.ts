@@ -41,7 +41,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { ResultDetailsComponent } from './result-details/result-details.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -63,6 +65,7 @@ import { ProfileComponent } from './profile/profile.component';
     ProfileComponent
   ],
   imports: [
+    MatGridListModule,
     BrowserModule,
     CommonModule,
     AppRoutingModule,
@@ -75,6 +78,7 @@ import { ProfileComponent } from './profile/profile.component';
     LayoutModule,
     MatFormFieldModule,
     MatTableModule,
+    MatSelectModule,
     MatInputModule,
     MatExpansionModule,
     MatDialogModule,
@@ -87,12 +91,9 @@ import { ProfileComponent } from './profile/profile.component';
     ScrollingModule,
     GoogleMapsModule,
     MatCheckboxModule,
-    
+    MatProgressSpinnerModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [MatTableDataSource],
-  bootstrap: [AppComponent],
-  exports: [ResultDetailsComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 

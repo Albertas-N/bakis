@@ -1,0 +1,41 @@
+.profile-heading {
+    font-size: 36px;
+  }
+  
+  .user-info {
+    margin-bottom: 20px;
+  }
+  
+  .user-info-item {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .liked-categories {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .liked-categories-heading {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .liked-categories ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .category-item {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .more-details-button {
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 15px 30px;
+  }
+  

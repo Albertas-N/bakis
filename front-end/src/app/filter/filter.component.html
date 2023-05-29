@@ -1,18 +1,49 @@
-<div class="filter-container">
+<div class="search-container">
   <div class="search-form">
-    <input matInput class="search-input" #searchInput placeholder="Type to search..." [(ngModel)]="searchTerm">
-    <button mat-raised-button class="search-button" (click)="search()">Search</button>
+    <mat-form-field class="search-input">
+      <mat-label>Įveskite tekstą</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (ngModelChange)="onSearchTermChange()" />
+    </mat-form-field>
+    <button mat-raised-button class="search-button" (click)="search()">Ieškoti</button>
   </div>
-  <div class="results-container">
-    <div *ngIf="filteredDataSource.length === 0" class="no-results">No results found.</div>
-    <div *ngFor="let result of filteredDataSource" class="result-item">
-      <div class="result-image">
-        <img [src]="result.image_src" alt="Result Image">
-      </div>
-      <div class="result-details">
-        <h3>{{ result.title }}</h3>
-        <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">View Details</button>
-      </div>
+  
+  <ng-container *ngIf="!showRecommendations; else recs">
+    <div class="results-container">
+      <ng-container *ngIf="newResults | async as results; else loading">
+        <div *ngIf="!results.length" class="no-results"></div>
+        <div *ngFor="let result of results" class="result-box">
+          <div class="result-item">
+            <div class="result-image">
+              <img [src]="result.image_src" alt="Result Image" class="result-image">
+            </div>
+            <div class="result-details">
+              <h3>{{ result.title }}</h3>
+              <button mat-raised-button color="primary" (click)="openDetailsDialog(result)">Žiūrėti plačiau</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #loading>Loading...</ng-template>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-template #recs>
+    <div class="recommendations-container">
+      <h2></h2>
+      <ng-container *ngIf="recommendations.length; else noRecs">
+        <div *ngFor="let recommendation of recommendations" class="result-box">
+          <div class="result-item">
+            <div class="result-image">
+              <img [src]="recommendation.image_src" alt="Recommendation Image" class="result-image">
+            </div>
+            <div class="result-details">
+              <h3>{{ recommendation.title }}</h3>
+              <button mat-raised-button color="primary" (click)="openDetailsDialog(recommendation)">Žiūrėti plačiau</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noRecs><div></div></ng-template>
+    </div>
+  </ng-template>
 </div>

@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService, UserLiked } from '../user.service';
+import { RegisterService, User } from '../auth/register/register.service';
+import { DataService } from '../data.service';
+import { Category } from '../data.service';
+import { ResultDetailsComponent } from '../result-details/result-details.component';
+import { tap, map, switchMap } from 'rxjs';
+import { forkJoin } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,17 +15,48 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  userData: User | null = null;
   currentUser: any;
+  likedItems: Category[] = [];
+  errorMessage: string = '';
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService, private dataService: DataService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    );
+    const user = this.userService.getCurrentUser();
+    if (user && user.id) {
+      this.userService.getUserData(user.id)
+        .subscribe(
+          user => this.userData = user,
+          error => this.errorMessage = error
+        );
+
+        this.userService.getLikes(user.id)
+        .subscribe(
+          likedItems => {
+            const entertainmentIds = likedItems.map(item => item.entertainment);
+            
+            forkJoin(entertainmentIds.map(id => this.dataService.getItemDetails(id)))
+              .subscribe(
+                entertainments => this.likedItems = entertainments,
+                error => this.errorMessage = error
+              );
+          },
+          error => this.errorMessage = error
+        );
+    }
+  }
+
+  openDetailsDialog(entertainment: Category): void {
+    const dialogRef = this.dialog.open(ResultDetailsComponent, {
+      width: '1000px',
+      panelClass: 'dialog-container',
+      data: { id: entertainment.id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

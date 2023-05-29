@@ -1,16 +1,27 @@
-<h2 mat-dialog-title>{{ data.title }}</h2>
-<mat-dialog-content>
-  <div class="result-image">
-    <img [src]="data.image_src" alt="Result Image">
+<mat-dialog-content *ngIf="item">
+  <h2 mat-dialog-title class="item-title">{{ item.title }}</h2>
+
+  <div class="item-image">
+    <img mat-card-image [src]="item.image_src" alt="Item Image">
   </div>
-  <div id="map" class="map-container"></div>
-  <div class="event-details">
-    <p><strong>Date:</strong> {{ data.date }}</p>
-    <p><strong>Address:</strong> {{ data.address }}</p>
-    <p><strong>Content:</strong></p>
-    <p>{{ data.content }}</p>
+
+  <mat-card-content class="item-details">
+    <p><strong>Data:</strong> {{ item.date | date }}</p>
+    <p><strong>Adresas:</strong> {{ item.address }}</p>
+    <p><strong>Aprašymas:</strong></p>
+    <p>{{ item.content }}</p>
+
+    <p *ngIf="item.email"><strong>Elektroninis paštas:</strong> {{ item.email }}</p>
+    <p *ngIf="item.phone_number"><strong>Telefono numeris:</strong> {{ item.phone_number }}</p>
+    <p *ngIf="item.working_hours"><strong>Darbo laikas:</strong> {{ item.working_hours }}</p>
+    <p *ngIf="item.rating !== null"><strong>Reitingas:</strong> {{ item.rating }}</p>
+  </mat-card-content>
+
+  <div *ngIf="currentUser">
+    <button mat-raised-button color="primary" class="like-button" (click)="onLike(item.id)">Pamėgti</button>
   </div>
+
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close>Uždaryti langą</button>
 </mat-dialog-actions>
