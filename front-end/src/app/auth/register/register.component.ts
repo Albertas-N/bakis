@@ -59,7 +59,6 @@ export class RegisterComponent implements OnInit {
       this.registerService.register(name, email, username, password).subscribe(
         (response: User) => {
           console.log('Registration response:', response);
-          // Registration successful. Save the user data and redirect.
           localStorage.setItem('currentUser', JSON.stringify(response));
           this.router.navigate(['/profile']);
         },

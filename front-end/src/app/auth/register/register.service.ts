@@ -21,7 +21,7 @@ export class RegisterService {
 
   register(name: string, email: string, username: string, password: string): Observable<any> {
     const body = { name: name, email: email, username: username, password: password };
-    return this.http.post<User>('http://localhost:8000/userRegister/', body).pipe(
+    return this.http.post<User>('http://16.171.43.32:7000/userRegister/', body).pipe(
       tap((user: User) => {
         // User registration successful. Update the current user.
         this.userService.setCurrentUser(user);
@@ -37,7 +37,7 @@ export class RegisterService {
   
 
   checkUsername(username: string): Observable<boolean> {
-    return this.http.get<boolean>(`http://localhost:8000/userRegister/checkUsername/${username}/`)
+    return this.http.get<boolean>(`http://16.171.43.32:7000/checkUsername/${username}/`)
       .pipe(
         catchError((error) => {
           console.error('Error:', error);
@@ -49,7 +49,7 @@ export class RegisterService {
 
   loginUser(username: string, password: string): Observable<User> {
     const body = { username: username, password: password };
-    return this.http.post<User>('http://localhost:8000/userRegister/login/', body).pipe(
+    return this.http.post<User>('http://16.171.43.32:7000/userRegister/login/', body).pipe(
       tap((user: User) => {
         // User login successful. Update the current user.
         this.userService.setCurrentUser(user);
@@ -64,7 +64,7 @@ export class RegisterService {
 
 
   getUser(userId: string): Observable<User> {
-    return this.http.get<User>(`http://localhost:8000/userRegister/${userId}/`)
+    return this.http.get<User>(`http://16.171.43.32:7000/userRegister/${userId}/`)
       .pipe(
         catchError((error) => {
           console.error('Error:', error);
@@ -74,7 +74,7 @@ export class RegisterService {
   }
 
   getUserData(userId: string): Observable<User> {
-    return this.http.get<User>(`http://localhost:8000/userRegister/${userId}/`)
+    return this.http.get<User>(`http://16.171.43.32:7000/userRegister/${userId}/`)
       .pipe(
         catchError((error) => {
           console.error('Error:', error);

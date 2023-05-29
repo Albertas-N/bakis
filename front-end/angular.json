@@ -65,7 +65,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "your-project-name:build",
-            "host": "127.0.0.1"
+            "host": "16.171.43.32"
           },
           "configurations": {
             "production": {

@@ -22,7 +22,7 @@ export interface Category {
   providedIn: 'root',
 })
 export class DataService {
-  private categoriesUrl = 'http://localhost:8000/vilniusEvents/';
+  private categoriesUrl = 'http://16.171.43.32:7000/vilniusEvents/';
 
   constructor(private http: HttpClient) { }
 

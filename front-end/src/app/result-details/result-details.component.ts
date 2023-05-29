@@ -60,10 +60,10 @@ export class ResultDetailsComponent implements OnInit {
       () => console.log('Item liked!'),
       (error) => console.log('Error liking item:', error)
     );
-}
+  }
 
 
-  
+
 
   onClose(): void {
     if (this.dialogRef) {

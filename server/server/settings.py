@@ -133,8 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:4200",  # Angular server
-    "http://127.0.0.1:8000",  # Django server
+    "http://16.171.43.32:4200",  # Angular server
 ]
 
 REST_FRAMEWORK = {

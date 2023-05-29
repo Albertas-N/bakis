@@ -21,7 +21,7 @@
 .carousel-inner img {
   position: relative;
   display: block;
-  height: 700px;
+  height: 600px;
   width: 100%;
   object-fit: cover;
   margin: 0 auto;

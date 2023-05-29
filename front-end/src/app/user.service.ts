@@ -31,9 +31,9 @@ export interface Recommendation {
   providedIn: 'root'
 })
 export class UserService {
-  private likesUrl = 'http://localhost:8000/userLiked/';
-  private userUrl = 'http://localhost:8000/userRegister/';
-  private readonly recommendationsUrl = 'http://localhost:8000/';
+  private likesUrl = 'http://16.171.43.32:7000/userLiked/';
+  private userUrl = 'http://16.171.43.32:7000/userRegister/';
+  private readonly recommendationsUrl = 'http://16.171.43.32:7000/';
   private userSubject = new BehaviorSubject<User | null>(null);
   currentUser = this.userSubject.asObservable();
   private loginStatusSubject = new BehaviorSubject<boolean>(false);
@@ -69,13 +69,13 @@ export class UserService {
   getCategoriesByIds(ids: number[]): Observable<Category[]> {
     let params = new HttpParams();
     ids.forEach(id => params = params.append('ids', id.toString()));
-    return this.http.get<Category[]>(`http://localhost:8000/categories/byIds/`, { params: params });
+    return this.http.get<Category[]>(`http://16.171.43.32:7000/categories/byIds/`, { params: params });
   }
 
   getEntertainmentsByIds(ids: number[]): Observable<Category[]> {
     let params = new HttpParams();
     ids.forEach(id => params = params.append('ids', id.toString()));
-    return this.http.get<Category[]>(`http://localhost:8000/vilniusevents/`, { params: params });
+    return this.http.get<Category[]>(`http://16.171.43.32:7000/vilniusevents/`, { params: params });
   }
 
   addLike(userId: number, itemId: number): Observable<any> {
