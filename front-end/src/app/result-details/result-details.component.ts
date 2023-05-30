@@ -6,7 +6,6 @@ import { DataService } from '../data.service';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 
-
 @Component({
   selector: 'app-result-details',
   templateUrl: './result-details.component.html',
@@ -15,7 +14,6 @@ import { MatDialog } from '@angular/material/dialog';
 export class ResultDetailsComponent implements OnInit {
   currentUser: any = null;
   @Input() item!: Category;
-
 
   constructor(
     @Optional() public dialogRef: MatDialogRef<ResultDetailsComponent>,
@@ -48,7 +46,6 @@ export class ResultDetailsComponent implements OnInit {
     });
   }
 
-
   onLike(itemId: number): void {
     if (!this.currentUser) {
       console.log('Only logged in users can like items.');
@@ -61,9 +58,6 @@ export class ResultDetailsComponent implements OnInit {
       (error) => console.log('Error liking item:', error)
     );
   }
-
-
-
 
   onClose(): void {
     if (this.dialogRef) {

@@ -19,7 +19,6 @@
 
         <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Prisijungti</button>
       </form>
-      <!-- Notification message after login attempt -->
       <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
     </mat-card-content>
   </mat-card>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService, User } from '../register/register.service';
+import { RegisterService, User } from '../../register.service';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -40,8 +40,7 @@ export class LoginComponent implements OnInit {
     this.registerService.loginUser(username, password).subscribe(
       (user) => {
         if (user && user.password === password) {
-          // If the login was successful, save the user's profile ID and navigate to another page.
-          this.userService.setCurrentUser(user);  // update this line
+          this.userService.setCurrentUser(user);
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.router.navigate(['/profile']);
         } else {

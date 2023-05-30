@@ -30,9 +30,8 @@
           <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Slaptažodis yra privalomas</mat-error>
         </mat-form-field>
 
-        <!-- Display error message if registration fails -->
         <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-
+        
         <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Registruotis</button>
       </form>
       <div *ngIf="isRegistered">

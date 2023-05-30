@@ -17,7 +17,6 @@ export interface Category {
   rating: number | null;
 }
 
-
 @Injectable({
   providedIn: 'root',
 })

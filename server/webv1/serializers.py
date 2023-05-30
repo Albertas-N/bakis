@@ -29,6 +29,5 @@ class UserLikedSerializer(serializers.ModelSerializer):
         if not self.context["request"].user.pk:
             return None
         else:
-            # Implement the logic to retrieve and return the related user record
             return obj.user
 

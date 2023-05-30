@@ -34,7 +34,7 @@ import { MainComponent } from './main/main.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
-import { RegisterService } from './auth/register/register.service';
+import { RegisterService } from './register.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';

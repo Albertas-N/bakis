@@ -1,21 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Import pre-built theme from Angular Material */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-/* Scope styles to the body of the component */
 :host {
   display: block;
   height: 100%;
 }
 
-/* Set margin and font-family for body */
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-/* Use typography API to set font weight */
 h1 {
   font-weight: 500;
 }

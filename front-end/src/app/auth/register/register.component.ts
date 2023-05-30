@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterService, User } from './register.service';
+import { RegisterService, User } from '../../register.service';
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs';

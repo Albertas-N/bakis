@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, UserLiked } from '../user.service';
-import { RegisterService, User } from '../auth/register/register.service';
+import { RegisterService, User } from '../register.service';
 import { DataService } from '../data.service';
 import { Category } from '../data.service';
 import { ResultDetailsComponent } from '../result-details/result-details.component';

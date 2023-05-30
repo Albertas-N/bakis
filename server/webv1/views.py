@@ -109,20 +109,13 @@ class UserLikedViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='recommendations/(?P<user_id>\w+)')
     def recommendations(self, request, user_id=None):
-        # Authenticate the user
         authenticated_user = authenticate_user_by_id(user_id)
         if authenticated_user is not None:
-            # Get all the categories the user has liked
             liked_categories_ids = UserLiked.objects.filter(user=authenticated_user).values_list('entertainment__category_id', flat=True)
-
-            # Find other items in the same categories
             recommended_items = VilniusEvents.objects.filter(category_id__in=liked_categories_ids)
-
-            # Use F() expression to move the nulls to the last
             recommended_items = recommended_items.annotate(
                 null_rating=ExpressionWrapper(Q(rating__isnull=True), output_field=BooleanField())
             ).order_by('null_rating', '-rating')
-            # Serialize and return the items
             serializer = VilniusEventsSerializer(recommended_items, many=True)
             return Response(serializer.data)
         else:
@@ -138,7 +131,6 @@ class UserLikedViewSet(viewsets.ModelViewSet):
             authenticated_user = authenticate_user_by_id(user_id)
             if authenticated_user is not None:
                 print('Authenticated user:', authenticated_user)
-
                 user_liked_data = {
                     'user': authenticated_user.id,
                     'entertainment': activity_id
@@ -163,7 +155,6 @@ class UserLikedViewSet(viewsets.ModelViewSet):
         if user_id is not None and activity_id is not None:
             authenticated_user = authenticate_user_by_id(user_id)
             if authenticated_user is not None:
-                # User is authenticated
                 try:
                     user_liked = UserLiked.objects.get(user=authenticated_user.id, entertainment=activity_id)
                     user_liked.delete()

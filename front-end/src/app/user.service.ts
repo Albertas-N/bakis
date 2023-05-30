@@ -3,8 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Category } from './data.service';
-import { RegisterService, User } from './auth/register/register.service';
-
+import { RegisterService, User } from './register.service';
 
 export interface UserLiked {
   id: number;
@@ -26,7 +25,6 @@ export interface Recommendation {
   rating?: number | null;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -39,9 +37,6 @@ export class UserService {
   private loginStatusSubject = new BehaviorSubject<boolean>(false);
   loginStatus = this.loginStatusSubject.asObservable();
   likedCategoriesUpdated: BehaviorSubject<null> = new BehaviorSubject(null);
-
-
-
 
   constructor(private http: HttpClient) { }
 
@@ -92,6 +87,7 @@ export class UserService {
       })
     );
   }
+
   private getToken(): string {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     return currentUser && currentUser.token;
