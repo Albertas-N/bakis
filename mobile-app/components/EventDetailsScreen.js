@@ -11,7 +11,6 @@ export default function EventDetailsScreen({ route }) {
             <Text style={styles.eventTitle}>{event.title}</Text>
             <Text style={styles.eventDate}>Data ir laikas: {event.date}</Text>
             <Text style={styles.eventAddress}>Adresas: {event.address}</Text>
-            <Text style={styles.eventCategory}>Kategorija: {event.category}</Text>
             <Text style={styles.eventContent}>{event.content}</Text>
             <Text style={styles.eventWorkingHours}>Darbo laikas: {event.working_hours || '-'}</Text>
             

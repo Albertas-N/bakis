@@ -1,34 +1,43 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userList, setUserList] = useState([]);
 
-  const handleLogin = async () => {
-    console.log(`Logging in with email: ${email} and password: ${password}`);
-    // Perform login logic here
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
     try {
-      const response = await fetch('http://16.171.43.32:7000/userRegister/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      const response = await fetch('http://16.171.43.32:7000/userRegister/');
       if (!response.ok) {
-        throw new Error('Login failed');
+        throw new Error('Network response was not ok');
       }
-      // Handle successful login, navigate to the next screen, etc.
-      navigation.navigate('Profile');
+      const data = await response.json();
+      setUserList(data);
     } catch (error) {
       console.error('Error:', error);
+    }
+  };
+
+  const handleLogin = () => {
+    console.log(`Logging in with email: ${email} and password: ${password}`);
+    // Perform login logic here
+    const user = userList.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (user) {
+      // Handle successful login, navigate to the next screen, etc.
+      navigation.navigate('ProfileLoggedScreen', { user: user });
+      console.log('Login successful')
+    } else {
       // Handle login error
+      console.log('Login failed');
     }
   };
 
@@ -39,10 +48,10 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.headerText}>Login or Register</Text>
+        <Text style={styles.headerText}>Prisijunk arba prisiregistruok!</Text>
         <TextInput
           style={styles.inputField}
-          placeholder="Email"
+          placeholder="Tavo el. paštas"
           keyboardType="email-address"
           autoCapitalize="none"
           value={email}
@@ -50,17 +59,17 @@ export default function LoginScreen() {
         />
         <TextInput
           style={styles.inputField}
-          placeholder="Password"
+          placeholder="Tavo slaptažodis"
           secureTextEntry
           autoCapitalize="none"
           value={password}
           onChangeText={setPassword}
         />
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Prisijungti</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={handleRegistration}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}>Registruotis</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -93,6 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#034F34',
     borderRadius: 5,
     padding: 10,
+    margin: 10,
   },
   buttonText: {
     color: '#EEF0ED',

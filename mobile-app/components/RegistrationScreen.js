@@ -6,6 +6,7 @@ export default function RegistrationScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const user = '';
 
   const handleRegistration = async () => {
     console.log(`Registering with name: ${name}, email: ${email}, username: ${username}, and password: ${password}`);
@@ -29,7 +30,8 @@ export default function RegistrationScreen({ navigation }) {
       }
 
       // Handle successful registration, navigate to the next screen, etc.
-      navigation.navigate('ProfileScreen');
+      (user) => user.email === email && user.password === password;
+      navigation.navigate('ProfileLoggedScreen', { user: user });
     } catch (error) {
       console.error('Error:', error);
       // Handle registration error
@@ -42,13 +44,13 @@ export default function RegistrationScreen({ navigation }) {
         <Text style={styles.headerText}>Registration</Text>
         <TextInput
           style={styles.inputField}
-          placeholder="Name"
+          placeholder="Tavo vardas"
           value={name}
           onChangeText={setName}
         />
         <TextInput
           style={styles.inputField}
-          placeholder="Email"
+          placeholder="Tavo el. pašto adresas"
           keyboardType="email-address"
           autoCapitalize="none"
           value={email}
@@ -56,14 +58,14 @@ export default function RegistrationScreen({ navigation }) {
         />
         <TextInput
           style={styles.inputField}
-          placeholder="Username"
+          placeholder="Tavo naudotojo vardas"
           autoCapitalize="none"
           value={username}
           onChangeText={setUsername}
         />
         <TextInput
           style={styles.inputField}
-          placeholder="Password"
+          placeholder="Tavo slaptažodis"
           secureTextEntry
           autoCapitalize="none"
           value={password}

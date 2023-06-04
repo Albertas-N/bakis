@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, TextInput, Modal } from 'react-native';
 
+
 export default function FilterScreen({ navigation }) {
   const [events, setEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');

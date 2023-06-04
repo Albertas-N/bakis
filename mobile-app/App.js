@@ -12,7 +12,8 @@ import FavoriteScreen from './components/FavouriteScreen';
 import MapsScreen from './components/Maps';
 import EventDetailsScreen from './components/EventDetailsScreen';
 import RegistrationScreen from './components/RegistrationScreen';
-import ProfileScreen from './components/ProfileScreen';
+//import ProfileScreen from './components/ProfileScreen';
+import ProfileLoggedScreen from './components/ProfileLoggedScreen';
 
 const colors = {
   top: "#034F34",
@@ -65,7 +66,6 @@ function HomeScreen({ navigation }) {
   );
 }
 
-const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function HomeStack() {
@@ -89,11 +89,6 @@ function ProfileStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="ProfileScreen"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="LoginScreen"
         component={LoginScreen}
         options={{ title: 'Login' }}
@@ -103,9 +98,16 @@ function ProfileStack() {
         component={RegistrationScreen}
         options={{ title: 'Registration' }}
       />
+      <Stack.Screen
+        name="ProfileLoggedScreen"
+        component={ProfileLoggedScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
