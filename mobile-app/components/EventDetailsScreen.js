@@ -1,23 +1,38 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function EventDetailsScreen({ route }) {
   const { event } = route.params;
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = async () => {
+    // Perform like/unlike logic here
+    setLiked(!liked);
+  };
 
   return (
     <View style={styles.container}>
         <ScrollView>
             <Image source={{ uri: event.image_src }} style={styles.eventImage} />
             <Text style={styles.eventTitle}>{event.title}</Text>
+            
             <Text style={styles.eventDate}>Data ir laikas: {event.date}</Text>
             <Text style={styles.eventAddress}>Adresas: {event.address}</Text>
             <Text style={styles.eventContent}>{event.content}</Text>
             <Text style={styles.eventWorkingHours}>Darbo laikas: {event.working_hours || '-'}</Text>
-            
             <Text style={styles.eventRating}>Įvertinimas: {event.rating || '-'}</Text>
             <Text style={styles.eventCategory}>Susisiekite:</Text>
             <Text style={styles.eventEmail}>Elektroniniu paštu: {event.email || '-'}</Text>
             <Text style={styles.eventPhoneNumber}>Telefonu: {event.phone_number || '-'}</Text>
+        <TouchableOpacity style={styles.likeButton} onPress={handleLike}>
+              <Ionicons
+                name={liked ? 'heart' : 'heart-outline'}
+                size={20}
+                color={liked ? '#FF0000' : '#000000'}
+              />
+            </TouchableOpacity>
+        
         </ScrollView>
     </View>
   );
@@ -67,5 +82,11 @@ const styles = StyleSheet.create({
   },
   eventRating: {
     marginBottom: 5,
+  },
+  likeButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    backgroundColor: 'transparent',
   },
 });

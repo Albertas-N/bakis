@@ -32,6 +32,7 @@ export default function RegistrationScreen({ navigation }) {
       // Handle successful registration, navigate to the next screen, etc.
       const registeredUser = await response.json();
       navigation.navigate('ProfileLoggedScreen', { user: registeredUser });
+      navigation.navigate('Home', { user: registeredUser });
     } catch (error) {
       console.error('Error:', error);
       // Handle registration error
@@ -41,12 +42,20 @@ export default function RegistrationScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.headerText}>Registration</Text>
+        <Text style={styles.headerText}>Registruokis</Text>
         <TextInput
           style={styles.inputField}
           placeholder="Tavo vardas"
           value={name}
           onChangeText={setName}
+        />
+        <TextInput
+          style={styles.inputField}
+          placeholder="Tavo slaptažodis"
+          secureTextEntry
+          autoCapitalize="none"
+          value={password}
+          onChangeText={setPassword}
         />
         <TextInput
           style={styles.inputField}
@@ -63,16 +72,8 @@ export default function RegistrationScreen({ navigation }) {
           value={username}
           onChangeText={setUsername}
         />
-        <TextInput
-          style={styles.inputField}
-          placeholder="Tavo slaptažodis"
-          secureTextEntry
-          autoCapitalize="none"
-          value={password}
-          onChangeText={setPassword}
-        />
         <TouchableOpacity style={styles.button} onPress={handleRegistration}>
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}>Registruotis</Text>
         </TouchableOpacity>
       </View>
     </View>

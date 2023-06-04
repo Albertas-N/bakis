@@ -34,12 +34,14 @@ export default function LoginScreen() {
     if (user) {
       // Handle successful login, navigate to the next screen, etc.
       navigation.navigate('ProfileLoggedScreen', { user: user });
-      console.log('Login successful')
+      console.log('Login successful');
     } else {
       // Handle login error
       console.log('Login failed');
     }
   };
+  
+  
 
   const handleRegistration = () => {
     navigation.navigate('RegistrationScreen');

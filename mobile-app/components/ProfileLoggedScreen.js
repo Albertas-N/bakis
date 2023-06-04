@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export default function ProfileLoggedScreen() {
-    const navigation = useNavigation();
-    const route = useRoute();
+export default function ProfileLoggedScreen({ navigation, route }) {
     const user = route.params?.user;
+  
+    useEffect(() => {
+      if (user) {
+        navigation.navigate('Home', { user });
+      }
+    }, [user]);
 
     const handleLogout = () => {
       
@@ -13,7 +17,7 @@ export default function ProfileLoggedScreen() {
         (user) => user.email === '' && user.password === ''
         console.log('Logging off');
         
-        navigation.navigate('LoginScreen');
+        navigation.navigate('Prisijungti');
       };
       
       return (
