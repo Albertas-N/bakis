@@ -30,8 +30,8 @@ export default function RegistrationScreen({ navigation }) {
       }
 
       // Handle successful registration, navigate to the next screen, etc.
-      (user) => user.email === email && user.password === password;
-      navigation.navigate('ProfileLoggedScreen', { user: user });
+      const registeredUser = await response.json();
+      navigation.navigate('ProfileLoggedScreen', { user: registeredUser });
     } catch (error) {
       console.error('Error:', error);
       // Handle registration error
