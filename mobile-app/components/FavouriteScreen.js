@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function FavouriteScreen() {
+export default function FavouriteScreen({ route }) {
   const [likedEvents, setLikedEvents] = useState([]);
-  const userId = 1; // Replace with the logged-in user's ID
+  const { user } = route.params;
 
   useEffect(() => {
     fetchData();
@@ -16,11 +16,26 @@ export default function FavouriteScreen() {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      const userLikedEvents = data.filter((event) => event.user === userId);
+      const userLikedEvents = data.filter((event) => event.user === user.id);
       setLikedEvents(userLikedEvents);
     } catch (error) {
       console.error('Error:', error);
     }
+  };
+
+  const renderEventBox = (event) => {
+    const { id, title, image_src } = event;
+
+    const handlePress = () => {
+      navigation.navigate('EventDetails', { event });
+    };
+
+    return (
+      <TouchableOpacity key={id} style={styles.eventBox} onPress={handlePress}>
+        <Image source={{ uri: image_src }} style={styles.eventImage} />
+        <Text numberOfLines={2} ellipsizeMode="tail" style={styles.eventTitle}>{title}</Text>
+      </TouchableOpacity>
+    );
   };
 
   return (
