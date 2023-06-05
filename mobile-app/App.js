@@ -199,7 +199,7 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="LeiLink" component={HomeStack} options={{ tabBarBadge: 3 }} />
+        <Tab.Screen name="LeiLink" component={HomeStack} /*options={{ tabBarBadge: 3 }}*/ />
         <Tab.Screen name="Ieškai?" component={FilterScreen} />
         <Tab.Screen name="Apie Tave" component={ProfileStack} options={{ tabBarLabel: 'Apie Tave' }} />
         <Tab.Screen name="Mylimiausi" component={FavoriteScreen} />
