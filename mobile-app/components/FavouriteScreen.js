@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export default function FavouriteScreen({ navigation, route }) {
+export default function FavouriteScreen() {
   const [likedEvents, setLikedEvents] = useState([]);
+  const navigation = useNavigation();
+  const route = useRoute();
   const user = route.params?.user;
-
 
   useEffect(() => {
     fetchData();
@@ -13,9 +14,9 @@ export default function FavouriteScreen({ navigation, route }) {
 
   const fetchData = async () => {
     try {
-      if (!route.params || !route.params.user) {
+      if (!user) {
         // User is not logged in, redirect to LoginScreen
-        navigation.navigate('Prisijungti');
+        navigation.navigate('Apie Tave');
         return;
       }
       
@@ -62,19 +63,16 @@ export default function FavouriteScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
-    paddingVertical: 20,
   },
   eventBox: {
-    width: 200,
+    width: 150,
     height: 200,
-    marginHorizontal: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
-    alignItems: 'center',
-    justifyContent: 'center',
+    margin: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   eventImage: {
     width: '100%',
@@ -84,6 +82,6 @@ const styles = StyleSheet.create({
   eventTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 10,
+    marginVertical: 5,
   },
 });

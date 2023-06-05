@@ -29,6 +29,7 @@ export default function RegistrationScreen({ navigation }) {
         throw new Error('Registration failed');
       }
 
+      //console.log('Response: ', response);
       // Handle successful registration, navigate to the next screen, etc.
       const registeredUser = await response.json();
       navigation.navigate('ProfileLoggedScreen', { user: registeredUser });

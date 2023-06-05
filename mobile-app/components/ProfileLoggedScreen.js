@@ -8,7 +8,7 @@ export default function ProfileLoggedScreen({ navigation, route }) {
     useEffect(() => {
       if (user) {
         navigation.navigate('Mylimiausi', { user });
-        navigation.navigate('Home', { user });
+        navigation.navigate('Pagrindinis', { user });
       }
     }, [user]);
 

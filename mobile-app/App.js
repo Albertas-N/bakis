@@ -52,7 +52,7 @@ function HomeScreen() {
     }
   };
 
-  const handlePress = () => {
+  const handlePress = (event) => {
     navigation.navigate('EventDetails', { event });
   };
 
@@ -62,27 +62,24 @@ function HomeScreen() {
       return;
     }
 
-    const requestBody = {
-      id: event.id,
-      user: user?.id,
-      entertainment: event.id,
-    };
-
-    console.log('Request Body:', requestBody);
-
     try {
       const response = await fetch('http://16.171.43.32:7000/userLiked/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestBody),
+        body: '{"entertainment": '+event.id+', "user": '+user?.id+'}'
       });
+
+      console.log(JSON.stringify({
+        user: user?.id,
+        entertainment: event.id,
+      }));
 
       if (!response.ok) {
         throw new Error('Failed to like the event');
       }
-      console.log('Response: ', response);
+      //console.log('Response: ', response);
       console.log('Successfully liked event!');
       // Handle successful like
       // Update the liked state in the events array
@@ -105,9 +102,9 @@ function HomeScreen() {
 
   const renderEventBox = (event) => {
     const { id, title, image_src, liked } = event;
-
+  
     return (
-      <TouchableOpacity key={id} style={styles.eventBox} onPress={handlePress}>
+      <TouchableOpacity key={id} style={styles.eventBox} onPress={() => handlePress(event)}>
         <Image source={{ uri: image_src }} style={styles.eventImage} />
         <TouchableOpacity style={styles.likeButton} onPress={() => handleLike(event)}>
           <Ionicons name={liked ? 'heart' : 'heart-outline'} size={25} color="#034F34" />
@@ -118,6 +115,7 @@ function HomeScreen() {
       </TouchableOpacity>
     );
   };
+  
 
   
 
@@ -134,14 +132,14 @@ function HomeStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Pagrindinis"
         component={HomeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
         name="EventDetails"
         component={EventDetailsScreen}
-        options={{ title: 'Event Details' }}
+        options={{ title: 'Informacija' }}
       />
     </Stack.Navigator>
   );
@@ -168,6 +166,40 @@ function ProfileStack() {
       />
     </Stack.Navigator>
   );
+}
+
+function MapsStack() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen
+         name="Kur?!" 
+         component={MapsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="EventDetails"
+        component={EventDetailsScreen}
+        options={{ title: 'Informacija' }}
+      />
+    </Stack.Navigator>
+  )
+}
+
+function FilterStack() {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen
+         name="Ieškai?" 
+         component={FilterScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="EventDetails"
+        component={EventDetailsScreen}
+        options={{ title: 'Informacija' }}
+      />
+    </Stack.Navigator>
+  )
 }
 
 const Tab = createBottomTabNavigator();
@@ -200,10 +232,10 @@ export default function App() {
         })}
       >
         <Tab.Screen name="LeiLink" component={HomeStack} /*options={{ tabBarBadge: 3 }}*/ />
-        <Tab.Screen name="Ieškai?" component={FilterScreen} />
+        <Tab.Screen name="Ieškai?" component={FilterStack} />
         <Tab.Screen name="Apie Tave" component={ProfileStack} options={{ tabBarLabel: 'Apie Tave' }} />
         <Tab.Screen name="Mylimiausi" component={FavoriteScreen} />
-        <Tab.Screen name="Kur?!" component={MapsScreen} />
+        <Tab.Screen name="Kur?!" component={MapsStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );
