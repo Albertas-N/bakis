@@ -53,7 +53,7 @@ function HomeScreen() {
   };
 
   const handlePress = (event) => {
-    navigation.navigate('EventDetails', { event });
+    navigation.navigate('EventDetailsHome', { event });
   };
 
   const handleLike = async (event) => {
@@ -137,7 +137,7 @@ function HomeStack() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="EventDetails"
+        name="EventDetailsHome"
         component={EventDetailsScreen}
         options={{ title: 'Informacija' }}
       />
@@ -177,7 +177,7 @@ function MapsStack() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="EventDetails"
+        name="EventDetailsMaps"
         component={EventDetailsScreen}
         options={{ title: 'Informacija' }}
       />
@@ -194,7 +194,7 @@ function FilterStack() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="EventDetails"
+        name="EventDetailsFilter"
         component={EventDetailsScreen}
         options={{ title: 'Informacija' }}
       />

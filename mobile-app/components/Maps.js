@@ -55,7 +55,7 @@ export default function MapsScreen() {
   const navigation = useNavigation();
 
   const handleMarkerPress = (marker) => {
-    navigation.navigate('EventDetails', { event: marker });
+    navigation.navigate('EventDetailsMaps', { event: marker });
   };
 
   return (

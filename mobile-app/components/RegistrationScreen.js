@@ -33,7 +33,7 @@ export default function RegistrationScreen({ navigation }) {
       // Handle successful registration, navigate to the next screen, etc.
       const registeredUser = await response.json();
       navigation.navigate('ProfileLoggedScreen', { user: registeredUser });
-      navigation.navigate('Home', { user: registeredUser });
+      navigation.navigate('Pagrindinis', { user: registeredUser });
     } catch (error) {
       console.error('Error:', error);
       // Handle registration error

@@ -4,12 +4,12 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function EventDetailsScreen({ route }) {
   const { event } = route.params;
-  const [liked, setLiked] = useState(false);
+  //const [liked, setLiked] = useState(false);
 
-  const handleLike = async () => {
+  /*const handleLike = async () => {
     // Perform like/unlike logic here
     setLiked(!liked);
-  };
+  };*/
 
   return (
     <View style={styles.container}>
@@ -25,13 +25,13 @@ export default function EventDetailsScreen({ route }) {
             <Text style={styles.eventCategory}>Susisiekite:</Text>
             <Text style={styles.eventEmail}>Elektroniniu paštu: {event.email || '-'}</Text>
             <Text style={styles.eventPhoneNumber}>Telefonu: {event.phone_number || '-'}</Text>
-        <TouchableOpacity style={styles.likeButton} onPress={handleLike}>
+        {/*<TouchableOpacity style={styles.likeButton} onPress={handleLike}>
               <Ionicons
                 name={liked ? 'heart' : 'heart-outline'}
                 size={20}
                 color={liked ? '#FF0000' : '#000000'}
               />
-            </TouchableOpacity>
+  </TouchableOpacity>*/}
         
         </ScrollView>
     </View>

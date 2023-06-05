@@ -67,7 +67,7 @@ export default function FilterScreen({ navigation }) {
     const { id, title, image_src } = event;
 
     const handlePress = () => {
-      navigation.navigate('EventDetails', { event });
+      navigation.navigate('EventDetailsFilter', { event });
     };
 
     return (
